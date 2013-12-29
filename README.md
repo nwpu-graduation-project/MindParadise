@@ -23,7 +23,7 @@ excute the command:
 
 
 ### install MySQL
-excute th command:
+excute the command:
 
 	sudo apt-get install mysql-server mysql-client
 
@@ -60,37 +60,35 @@ excute the command:
 	sudo apt-get install git git-core
 
 ## Install
+
 ### install mindparadise
+
 #### first clone the repo:
 
 	git clone git@github.com:nwpu-graduation-project/MindParadise.git ~/mindparadise/
 
 #### next configure apache2:
 
-1.Make sure you are loading up mod_rewrite correctly. 
-You should see something like:LoadModule rewrite_module libexec/apache2/mod_rewrite.so,which is in the file /etc/apache2/mod-available/rewirte.load
-however,the apache2 do not load the rewrite module,so you should load it:
-To make a symbolic link, execute the command:
-cd /etc/apache2/mods-enables
+##### Make sure you are loading up mod_rewrite correctly.
+You should see something like:"LoadModule rewrite_module libexec/apache2/mod_rewrite.so", which is in the file /etc/apache2/mod-available/rewirte.load. However,the apache2 do not load the rewrite module,so you should load it.To make a symbolic link, execute the command:
 
-	sudo ln -s ../mods-available/rewrite.load .
+	cd /etc/apache2/mods-enables;
+	sudo ln -s ../mods-available/rewrite.load;
 
-or execute the command to achieve the same effect
+Or execute the command to achieve the same effect:
+	
+	sudo a2enmod rewrite;
 
-	sudo a2enmod rewrite
-
-
-2.let apache2 can write things to directory install-path/app/tmp 
-execute the command:
+##### let apache2 can write things to directory install-path/app/tmp, execute the command:
 
 	sudo chgrp -R www-data app/tmp;
 	chmod -R 774 app/tmp;
 
-3.you must change your VirtualHost attribute DocumentRoot to 'install-path/app/webroot'. And make sure that an .htaccess override is allowed and that AllowOverride is set to All for the correct DocumentRoot. You should see something similar to:(change the virtualhost of apache2, which define in the file /etc/apahce2/sites-enabled/000-default or file /etc/apache2/httpd.conf)
+##### you must change your VirtualHost attribute DocumentRoot to 'install-path/app/webroot'.
+And make sure that an .htaccess override is allowed and that AllowOverride is set to All for the correct DocumentRoot. You should see something similar to:(change the virtualhost of apache2, which define in the file /etc/apahce2/sites-enabled/000-default or file /etc/apache2/httpd.conf)
 
-you can make it in 2 ways:
-
-1.you can modify the file /etc/apahce2/sites-enabled/000-default like this.
+you can make it in 2 ways below:
+###### you can modify the file /etc/apahce2/sites-enabled/000-default like this.
 
 	<VirtualHost *:80>
 		ServerAdmin webmaster@localhost
@@ -133,18 +131,22 @@ you can make it in 2 ways:
 		</Directory>
 	</VirtualHost>
 
-(attend to change the home directory tahong into your own directory)
-2. another way to acheive it is that you can make your own new virtual host.
+	(attend to change the home directory xxxxx into your own directory)
+###### another way to acheive it is that you can make your own new virtual host.
 fisrt run command to configure a hosts in your system:
 
-	sudo vim /etc/hosts
+	sudo vim /etc/hosts;
+	
 then add an new line :' 127.0.0.1 mindparadise.com' into the file, content seems like this
 
 	127.0.0.1	localhost
 	127.0.0.1	mindparadise.com
 	127.0.1.1	tahong-laptop
+	
 next open run command to create a new virtual host:
-	sudo vim /etc/aptache2/httpd.conf
+
+	sudo vim /etc/aptache2/httpd.conf;
+	
 then paste the content below into the the file:
 
 	<VirtualHost *:80>
