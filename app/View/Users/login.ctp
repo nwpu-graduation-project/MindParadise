@@ -1,3 +1,5 @@
+<!-- the login form has been created in the layout file(layout/login.ctp).-->
+<!-- 
 <div class='login'>
 	<?php
 	echo $this->Form->create(array('action' => 'login'));
@@ -6,3 +8,4 @@
 	echo $this->Form->end('Login');
 	?>
 </div>
+ -->

@@ -92,67 +92,52 @@ height:19px;
 #top_header .top_header_action {
 	float:right;
 	margin-top:5px;
+	margin-left: 20px;
+	display: list-item;
 }
-#top_header .top_header_action .login {
-	float:left;
-	width:62px;
-	height:32px;
-	margin:0px 0px;
-	background-image:url(../img/login_reg.png);
-	background-position: 0 0;
-	background-repeat:no-repeat;
-	line-height:30px;
-	text-align:center;
-	color:#fff;
+#top_header .top_header_action .login, #top_header .top_header_action .register, #top_header .top_header_action .logout {
+	float: right;
+	width: 58px;
+	margin-left:4px;
+	background-color: rgb(43, 101, 224);
+	-webkit-border-radius: 4px;
+	line-height: 30px;
+	text-align: center;
+	color: #fff;
 }
-#top_header .top_header_action .login:hover {
-	background-image:url(../img/login_reg_hover.png);
-	background-position:0 0;
-	background-repeat:no-repeat;
+#top_header .top_header_action .login:hover, #top_header .top_header_action .register:hover ,#top_header .top_header_action .logout:hover {
+	color: red;
 }
-#top_header .top_header_action .register {
-	float:left;
-	width:76px;
-	height:32px;
-	margin:0px 0px;
-	background-image:url(../img/register_reg.png);
-	background-position: right top;
-	background-repeat:no-repeat;
-	line-height:30px;
-	text-align:center;
-	color:#fff;
-}
-#top_header .top_header_action .register:hover {
-	background-image:url(../img/register_reg_hover.png);
-	background-position:1px 0;
-	background-repeat:no-repeat;
-}
-#top_header .top_header_action .username {
 
+#top_header .top_header_action .username {
+	float: right;
+	margin: 0px 20px 0px 20px;
+	line-height:30px;
+	text-align: center;
+	color: #fff;	
 }
 #top_header .top_header_action .username:hover {
-
+	color: red;
 }
-#top_header .top_header_action .logout {
+/*=============================NOTIFICATION INCICATOR WIGGLE EFFECT===============*/
+@-ms-keyframes wiggle{0%{-ms-transform:rotate(5deg);}50%{-ms-transform:rotate(-5deg);}100%{-ms-transform:rotate(5deg);}}
+@-moz-keyframes wiggle{0%{-moz-transform:rotate(5deg);}50%{-moz-transform:rotate(-5deg);}100%{-moz-transform:rotate(5deg);}}
+@-webkit-keyframes wiggle{0%{-webkit-transform:rotate(5deg);}50%{-webkit-transform:rotate(-5deg);}100%{-webkit-transform:rotate(5deg);}}
+@keyframes wiggle{0%{transform:rotate(5deg);}50%{transform:rotate(-5deg);}100%{transform:rotate(5deg);}}
 
-}
-#top_header .top_header_action .logout:hover {
-
-}
 /*===================================== NOTIFICATION CSS ===============*/
 
 #notifications {
-  padding-bottom: .5em;
   -webkit-user-select: none;
   text-shadow: 0 1px rgba(255, 255, 255, 0.1);
   float: right;
+  line-height: 30px;
 }
 #notifications span {
   display: none;
 }
 #notifications .count {
   padding: 0;
-  min-width: 3em;
   text-decoration: none;
   font-weight: bold;
   margin: 0;
@@ -177,8 +162,10 @@ height:19px;
   transition: all .31s ease 0;
 }
 #notifications .important:hover {
-  -webkit-animation: wiggle .35s ease 0;
-  -moz-animation: wiggle .35s ease 0;
+  -ms-animation: wiggle .3s infinite;
+  -moz-animation: wiggle .3s infinite;
+  -webkit-animation: wiggle .3s infinite;
+  animation: wiggle .3s infinite;
 }
 #notifications .all {
   border-radius: .5em;
@@ -200,16 +187,16 @@ height:19px;
 }
 #notifications .flash-message {
   font-family: sans, sans-serif;
-  z-index: 9;
+  z-index: 102;
   -webkit-transform: translate3d(0, 0, 0);
   position: absolute;
   background-color: white;
   padding: 0em;
-  min-width: 30em;
+  min-width: 20em;
   width: 15%;
-  display: block;
+  display: none;
   margin-right: 1.5em;
-  right: .5em;
+  right: 12.0em;
   color: #363a3f;
   text-shadow: none;
   padding-top: 1em;
@@ -218,6 +205,9 @@ height:19px;
   text-shadow: 0 1px rgba(0, 0, 0, 0.05);
   top: 4em;
   -webkit-user-select: text;
+}
+#notifications:hover .flash-message {
+	display : block;
 }
 #notifications .flash-message:before, #notifications .flash-message:after {
   content: "";
@@ -228,26 +218,26 @@ height:19px;
   border-color: transparent transparent white;
   position: absolute;
   top: -1.8em;
-  right: 5.5em;
-  z-index: 4;
+  right: 9.45em;
+  z-index: 103;
 }
 #notifications .flash-message:before {
   border-bottom-color: #616770;
   top: -1.5em;
   border-width: 0em 1.5em 1.5em 1.5em;
-  right: 5em;
+  right: 9em;
 }
-#notifications .flash-message .message {
+#notifications .flash-message .noti-message {
   border-bottom: 0.1em solid rgba(0, 0, 0, 0.1);
   margin-bottom: 1em;
-  padding: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
   padding-bottom: 1.5em;
-  padding-top: none;
   line-height: 1.5em;
   color: #666;
   text-shadow: none;
 }
-#notifications .flash-message .message a {
+#notifications .flash-message .noti-message a {
   color: #69d;
   text-decoration: none;
 }
@@ -257,7 +247,7 @@ height:19px;
   padding: .75em 1em;
   text-align: center;
   display: block;
-  width: 100%;
+  width: 270px;
   text-decoration: underline;
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f9fafa), color-stop(100%, #c8cbd0));
   background: -webkit-linear-gradient(top, #f9fafa 0%, #c8cbd0 100%);
@@ -277,6 +267,8 @@ height:19px;
   color: #363a3f;
 }
 
+
+
 /*===================================== LOGO AND NAVIGATION CSS ===============*/
 #logo_nav {
 	float:left;
@@ -295,7 +287,7 @@ height:19px;
 	background-repeat:no-repeat;
 	position:relative;
 	z-index:100;
-	height:581px;
+	height:650px;
 }
 #logo_nav .bg1 {
 	float:left;
@@ -321,11 +313,11 @@ height:19px;
 	float:left;
 	width:100%;
 	background-image:url(../img/blog_bg.png);
-	background-position:center top;
+	background-position:center bottom;
 	background-repeat:no-repeat;
 	position:relative;
 	z-index:100;
-	height:251px;
+	height:205px;
 }
 #logo_nav .logo {
 	float:left;
@@ -1314,6 +1306,7 @@ li {
 	width:100%;
 	text-align:left;
 	font-size:15px;
+	padding-left:4px;
 	color:#000000;
 	font-family: 'existence_lightregular';
 }
@@ -1397,6 +1390,14 @@ li {
 	background-image:url(../img/register_sprit.png);
 	background-position:left -150px;
 	background-repeat:no-repeat;
+}
+/*=========================== clear the float tag without content =============*/
+.clearfix:after {
+	height:0px;
+	visibility:hidden;
+	content:".";
+	clear:both;
+	display:block;
 }
 /*===================================== ABOUT PSAGE CSS ========================*/
 #about_us {

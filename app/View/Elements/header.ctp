@@ -3,42 +3,42 @@
     <div class="center_frame">
       <div class="top">
         <div class="top_header_action"> 
-          <?php if(!$currentUser): ?>   
-            <a href="login" class="login">&nbsp;</a> 
-            <a href="register" class="register">&nbsp;</a> 
+          <?php if(!$currentUser): ?>
+              <a href="login" class="login">登录</a>    
+              <a href="register" class="register">注册</a>
           <?php else: ?>
             <a class="logout" href="/logout">注销</a>
             <a class="username" href="#"><?php echo $currentUser['User']['username']; ?></a>
             <div id="notifications">
+              <!-- indicator start -->
               <div id="indicator">
                 <span>notifications</span>
                 <a class="count important" href="#">7</a>
               </div>
-              <!-- comment out to remove notifiation dialog -->
-              <!--
+              <!-- indicator end -->
+              <!-- flash-message start -->
               <div class="flash-message">
-                <div class="message">
+                <div class="noti-message">
                   Things have been happening
                   <a href="#">here's proof</a>
                 </div>
-                <div class="message">
+                <div class="noti-message">
                   This is a warning — be warned!
                 </div>
                 <div class="form">
                   <a class="btn" href="#">view all notifications</a>
                 </div>
               </div>
-              -->
+              <!-- flash-message end -->
             </div>
           <?php endif; ?> 
         </div>
-
         <form name="search" method="post" action="">
-          <div class="search">
-            <input type="text" placeholder="Search">
-            <a href="default.htm"></a>
-          </div>
-        </form>
+        <div class="search">
+          <input type="text" placeholder="Search">
+          <a href="default.htm"></a>
+        </div>
+      </form>
       </div>
     </div>
   </div>

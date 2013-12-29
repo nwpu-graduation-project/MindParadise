@@ -5,6 +5,7 @@ form .error {
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
 	font-weight: normal;
+	margin-top: 5px;
 }
 form .error-message {
 	-moz-border-radius: none;
