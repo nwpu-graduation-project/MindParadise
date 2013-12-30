@@ -10,7 +10,7 @@ class WebcontentsController extends AppController {
 	public $helpers = array('Html', 'Form', 'Time');
 	public $components = array('Session');
 	public $uses = array('Webcontent', 'Tag','Comment','User', 'WebcontentsTag');
-	// public $components = array('Paginator');
+	public $components = array('Paginator');
 
     public $paginate = array(
         'limit' => 2,
