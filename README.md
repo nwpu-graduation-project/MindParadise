@@ -79,7 +79,7 @@ Or execute the command to achieve the same effect:
 	
 	sudo a2enmod rewrite;
 
-##### let apache2 can write things to directory install-path/app/tmp, execute the command:
+##### let apache2 can write things to directory install-path/app/tmp (you should create it), execute the command:
 
 	sudo chgrp -R www-data app/tmp;
 	chmod -R 774 app/tmp;
