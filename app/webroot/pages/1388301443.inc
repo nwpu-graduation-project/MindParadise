@@ -1,0 +1,2 @@
+<p>每天，我们都会面临工作上，学业上抑或是生活上的压力——房贷，考试周，码不完的代码，做不完的视频，还有家里人的那句话：“哎，什么时候找个对象啊”… …在各种压力的逼迫下，很多年轻人时常处于崩溃的边缘——尽管表面上他们干劲十足.</p><p><embed type="application/x-shockwave-flash" class="edui-faked-video" pluginspage="http://www.macromedia.com/go/getflashplayer" src="http://player.youku.com/player.php/sid/XNjMwNzU2Nzk2" width="600" height="400" style="float:none" wmode="transparent" play="true" loop="false" menu="false" allowscriptaccess="never" allowfullscreen="true"/>
+	</p><p><br/></p>
