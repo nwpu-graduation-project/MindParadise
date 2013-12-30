@@ -49,6 +49,12 @@ class AppController extends Controller {
 		return $currentUser;
 	}
 
+	function countUnreadNotification()
+	{
+		$currentUser = $this->currentUser();
+		
+
+	}
 	function beforeRender()
 	{
 		$this->set('currentUser', $this->currentUser());

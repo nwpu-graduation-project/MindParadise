@@ -12,7 +12,16 @@ class User extends AppModel
     'admin' => 4,
   );
   */
-  
+  public $hasMany = array(
+        'notifications' => array(),
+        'comments' => array(),
+    );
+
+  public $hasOne = array(
+        'profile' => array(),
+    );
+
+
 
   public function beforeSave($options = array()) 
   {
