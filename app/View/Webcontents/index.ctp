@@ -1,4 +1,21 @@
-<div id="blog_right">
+<div id="wrapper" style="width: 90%">
+
+<div id="blog_content">
+    <div class="center_frame">
+    	
+    	<div id="blog_left">
+<?php
+if(!isset($category)) {
+	$category = 0;
+}
+
+echo $this->element('artical_categories',array('current' => $category));
+echo $this->element('most_viewed_articals');
+?>
+    	</div>
+    	
+    	
+    	<div id="blog_right">
 
 <?php foreach ($webcontents as $webcontent): ?>	
 <div class="post_blog">
@@ -50,7 +67,7 @@
 		array('class' => 'blgo_read')); ?>
 	<div class="blgo_developer_icon">
 	<ul>
-		<li><a href="#"><img src="/mp/images/p84.png" alt=""></a></li>
+		<li><a href="#"><img src="/images/p84.png" alt=""></a></li>
 		<?php foreach ($webcontent['WecontentTags'] as $tag) : ?>
 		<li><a href="#"><?php echo $tag['tag']; ?></a></li>
 		<?php endforeach; ?>
@@ -60,5 +77,64 @@
 
 <?php endforeach; ?>
 <?php unset($webcontent);?>
+
+</div>
+
+</div>
+</div>
+
+<!-- ?php
+echo $this->Paginator->sort('created',
+	'<em>Created</em>',
+	array('escape' => false));
+? -->
+
+<div id="page_navigation">
+	<div class="center_frame">
+		<ul class="blog_page_nav">
+<?php
+echo $this->Paginator->prev(
+  '上一页',
+  array(
+  	// 'escape' => FALSE,
+  	'tag' => 'li',
+  	'class' => 'page_prev',
+  ),
+  '上一页',
+  array(
+  	'tag' => 'li',
+  	'class' => 'page_prev',
+  )
+);
+?>
+			
+<?php
+echo $this->Paginator->numbers(array(
+		'separator' => NULL,
+		'tag' => 'li',
+		'class' => 'page_number',
+		'currentClass' => 'current',
+		'currentTag' => 'a')
+	);
+?>
+
+<?php
+echo $this->Paginator->next(
+  '下一页',
+  array(
+  	// 'escape' => FALSE,
+  	'tag' => 'li',
+  	'class' => 'page_next',
+  ),
+  '下一页',
+  array(
+  	'tag' => 'li',
+  	'class' => 'page_next',
+  )
+);
+?>
+		</ul>
+	</div>
+</div>
 
 </div>
