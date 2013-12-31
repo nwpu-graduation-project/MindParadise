@@ -1,3 +1,14 @@
+<div id="wrapper">
+
+<div id="blog_content">
+    <div class="center_frame">
+    	
+    	<div id="blog_left">
+<?php
+echo $this->element('artical_categories',array('current' => $webcontent['Webcontent']['category']));
+?>
+    	</div>
+
 <div id="blog_right">
 <?php // WebcontentsController::_echoArray($webcontent); ?>
 <?php // WebcontentsController::_echoArray($comments); ?>
@@ -45,12 +56,12 @@
 	<div>
 	<?php echo $page; ?>
 	</div>
-	<a href="#" class="blgo_read"><?php echo $webcontent['Webcontent']['browse_count'].'次阅读'; ?></a>
+	<a href="#" class="blgo_read"><?php echo ++$webcontent['Webcontent']['browse_count'].'次阅读'; ?></a>
 	<a href="#" class="blgo_comment"><?php echo $webcontent['Webcontent']['comment_count'].'条评论'; ?></a>
 	<?php echo $this->Html->link('发表评论',array('action' => 'postcomment',$webcontent['Webcontent']['id'])); ?>
 	<div class="blgo_developer_icon">
 	<ul>
-		<li><a href="#"><img src="/mp/images/p84.png" alt=""></a></li>
+		<li><a href="#"><img src="/images/p84.png" alt=""></a></li>
 		<?php foreach ($webcontent['WecontentTags'] as $tag) : ?>
 		<li><a href="#"><?php echo $tag['tag']; ?></a></li>
 		<?php endforeach; ?>
@@ -62,11 +73,11 @@
 <?php foreach ($comments as $comment) : ?>
 	<div class="person_icon">
 		<h5>
-			<img src="/mp/images/anoyous.png" alt="">
+			<img src="/images/anoyous.png" alt="">
 			<span><?php echo $comment['Commentor']['username'] ?></span>
 			<em><?php echo $this->Time->nice($comment['Comment']['created'],NULL,'%Y-%m-%d');?></em>
 		</h5>
-		<div class="person_comment"> <img src="/mp/images/anoyous_icon.png" alt="" class="comment_tooltip">
+		<div class="person_comment"> <img src="/images/anoyous_icon.png" alt="" class="comment_tooltip">
 		<?php echo $comment['Comment']['content'] ?>
     	</div>
     	<?php echo $this->Html->link('回复他',array(
@@ -79,7 +90,7 @@
     <?php foreach ($comment['FollowedComments'] as $childComment) : ?>
     <div class="person_icon leve_margin">
     	<h5>
-    		<img src="/mp/images/anoyous.png" alt="">
+    		<img src="/images/anoyous.png" alt="">
     		<span>
     		<?php
     		echo $childComment['Commentor']['username'];
@@ -90,7 +101,7 @@
     		</span>
     		<em><?php echo $this->Time->nice($childComment['created'],NULL,'%Y-%m-%d');?></em>
     	</h5>
-    	<div class="person_comment short_width"> <img src="/mp/images/anoyous_icon.png" alt="" class="comment_tooltip">
+    	<div class="person_comment short_width"> <img src="/images/anoyous_icon.png" alt="" class="comment_tooltip">
     	<?php echo $childComment['content'] ?>
     	</div>
     	<?php echo $this->Html->link('回复他',array(
@@ -109,5 +120,12 @@
 		<input type="submit" value="Post comment" name="submit">
 	</form>
 </div -->
+</div>
+</div>
+</div>
+
+<div id="page_navigation">
+    <div class="center_frame"> <a href="/webcontents/index" class="leave_back">&nbsp;</a> </div>
+</div>
 
 </div>

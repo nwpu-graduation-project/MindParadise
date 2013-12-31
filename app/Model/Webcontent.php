@@ -39,9 +39,9 @@ class Webcontent extends AppModel {
 		if(!$id) {
 			return ;
 		}
-		$webcontent = $this->Webcontent->read('browse_count', $id);
-		$this->Webcontent->set('browse_count', ++$webcontent['browse_count']);
-		$this->Webcontent->save();
+		$webcontent = $this->read('browse_count', $id);
+		$this->set('browse_count', ++$webcontent['Webcontent']['browse_count']);
+		$this->save();
 	}
     
 }

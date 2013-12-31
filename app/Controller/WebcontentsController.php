@@ -7,23 +7,42 @@ App::uses('File', 'Utility');
 
 class WebcontentsController extends AppController {
 
-	public $helpers = array('Html', 'Form', 'Time');
-	public $components = array('Session');
+	public $helpers = array('Html', 'Form', 'Time', 'Paginator');
+	public $components = array('Session', 'Paginator');
 	public $uses = array('Webcontent', 'Tag','Comment','User', 'WebcontentsTag');
-	// public $components = array('Paginator');
 
     public $paginate = array(
-        'limit' => 2,
+        'limit' => 10,
         'order' => array(
             'Webcontent.created' => 'desc'
-        )
+        ),
+        'recursive' => 1
     );
 	
-	public function index() {
-		// $this->Webcontent->unbindModel( array('hasMany' => array('Comment')) );
-		$this->set('webcontents', $this->Webcontent->find('all',array('recursive' => 1)));
+	public function category($category = 0) {
+		$this->Paginator->settings = $this->paginate;
+		if($category == 0) {
+			$this->set('webcontents', $this->Paginator->paginate('Webcontent'));
+		} else {
+			$this->set('webcontents', $this->Paginator->paginate('Webcontent',
+				array('Webcontent.category' => $category)));
+		}
+    	$this->set('category',$category);
+		$this->render('index');
 	}
-
+	
+	public function listview() {
+		$this->Paginator->settings = $this->paginate;
+    	$this->set('webcontents', $this->Paginator->paginate('Webcontent'));
+	}
+	
+	public function index() {
+		$this->Paginator->settings = $this->paginate;
+    	$this->set('webcontents', $this->Paginator->paginate('Webcontent'));
+		// $this->Webcontent->unbindModel( array('hasMany' => array('Comment')) );
+		// $this->set('webcontents', $this->Webcontent->find('all',array('recursive' => 1)));
+	}
+	
 	public function add() {
 		if ($this->request->is('get')) {
 			// verify the user
@@ -35,7 +54,8 @@ class WebcontentsController extends AppController {
 			array_splice($this->request->data, 1, 1);
 
 			// webcontentPage
-			$this->request->data['Webcontent']['path'] = $this->_saveToFile($this->request->data['webcontentPage']);
+			$this->request->data['Webcontent']['path'] = $this->_saveToFile(
+				$this->request->data['webcontentPage']);
 			array_splice($this->request->data, 1, 1);
 
 			$this->request->data['Webcontent']['user_id'] = $this->_getCurrentUserID();
@@ -81,7 +101,7 @@ class WebcontentsController extends AppController {
     		$file->close();
 			$this->set('page',$page);
 			
-			$this->User->unbindAll(); // 查询完成后有没有再绑定
+			// $this->User->unbindAll(); // 查询完成后有没有再绑定
 			$comments = $this->Comment->find('all', array(
 				'conditions' => array(
 					'Comment.webcontent_id' => $id,
@@ -92,6 +112,16 @@ class WebcontentsController extends AppController {
 				);
 			$this->set('comments', $comments);
         }
+	}
+
+	public function getMostViewedArticals() {
+		return $this->Webcontent->find('all',
+			array(
+				'recursive' => -1,
+				'fields' => array('id', 'title', 'abstract'),
+				'limit' => 3,
+				'order' => 'browse_count DESC'
+			));
 	}
 
 	protected function _getCurrentUserID() {
@@ -135,7 +165,8 @@ class WebcontentsController extends AppController {
 			// WebcontentsController::_echoArray($this->request->data);
 			$this->Comment->create();
 			if ($this->Comment->save($this->request->data)) {
-				return $this->redirect(array('action' => 'view',$this->request->data['Comment']['webcontent_id']));
+				return $this->redirect(array('action' => 'view',
+					$this->request->data['Comment']['webcontent_id']));
 			} else {
 				debug($this->Comment->validationErrors);
 				$this->Session->setFlash(__('Unable to add the tag.'));
@@ -164,6 +195,14 @@ class WebcontentsController extends AppController {
 				unset($i);
 				echo $key."=>".$value.'<br>';
 			}
+		}
+	}
+	
+	public function afterFilter() {
+		if($this->request->param('action') == 'view') {
+
+			$id = $this->request->param('pass');
+			$this->Webcontent->browsedOnce($id);
 		}
 	}
 }
