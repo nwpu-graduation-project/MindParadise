@@ -12,16 +12,31 @@ class User extends AppModel
     'admin' => 4,
   );
   */
-  // public $hasMany = array(
-  //       'notifications' => array(),
-  //       'comments' => array(),
-  //   );
+  public $hasMany = array(
+        'Comment' => array(
+            'className' => 'Comment',
+            'foreignKey' => 'commentor_id'),
+        'Message' => array(
+            'className' => 'Message',
+            'foreignKey' => 'user_id'),
+    );
 
   // public $hasOne = array(
-  //       'profile' => array(),
+  //       'profile' => array(
+  //         'className' => 'UserProfile',
+  //         'foreignKey' => 'user_id'),
   //   );
 
+  // public function unBindAll()
+  // {
 
+  //   foreach( $hasMany as $key => $value)
+  //     $this->unBindModel('hasMany' => array($key);
+
+  //   foreach( $hasOne as $key => $value)
+  //     $this->unBindModel('hasOne' => array($key));
+
+  // }
 
   public function beforeSave($options = array()) 
   {
@@ -36,7 +51,7 @@ class User extends AppModel
   /**
    * Standard validation behaviour
    */
-  var $validate = array(
+  public $validate = array(
     'username' => array(
       'length' => array(
         'rule'      => array('minLength', 5),
@@ -115,7 +130,7 @@ class User extends AppModel
   /**
    * Extra form dependent validation rules
    */
-  var $validateChangePassword = array(
+  public $validateChangePassword = array(
       '_import' => array('password', 'password_confirm'),
       'password_old' => array(
           'correct' => array(

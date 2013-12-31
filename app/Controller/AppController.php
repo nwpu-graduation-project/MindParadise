@@ -31,7 +31,7 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 	var $components = array('Auth','Email','Session');
-	var $uses = array('User');
+	var $uses = array('User','Message');
 
 	public $layout = 'index';
 
@@ -44,20 +44,15 @@ class AppController extends Controller {
 		$id = $this->Auth->user('id');
 
 		// Load the user (avoid populating $this->data)
+		$this->User->unbindModel(array('hasMany' => array('Comment')));
 		$currentUser = $this->User->findById($id);
 
 		return $currentUser;
 	}
-
-	function countUnreadNotification()
-	{
-		$currentUser = $this->currentUser();
-		
-
-	}
 	function beforeRender()
 	{
 		$this->set('currentUser', $this->currentUser());
+		//$this->set('notifications', $this->getUnreadNotifications());
 		parent::beforeRender();
 	}
 }

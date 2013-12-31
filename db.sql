@@ -20,8 +20,8 @@ CREATE  TABLE IF NOT EXISTS `mind_paradise`.`users` (
   `modified` DATETIME NULL DEFAULT NULL ,
   `lastlogin` DATETIME NULL DEFAULT NULL ,
   `role` SMALLINT(6) NOT NULL DEFAULT 1 ,
-  `notifications_read` INT NOT NULL DEFAULT 0 ,
-  `notifications_unread` INT NOT NULL DEFAULT 0 ,
+  `messages_read` INT NOT NULL DEFAULT 0 ,
+  `messages_unread` INT NOT NULL DEFAULT 0 ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `username` (`username` ASC) ,
   UNIQUE INDEX `email` (`email` ASC) )
@@ -240,22 +240,25 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mind_paradise`.`notifications`
+-- Table `mind_paradise`.`messages`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mind_paradise`.`notifications` ;
+DROP TABLE IF EXISTS `mind_paradise`.`messages` ;
 
-CREATE  TABLE IF NOT EXISTS `mind_paradise`.`notifications` (
+CREATE  TABLE IF NOT EXISTS `mind_paradise`.`messages` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `user_id` INT(11) NOT NULL ,
   `type` INT(11) NOT NULL ,
   `abstract` VARCHAR(300) NOT NULL ,
   `link_route` TEXT NOT NULL ,
-  `f_read` TINYINT(4) NULL DEFAULT NULL ,
+  `f_read` TINYINT(4) NULL DEFAULT 0 ,
+  `created` DATETIME NOT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `FK_Reference_15` (`user_id` ASC) ,
   CONSTRAINT `FK_Reference_15`
     FOREIGN KEY (`user_id` )
-    REFERENCES `mind_paradise`.`users` (`id` ))
+    REFERENCES `mind_paradise`.`users` (`id` )
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT)
 ENGINE = InnoDB;
 
 
