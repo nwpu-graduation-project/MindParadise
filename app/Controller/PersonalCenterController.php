@@ -2,11 +2,11 @@
 
 class PersonalCenterController extends AppController
 {
-	var uses = array("");
+	//public uses = array("User");
 
 	function index()
 	{
-		$currentUser = parrent::currentUser();
+		$currentUser = parent::currentUser();
 
 		if(!$currentUser)
 		{
@@ -16,20 +16,20 @@ class PersonalCenterController extends AppController
 
 		}
 
-		switch($currentUser.roll)
+		switch($currentUser['User']['role'])
 		{
 
 			// case 1: // tourist
 			// 	this->render("tourist_index");
 			// 	break;
 			case 2: // normal user
-				this->render("user_index");
+				$this->render("user_index");
 				break;
 			case 3: // consultant
-				this->render("consultant_index");
+				$this->render("consultant_index");
 				break;
 			case 4: // administrator
-				this->render("admin_index");
+				$this->render("admin_index");
 			default: // error
 		}
 	}

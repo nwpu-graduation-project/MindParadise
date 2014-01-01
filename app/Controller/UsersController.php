@@ -3,7 +3,7 @@ App::uses('CakeEmail', 'Network/Email');
 
 class UsersController extends AppController
 {
-  //public $uses = array('Notification','Comment');
+  //public $uses = array('Message','Comment');
   /**
    *      * Runs automatically before the controller action is called
    *           */
