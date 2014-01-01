@@ -4,41 +4,54 @@
       <div class="top">
         <div class="top_header_action"> 
           <?php if(!$currentUser): ?>
-              <a href="login" class="login">登录</a>    
-              <a href="register" class="register">注册</a>
+            <a href="login" class="login">登录</a>    
+            <a href="register" class="register">注册</a>
           <?php else: ?>
             <a class="logout" href="/logout">注销</a>
-            <a class="username" href="#"><?php echo $currentUser['User']['username']; ?></a>
+            <a class="username" href="/personalCenter/"><?php echo $currentUser['User']['username']; ?></a>
             <div id="notifications">
               <!-- indicator start -->
               <div id="indicator">
                 <span>notifications</span>
-                <a class="count important" href="#">7</a>
+                <?php if($currentUser['User']['messages_unread'] != 0): ?>
+                  <a class="count important" href="#">
+                    <?php echo $currentUser['User']['messages_unread'];?>
+                  </a>
+                <?php else: ?>
+                  <a class="count" href="#">0</a>
+                <?php endif; ?>
               </div>
               <!-- indicator end -->
-              <!-- flash-message start -->
-              <div class="flash-message">
-                <div class="noti-message">
-                  Things have been happening
-                  <a href="#">here's proof</a>
+              <?php if($unreadMessages): ?>
+                <!-- flash-message start -->
+                <div class="flash-message">
+
+                  <?php foreach($unreadMessages as $num => $message): ?>
+                    <div class="noti-message">
+                      <?php 
+                      echo $message['Message']['type'];
+                      echo $message['Message']['abstract']; 
+                      ?>
+                      <br>
+                      <a href="#">详细</a>
+                    </div>
+                  <?php endforeach; ?>
+
+                  <div class="form">
+                    <a class="btn" href="#">查看所有</a>
+                  </div>
                 </div>
-                <div class="noti-message">
-                  This is a warning — be warned!
-                </div>
-                <div class="form">
-                  <a class="btn" href="#">view all notifications</a>
-                </div>
-              </div>
-              <!-- flash-message end -->
+                <!-- flash-message end -->
+              <?php endif;?>
             </div>
           <?php endif; ?> 
         </div>
         <form name="search" method="post" action="">
-        <div class="search">
-          <input type="text" placeholder="Search">
-          <a href="default.htm"></a>
-        </div>
-      </form>
+          <div class="search">
+            <input type="text" placeholder="Search">
+            <a href="default.htm"></a>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -53,7 +66,7 @@
           <li><a href="#"><span>专家团队</span></a></li>
           <li><a href="#"><span>案例分析</span></a>
             <ul>
-            <li> <a href="#" class="life">Life with P84</a> <span class="nav_line"></span></li>
+              <li> <a href="#" class="life">Life with P84</a> <span class="nav_line"></span></li>
               <li> <a href="#" class="life_1">Always full power</a> <span class="nav_line"></span></li>
               <li> <a href="#" class="life_2">Media access</a> <span class="nav_line"></span></li>
               <li> <a href="#" class="life_3">Infinite creativity</a> <span class="nav_line"></span></li>

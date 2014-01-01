@@ -44,15 +44,39 @@ class AppController extends Controller {
 		$id = $this->Auth->user('id');
 
 		// Load the user (avoid populating $this->data)
-		$this->User->unbindModel(array('hasMany' => array('Comment')));
-		$currentUser = $this->User->findById($id);
-
+		$currentUser = null;
+		if($id)
+		{
+			$currentUser = $this->User->find('first',array(
+				'condition' => array('id' => $id),
+				'recursive' => -1,
+			));
+		}
 		return $currentUser;
 	}
+
+	function getUnreadMessages()
+	{
+		$id = $this->Auth->user('id');
+
+		$unreadMessages = null;
+		if($id)
+		{
+			$unreadMessages = $this->Message->find('all',array(
+				'condition' => array('user_id' => $id, 'f_read' => 0),
+				'recursive' => -1,
+				'order' => 'created desc',
+				'limit' => 3,
+			));
+		}
+
+		return $unreadMessages;
+	}
+
 	function beforeRender()
 	{
 		$this->set('currentUser', $this->currentUser());
-		//$this->set('notifications', $this->getUnreadNotifications());
+		$this->set('unreadMessages', $this->getUnreadMessages());
 		parent::beforeRender();
 	}
 }

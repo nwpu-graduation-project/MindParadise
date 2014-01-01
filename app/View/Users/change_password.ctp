@@ -1,4 +1,7 @@
+
 <?php
+$this->extend('/PersonalCenter/common_view');
+$this->start('sidebar');
 switch($currentUser['User']['role'])
 {
 	//case 1:
@@ -7,6 +10,7 @@ switch($currentUser['User']['role'])
 	case 4: echo $this->element("sidebar_admin");break;
 	default://error
 }
+$this->end();
 ?>
 <div class='main'>
 	<div class='account'>
