@@ -64,12 +64,12 @@ DROP TABLE IF EXISTS `mind_paradise`.`categories` ;
 
 CREATE  TABLE IF NOT EXISTS `mind_paradise`.`categories` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `parentid` INT(11) NULL DEFAULT '0' ,
+  `parent_id` INT(11) NULL DEFAULT NULL,
   `name` VARCHAR(10) NOT NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `FK_Reference_2` (`parentid` ASC) ,
+  INDEX `FK_Reference_2` (`parent_id` ASC) ,
   CONSTRAINT `FK_Reference_2`
-    FOREIGN KEY (`parentid` )
+    FOREIGN KEY (`parent_id` )
     REFERENCES `mind_paradise`.`categories` (`id` )
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)
@@ -223,7 +223,7 @@ CREATE  TABLE IF NOT EXISTS `mind_paradise`.`encyclopedia_entries` (
   `category_id` INT(11) NOT NULL ,
   `user_id` INT(11) NULL DEFAULT NULL COMMENT 'author' ,
   `entry` VARCHAR(10) NOT NULL ,
-  `post_time` DATETIME NOT NULL ,
+  `created` DATETIME NOT NULL ,
   `modified` DATETIME NOT NULL ,
   `file_path` VARCHAR(100) NOT NULL ,
   `browser_num` INT(11) NULL DEFAULT '0' ,

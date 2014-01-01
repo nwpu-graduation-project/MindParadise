@@ -7,10 +7,10 @@
 </div -->
 <!-- another version - flat style with animated hover effect -->
 <div id="catrgoy_holder" class="breadcrumb flat">
-	<a href="#" class="active">Browse</a>
-	<a href="#">Compare</a>
-	<a href="#">Order Confirmation</a>
-	<a href="#">Checkout</a>
+	<a href="#">操作系统</a>
+	<a href="#">LINUX</a>
+	<a href="#">基于Slackware</a>
+	<a href="#" class="active">Slax</a>
 </div>
 
 <!-- Prefixfree -->

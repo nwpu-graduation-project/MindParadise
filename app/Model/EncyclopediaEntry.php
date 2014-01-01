@@ -1,7 +1,13 @@
 <?php
 
 class EncyclopediaEntry extends AppModel {
-	public $belongsTo = array();
+	public $belongsTo = array(
+		'Category' => array(
+			'className' => 'Category',
+			'foreignKey' => 'category_id',
+			'fields' => array('id', 'name')
+		)
+	);
 }
 
 ?>
