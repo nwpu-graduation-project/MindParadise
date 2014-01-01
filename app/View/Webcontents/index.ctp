@@ -1,4 +1,4 @@
-<div id="wrapper" style="width: 90%">
+<div id="wrapper">
 
 <div id="blog_content">
     <div class="center_frame">
@@ -67,7 +67,7 @@ echo $this->element('most_viewed_articals');
 		array('class' => 'blgo_read')); ?>
 	<div class="blgo_developer_icon">
 	<ul>
-		<li><a href="#"><img src="/images/p84.png" alt=""></a></li>
+		<li><a href="/tags/"><img src="/images/p84.png" alt=""></a></li>
 		<?php foreach ($webcontent['WecontentTags'] as $tag) : ?>
 		<li><a href="#"><?php echo $tag['tag']; ?></a></li>
 		<?php endforeach; ?>
@@ -114,7 +114,8 @@ echo $this->Paginator->numbers(array(
 		'tag' => 'li',
 		'class' => 'page_number',
 		'currentClass' => 'current',
-		'currentTag' => 'a')
+		'currentTag' => 'a'
+		)
 	);
 ?>
 

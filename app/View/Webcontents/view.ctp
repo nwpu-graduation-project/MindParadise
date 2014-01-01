@@ -61,7 +61,7 @@ echo $this->element('artical_categories',array('current' => $webcontent['Webcont
 	<?php echo $this->Html->link('发表评论',array('action' => 'postcomment',$webcontent['Webcontent']['id'])); ?>
 	<div class="blgo_developer_icon">
 	<ul>
-		<li><a href="#"><img src="/images/p84.png" alt=""></a></li>
+		<li><a href="/tags/"><img src="/images/p84.png" alt=""></a></li>
 		<?php foreach ($webcontent['WecontentTags'] as $tag) : ?>
 		<li><a href="#"><?php echo $tag['tag']; ?></a></li>
 		<?php endforeach; ?>

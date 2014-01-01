@@ -10,9 +10,30 @@ $this->start('script');
 echo '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>';
 echo '<script src="/ueditor_mini/umeditor.config.js"></script>';
 echo '<script src="/ueditor_mini/umeditor.min.js"></script>';
-$this->end();
+?>
+<script type="text/javascript">
+	function append() {
+		var newNode = document.createElement("li");
+		newNode.setAttribute("onclick", "remove(this)");
 
-$categories = array('新闻','文章','视频','图片');
+		var input = document.getElementById("add_tag");
+		var str = input.value;
+		newNode.innerHTML = "<a><span>" + str + "</span></a>";
+
+		var oldNode = document.getElementById("plpular_tags_icon");
+		oldNode.appendChild(newNode);
+
+		// var tag_names = document.getElementById("hidden_tag_names");
+		// tag_names.value += (input.value + " ");
+		input.value = "";
+	}
+
+	function remove(obj) {
+		obj.parentNode.removeChild(obj)
+	}
+</script>
+<?php
+$this->end();
 
 echo $this->Form->create('Webcontent');
 echo $this->Form->input('title',array('label' => '标题', 'div' => array('class' => 'input_1')));
@@ -22,9 +43,11 @@ echo $this->Form->select('category', $categories);
 ?>
 
 <div>
-<label for="tagSelector" class="required">标签</label>
-<input id="tagSelector" name="data[selectedTags]" type="text" disabled="disabled" value="hehe hehe" />
-<input id="tagIdSelector" name="data[selectedTagIDs]" type="hidden" value="1,2" />
+	<label for="tagSelector" class="required">标签</label>
+	<input type="text" id="add_tag"  maxlength="7" size="10"/>
+	<input type="button" onclick="append()" value="+" />
+	<ul id="plpular_tags_icon" style="width: 100%"></ul>
+    <input id="hidden_tag_names" name="data[selectedTagNames]" type="hidden" value="1,2"/>
 </div>
 <div id="editorContainer" name="editorContainerDiv">
 	<label for="contentEditor" class="required">正文</label>

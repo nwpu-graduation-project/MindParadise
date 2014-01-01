@@ -7,16 +7,7 @@ class Webcontent extends AppModel {
     		'className' => 'User',
     		'fields' => array('id','username','role'))
 	);
-	/*
-    public $hasMany = array(
-		'Comment' => array(
-			'className' => 'Comment',
-			'conditions' => array('Comment.parent_comment_id' => null)
-		),
-        'WebcontentsTag' => array('className' => 'WebcontentsTag',
-								'fields' => array('tag_id'))
-    );*/
-	
+
 	public $hasAndBelongsToMany = array(
         'WecontentTags' =>
             array(
@@ -40,8 +31,8 @@ class Webcontent extends AppModel {
 			return ;
 		}
 		$webcontent = $this->read('browse_count', $id);
-		$this->set('browse_count', ++$webcontent['Webcontent']['browse_count']);
-		$this->save();
+		$this->saveField('browse_count', ++$webcontent['Webcontent']['browse_count']);
+		$this->clear();
 	}
     
 }

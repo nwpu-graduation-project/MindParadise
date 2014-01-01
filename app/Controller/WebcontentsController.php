@@ -12,13 +12,17 @@ class WebcontentsController extends AppController {
 	public $uses = array('Webcontent', 'Tag','Comment','User', 'WebcontentsTag');
 
     public $paginate = array(
-        'limit' => 10,
+        'limit' => 8,
         'order' => array(
             'Webcontent.created' => 'desc'
         ),
         'recursive' => 1
     );
 	
+	public function tag($tagId = null) {
+		
+	}
+		
 	public function category($category = 0) {
 		$this->Paginator->settings = $this->paginate;
 		if($category == 0) {
@@ -46,11 +50,14 @@ class WebcontentsController extends AppController {
 	public function add() {
 		if ($this->request->is('get')) {
 			// verify the user
+			$this->set('categories',$this->_getCategories());
 		}
-
+		
+		WebcontentsController::_echoArray($this->request->data);
+		
 		if ($this->request->is('post')) {
 			// selectedTagIDs
-			$tagsStr = $this->request->data['selectedTagIDs'];
+			$tagsStr = $this->request->data['selectedTagNames'];
 			array_splice($this->request->data, 1, 1);
 
 			// webcontentPage
@@ -123,6 +130,20 @@ class WebcontentsController extends AppController {
 				'order' => 'browse_count DESC'
 			));
 	}
+	
+	public function getCategories() {
+		if (empty($this->request->params['requested'])) {
+			throw new ForbiddenException();
+		}
+		$categories[0] = '全部';
+		$categories += $this->_getCategories();
+		return $categories;
+	}
+	
+	protected function _getCategories() {
+		$categories = array(1 => '新闻',2 => '文章', 3 => '视频', 4 => '图片');
+		return $categories;
+	}
 
 	protected function _getCurrentUserID() {
 		return 2;
@@ -133,11 +154,14 @@ class WebcontentsController extends AppController {
 		$file = new File($dir->pwd().DS.time().'.inc', true, 0644);
 		if($file->open('wb')) {
 			$file->write($content);
+			$file->close();
+			return $file->pwd();
     	} else {
         	echo "open ".$file->pwd()." failed";
-    	}
-    	$file->close();
-		return $file->pwd();
+			$file->close();
+			return NULL;
+		}
+    	
 	}
 	
 	public function postComment($pageId = NULL, $parentCommentId = NULL) {
@@ -161,7 +185,7 @@ class WebcontentsController extends AppController {
 		}
 		
 		if ($this->request->is('post')) {
-			$this->request->data['Comment']['commentor_id'] = $this->_getCurrentUserID(); 
+			$this->request->data['Comment']['commentor_id'] = $this->_getCurrentUserID();
 			// WebcontentsController::_echoArray($this->request->data);
 			$this->Comment->create();
 			if ($this->Comment->save($this->request->data)) {

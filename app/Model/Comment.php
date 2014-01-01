@@ -6,7 +6,6 @@ class Comment extends AppModel {
 			'className' => 'Webcontent',
 			'fields' => array('id'),
 			'counterCache' => true),
-		// 'ParentComment' => array('className' => 'Comment','foreignKey' => 'comment_on_id'),
 		'Commentor' => array(
 			'className' => 'User',
 			'foreignKey' => 'commentor_id',

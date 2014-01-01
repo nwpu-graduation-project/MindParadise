@@ -15,17 +15,19 @@ class TagsController extends AppController {
 		if (empty($this->request->params['requested'])) {
 			throw new ForbiddenException();
 		}
-		return $this->Tag->find('all');
+		return $this->Tag->find('all', array('recursive' => -1));
 	}
 
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Tag->create();
 			if ($this->Tag->save($this->request->data)) {
-				$this->Session->setFlash(__('The tag has been saved.'));
+				// $this->Session->setFlash(__('The tag has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			$this->Session->setFlash(__('Unable to add the tag.'));
+		} else {
+			throw new ForbiddenException();
 		}
 	}
 

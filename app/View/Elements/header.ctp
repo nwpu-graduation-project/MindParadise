@@ -49,7 +49,7 @@
         <!--Logo And Navigation Start Here-->
         <div class="logo"> <a href="index.html"><img src="/img/logo.png" alt=""></a> </div>
         <ul id="navigation">
-          <li><a href="index"><span>首页</span></a></li>
+          <li><a href="/users/index"><span>首页</span></a></li>
           <li><a href="#"><span>专家团队</span></a></li>
           <li><a href="#"><span>案例分析</span></a>
             <ul>
@@ -60,8 +60,8 @@
               <li> <a href="#" class="life_4">How to install P84</a> </li>
             </ul>
           </li>
-          <li><a href="#"><span>心理百科</span></a></li>
-          <li><a href="#"><span>心理知识</span></a></li>
+          <li><a href="/webcontents/"><span>心理知识</span></a></li>
+          <li><a href="/encyclopediaentries/view"><span>心理百科</span></a></li>
           <li><a href="#"><span>留言咨询</span></a></li>
           <li><a href="#"><span>在线咨询</span></a></li>
 
