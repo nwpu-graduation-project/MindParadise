@@ -7,7 +7,6 @@ $this->end();
 <div id="wrapper">
 	<div id="blog_content">
 		
-		
 		<div class="center_frame">
 			
 			<div id="blog_left">
@@ -23,4 +22,4 @@ $this->end();
 			
 		</div>
 	</div>
-</div>	
+</div>

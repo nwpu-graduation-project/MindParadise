@@ -4,7 +4,7 @@ class Comment extends AppModel {
 	public $belongsTo = array(
 		'Webcontent' => array(
 			'className' => 'Webcontent',
-			'fields' => array('id'),
+			'fields' => array('id', 'title'),
 			'counterCache' => true),
 		'Commentor' => array(
 			'className' => 'User',
