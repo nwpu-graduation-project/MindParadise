@@ -14,16 +14,18 @@ $this->end();
 ?>
 <div class='main'>
 	<div class='account'>
-		<h2>Account Page</h2>
-		<h3>Change your password</h3>
-		<p>You are <?php echo $currentUser['User']['username']; ?> who last logged in <?php echo $currentUser['User']['lastlogin']; ?>.</p>
+		
+		<h3>修改密码</h3>
+		<p>你是<?php echo $currentUser['User']['username']; ?>，最后登录时间是<?php echo $currentUser['User']['lastlogin']; ?>.</p>
 		 
 		<?php
 		echo $this->Form->create(array('action' => 'changePassword'));
-		echo $this->Form->input('password_old',     array('label' => 'Old password', 'type' => 'password', 'autocomplete' => 'off'));
-		echo $this->Form->input('password_confirm', array('label' => 'New password', 'type' => 'password', 'autocomplete' => 'off'));
-		echo $this->Form->input('password',         array('label' => 'Re-enter new password', 'type' => 'password', 'autocomplete' => 'off'));
-		echo $this->Form->end('Update Password');
+		echo $this->Form->input('password_old',     array('label' => false, 'placeholder' => '旧密码', 'type' => 'password', 'class' => 'input_2', 'autocomplete' => 'off', 'div' => array('class' => 'clearfix')));
+		echo $this->Form->input('password_confirm', array('label' => false, 'placeholder' => '新密码', 'type' => 'password', 'class' => 'input_2', 'autocomplete' => 'off', 'div' => array('class' => 'clearfix')));
+		echo $this->Form->input('password', array('label' => false, 'placeholder' => '重新输入新密码', 'class' => 'input_3', 'autocomplete' => 'off', 'div' => array('class' => 'clearfix')));
+		
+		echo $this->Form->end(array('class' => 'register_img', 'label' => '更新密码'));
+		//echo $this->Form->end('Update Password');
 		?>
 	</div>
 </div>

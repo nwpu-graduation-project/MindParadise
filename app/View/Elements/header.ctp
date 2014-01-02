@@ -4,8 +4,8 @@
       <div class="top">
         <div class="top_header_action"> 
           <?php if(!$currentUser): ?>
-            <a href="login" class="login">登录</a>    
-            <a href="register" class="register">注册</a>
+            <a href="/login" class="login">登录</a>    
+            <a href="/register" class="register">注册</a>
           <?php else: ?>
             <a class="logout" href="/logout">注销</a>
             <a class="username" href="/personalCenter/"><?php echo $currentUser['User']['username']; ?></a>
@@ -14,11 +14,11 @@
               <div id="indicator">
                 <span>notifications</span>
                 <?php if($currentUser['User']['messages_unread'] != 0): ?>
-                  <a class="count important" href="#">
+                  <a class="count important" href="/messages/index">
                     <?php echo $currentUser['User']['messages_unread'];?>
                   </a>
                 <?php else: ?>
-                  <a class="count" href="#">0</a>
+                  <a class="count" href="/messages/index">0</a>
                 <?php endif; ?>
               </div>
               <!-- indicator end -->
@@ -38,7 +38,7 @@
                   <?php endforeach; ?>
 
                   <div class="form">
-                    <a class="btn" href="#">查看所有</a>
+                    <a class="btn" href="/messages/index">查看所有</a>
                   </div>
                 </div>
                 <!-- flash-message end -->
