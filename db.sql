@@ -64,12 +64,12 @@ DROP TABLE IF EXISTS `mind_paradise`.`categories` ;
 
 CREATE  TABLE IF NOT EXISTS `mind_paradise`.`categories` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `parent_id` INT(11) NULL DEFAULT NULL,
+  `parentid` INT(11) NULL DEFAULT '0' ,
   `name` VARCHAR(10) NOT NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `FK_Reference_2` (`parent_id` ASC) ,
+  INDEX `FK_Reference_2` (`parentid` ASC) ,
   CONSTRAINT `FK_Reference_2`
-    FOREIGN KEY (`parent_id` )
+    FOREIGN KEY (`parentid` )
     REFERENCES `mind_paradise`.`categories` (`id` )
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)
@@ -223,7 +223,7 @@ CREATE  TABLE IF NOT EXISTS `mind_paradise`.`encyclopedia_entries` (
   `category_id` INT(11) NOT NULL ,
   `user_id` INT(11) NULL DEFAULT NULL COMMENT 'author' ,
   `entry` VARCHAR(10) NOT NULL ,
-  `created` DATETIME NOT NULL ,
+  `post_time` DATETIME NOT NULL ,
   `modified` DATETIME NOT NULL ,
   `file_path` VARCHAR(100) NOT NULL ,
   `browser_num` INT(11) NULL DEFAULT '0' ,
@@ -249,9 +249,12 @@ CREATE  TABLE IF NOT EXISTS `mind_paradise`.`messages` (
   `user_id` INT(11) NOT NULL ,
   `type` INT(11) NOT NULL ,
   `abstract` VARCHAR(300) NOT NULL ,
-  `link_route` TEXT NOT NULL ,
-  `f_read` TINYINT(4) NULL DEFAULT 0 ,
+  `link_url` TEXT NOT NULL ,
+  `f_read` TINYINT(4) NOT NULL DEFAULT 0 ,
   `created` DATETIME NOT NULL ,
+  `link_title` VARCHAR(45) NOT NULL ,
+  `trigger_user_id` INT(11) NULL ,
+  `trigger_username` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `FK_Reference_15` (`user_id` ASC) ,
   CONSTRAINT `FK_Reference_15`

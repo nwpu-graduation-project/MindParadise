@@ -1,10 +1,11 @@
 <?php
+App::uses('Message', 'Model');
 
 class Comment extends AppModel {
 	public $belongsTo = array(
 		'Webcontent' => array(
 			'className' => 'Webcontent',
-			'fields' => array('id', 'title'),
+			'fields' => array('id', 'title', 'user_id'),
 			'counterCache' => true),
 		'Commentor' => array(
 			'className' => 'User',
@@ -23,6 +24,13 @@ class Comment extends AppModel {
 			'order' => 'FollowedComments.created ASC'
 		)
 	);
+
+	public function aftersave()
+	{
+		$message = new Message();
+		$message->createCommentMessage($this->read());
+		parent::aftersave();
+	}
 }
 
 ?>

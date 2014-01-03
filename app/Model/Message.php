@@ -1,7 +1,7 @@
 <?php
+App::uses('Comment','Model');
 class Message extends AppModel
 {
-	public $useTable = 'messages';
 	public $belongsTo = array(
 			'Creator' => array(
 					'className' => 'User',
@@ -26,18 +26,67 @@ class Message extends AppModel
 		$this->updateAll(array('f_read' => 1),array('f_read' => 0));
 	}
 
-	public function createMessage($user_id, $type, $abstract, $link_route)
+	public function createMessage($type, $user_id, $abstract, $trigger_user_id, $trigger_username, $link_title, $link_url)
 	{
 		$this->create();
 		$data = array(
-				'user_id' => $user_id,
 				'type' => $type,
-				'abstract' => $abstact,
-				'link_route' => $link_route,
+				'user_id' => $user_id,
+				'abstract' => $abstract,
+				'trigger_user_id' => $trigger_user_id,
+				'trigger_username' => $trigger_username,
+				'link_title' => $link_title,
+				'link_url' => $link_url,
 				'f_read' => 0,
 			);
 
 		return $this->save($data);
+
+	}
+
+	public function createCommentMessage($comment)
+	{
+
+		//$comment = $this->Comment->findById($comment_id);
+
+		$type = null;
+		$user_id = null;
+		if($comment['Comment']['parent_comment_id'])
+		{
+			// type: 回复
+			$type 	 			= 1;
+			if($comment['Comment']['commentted_user_id'])
+				$user_id 			= $comment['Comment']['commentted_user_id'];
+			else
+			{
+				$comment_obj = new Comment();
+				$res = $comment_obj->find('first',array(
+						'fields' => array('commentor_id'),
+						'recursive' => -1,
+						'condition' => array('id' => $comment['Comment']['parent_comment_id']),
+					));
+				//$res = $comment_obj->read('commentor_id', $comment['Comment']['parent_comment_id']);
+				$user_id = $res['Comment']['commentor_id'];
+			}
+		}
+		else
+		{
+			// type: 评论
+			$type 	 			= 2;
+			$user_id 			= $comment['Webcontent']['user_id'];
+		}
+		$abstract			= $comment['Comment']['content'];
+		$trigger_user_id 	= $comment['Comment']['commentor_id'];
+		$trigger_username 	= $comment['Commentor']['username'];
+		$link_title 		= $comment['Webcontent']['title'];
+		$link_url 			= '/webcontents/view/'.$comment['Webcontent']['id'].'#'.$comment['Webcontent']['id'].'_'.$comment['Comment']['id'];
+		
+		return $this->createMessage($type, $user_id, $abstract, $trigger_user_id, $trigger_username, $link_title, $link_url);
+
+	}
+
+	public function createCaseMessage($case_detail_id)
+	{
 
 	}
 }

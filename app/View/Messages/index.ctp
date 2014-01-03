@@ -20,9 +20,18 @@ $this->end();
 <?php
 foreach($messages as $message)
 {
-	echo $message['Message']['type'];
+  $str = null;
+  switch($message['Message']['type'])
+  {
+    case 1: $str = '回复了你';break;
+    case 2: $str = '发表了评论';break;
+    case 3: $str = '答复了你';break;
+    case 4: $str = '向您咨询';break;
+    default:
+  }
+	echo $message['Message']['trigger_username'].'在'.$message['Message']['link_title'].$str;
 	echo $message['Message']['abstract'];
-	echo $message['Message']['link_route'];
+	echo $message['Message']['link_url'];
 }
 ?>
 

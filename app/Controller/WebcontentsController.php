@@ -53,7 +53,7 @@ class WebcontentsController extends AppController {
 			$this->set('categories',$this->_getCategories());
 		}
 		
-		WebcontentsController::_echoArray($this->request->data);
+		// WebcontentsController::_echoArray($this->request->data);
 		
 		if ($this->request->is('post')) {
 			// selectedTagIDs
@@ -146,7 +146,7 @@ class WebcontentsController extends AppController {
 	}
 
 	protected function _getCurrentUserID() {
-		return 2;
+		return $this->Auth->user('id');
 	}
 
 	protected function _saveToFile($content) {
