@@ -77,7 +77,8 @@ echo $this->element('artical_categories',array('current' => $webcontent['Webcont
 			<span><?php echo $comment['Commentor']['username'] ?></span>
 			<em><?php echo $this->Time->nice($comment['Comment']['created'],NULL,'%Y-%m-%d');?></em>
 		</h5>
-		<div class="person_comment"> <img src="/images/anoyous_icon.png" alt="" class="comment_tooltip">
+		<div class="person_comment" id="<?php echo $webcontent['Webcontent']['id'].'_'.$comment['Comment']['id']; ?>">
+			<img src="/images/anoyous_icon.png" alt="" class="comment_tooltip">
 		<?php echo $comment['Comment']['content'] ?>
     	</div>
     	<?php echo $this->Html->link('回复他',array(

@@ -1,11 +1,10 @@
-
-    /*Код плагина 代码插件*/
+/*Код плагина 代码插件*/
 (function ($) {
   $.fn.liHarmonica = function (params) {
     var p = $.extend({
-      currentClass: 'cur', //Класс для выделенного пункта меню 选定菜单项类(current)
-      onlyOne: true, //true - открытым может быть только один пункт 只能有一个项目开放,
-      speed: 500 //Скорость анимации 动画速度
+      currentClass: 'cur', // 选定菜单项类(current)
+      onlyOne: true, //true - 只能有一个项目被打开,
+      speed: 500 // 动画速度
     }, params);
     return this.each(function () {
       var
@@ -46,4 +45,4 @@ $(function () {
     speed: 400
   });
 });
-    //@ sourceURL=pen.js
+//@ sourceURL=pen.js

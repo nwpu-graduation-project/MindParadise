@@ -1,5 +1,7 @@
 <?php
 
+include_once('WebcontentsController.php');
+
 class CategoriesController extends AppController {
 
 	public $helpers = array('Html');
@@ -8,12 +10,39 @@ class CategoriesController extends AppController {
 	
 	public function view() {
 		if ($this->request->is('get')) {
-			// verify the user
 		}
 		
 		if ($this->request->is('post')) {
-			WebcontentsController::_echoArray($this->request->data);
+			echo WebcontentsController::_echoArray($this->request->data);
 		}
 	}
 	
+	public function printAllCategories() {
+		if (empty($this->request->params['requested'])) {
+			throw new ForbiddenException();
+		} else {
+			$this->_printAllCategories($this->Category->find('threaded'));
+		}
+	}
+	
+	protected function _printAllCategories($array=array(), $level = 0) {
+		if($level == 0) {
+			echo '<ul class="anyClass skinClear harmonica">';
+		} else {
+			echo '<ul style="display: none;">';
+		}
+			
+		foreach ($array as $key => $value) {
+			echo '<li><a href="#" class="harFull">';
+			echo $value['Category']['name'].'</a>';
+			
+			if($value['children'] != NULL) {
+				$nextLevel = $level+1;
+				$this->_printAllCategories($value['children'], $nextLevel);
+			}
+			echo '</li>';
+		}
+		
+		echo '</ul>';
+	}
 }

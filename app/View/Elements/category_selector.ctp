@@ -1,14 +1,3 @@
-<?php
-$this->start('css');
-echo $this->Html->css('treeview');
-$this->end();
-
-$this->start('script');
-echo '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>';
-echo $this->Html->script('treeview');
-$this->end();
-?>
-
 <div style="width:200px; float:left; margin:0 0px 20px 0">
 	<ul>
 		<li>
@@ -30,4 +19,3 @@ $this->end();
 	</ul>
 
 </div>
-<hr>
