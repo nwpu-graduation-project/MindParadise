@@ -23,3 +23,4 @@ Thumbs.db
 .project
 .directoryapp/webroot/ueditor_mini/php/upload
 app/webroot/pages
+app/webroot/js/um.format.js

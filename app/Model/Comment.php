@@ -25,11 +25,11 @@ class Comment extends AppModel {
 		)
 	);
 
-	public function aftersave()
+	public function afterSave($created, $options = Array())
 	{
 		$message = new Message();
 		$message->createCommentMessage($this->read());
-		parent::aftersave();
+		parent::afterSave();
 	}
 }
 
