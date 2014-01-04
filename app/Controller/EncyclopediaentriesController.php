@@ -1,7 +1,10 @@
 <?php
 
 include_once('WebcontentsController.php');
-
+// CakePlugin::load('Vendor/pscws4');
+App::uses('WordSegmenter', 'Vendor');
+// 加入头文件
+// require '../Vendor/pscws4.class.php';
 class EncyclopediaentriesController extends AppController {
 
 	public $helpers = array('Html');
@@ -18,9 +21,16 @@ class EncyclopediaentriesController extends AppController {
 		}
 		
 		if ($this->request->is('post')) {
-			WebcontentsController::_echoArray($this->request->data);
+			$segmenter = new WordSegmenter();
+			$segmenter->segment($this->request->data['plainText']);
+			
+			// WebcontentsController::_echoArray($this->request->data);
 		}
 		
+	}
+	
+	protected function zh2en($str) {
+		return urlencode($str);
 	}
 	
 }

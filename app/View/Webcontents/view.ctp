@@ -102,7 +102,8 @@ echo $this->element('artical_categories',array('current' => $webcontent['Webcont
     		</span>
     		<em><?php echo $this->Time->nice($childComment['created'],NULL,'%Y-%m-%d');?></em>
     	</h5>
-    	<div class="person_comment short_width"> <img src="/images/anoyous_icon.png" alt="" class="comment_tooltip">
+    	<div class="person_comment short_width" id="<?php echo $webcontent['Webcontent']['id'].'_'.$childComment['id']; ?>>
+    	<img src="/images/anoyous_icon.png" alt="" class="comment_tooltip">
     	<?php echo $childComment['content'] ?>
     	</div>
     	<?php echo $this->Html->link('回复他',array(

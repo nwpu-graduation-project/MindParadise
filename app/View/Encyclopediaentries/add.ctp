@@ -6,7 +6,7 @@ echo '<link rel="stylesheet" type="text/css" href="/ueditor_mini/themes/default/
 	.edui-container {
 		border: none;
 		box-shadow: none;
-	} 
+	}
 </style>
 <?php
 echo $this->Html->css('treeview');
@@ -21,7 +21,7 @@ echo $this->Html->script('treeview');
 ?>
 
 <script>
-	var headings = ["H1", "H2", "H3", "H4", "H5", "H6"];
+	var upperHeadings = ["H1", "H2", "H3", "H4", "H5", "H6"];
 	
 	function genIndex () {
 		var divNode = document.getElementById("pageEditor")
@@ -37,15 +37,31 @@ echo $this->Html->script('treeview');
 	}
 	
 	function genTree(pnode) {
+		
+		alert(pnode.tagName);
+		if(upperHeadings.indexOf(pnode.tagName) >= 0) {
+				alert(pnode.id);
+		}
+		
 		var nodes = pnode.childNodes;
+		alert(nodes.length);
 		for(index=0;index<nodes.length;index++) {
-			// alert(nodes[index].tagName);
-			if(nodes[index].tagName == 'H1')
-			if(nodes[index].hasChildNodes()) {
-				genTree(nodes[index]);
-			}
+			alert(pnode.tagName +":" + nodes[index].tagName);
+			alert(nodes[index].childNodes.length);
+			// alert(nodes[index].hasChildNodes());
+			// if(nodes[index].hasChildNodes() || nodes[index].tagName != "P") {
+				// genTree(nodes[index]);
+			// } else if(upperHeadings.indexOf(nodes[index].tagName) >= 0) {
+				// alert(nodes[index].id);
+			// }
 		}
 	}
+	
+	function setPlainText() {
+		var element = document.getElementById("plainText");
+		element.value = um.getContentTxt();
+		return true;
+		}
 </script>
 
 <?php
@@ -58,8 +74,10 @@ $this->end();
 <?php echo $this->element('category_selector'); ?>
 	</div>
 	
-	<form action="/encyclopediaentries/add" id="WebcontentAddForm" method="post" accept-charset="utf-8">
+	<form action="/encyclopediaentries/add" id="WebcontentAddForm" method="post"
+		accept-charset="utf-8" onsubmit="return setPlainText()">
 	<input type="hidden" name="data[category_id]" value="1"/>
+	<input type="hidden" id="plainText" name="data[plainText]" />
 	<div id="editorContainer" name="editorContainerDiv" style="width: 70%;float: left">
 		<input type="text" name="data[entry]" maxlength="10" placeholder="词条名" style="font-size: 36px"/>
 		<div>
@@ -70,7 +88,6 @@ $this->end();
 		<script type="text/javascript">
 			var um = UM.getEditor("pageEditor");
 		</script>
-		<input type="button" onclick="genIndex()" value="生成目录">
 		<input type="submit" value="提交">
 	</div>
 	
