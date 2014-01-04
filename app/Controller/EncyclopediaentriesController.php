@@ -29,8 +29,6 @@ class EncyclopediaentriesController extends AppController {
 		
 	}
 	
-	protected function zh2en($str) {
-		return urlencode($str);
-	}
+
 	
 }
