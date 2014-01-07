@@ -61,7 +61,7 @@ echo $this->Html->script('treeview');
 		var element = document.getElementById("plainText");
 		element.value = um.getContentTxt();
 		return true;
-		}
+	}
 </script>
 
 <?php

@@ -31,11 +31,17 @@ echo '<script src="/ueditor_mini/umeditor.min.js"></script>';
 	function remove(obj) {
 		obj.parentNode.removeChild(obj)
 	}
+	
+	function setPlainText() {
+		var element = document.getElementById("hidden_plain_text");
+		element.value = um.getContentTxt();
+		return true;
+	}
 </script>
 <?php
 $this->end();
 
-echo $this->Form->create('Webcontent');
+echo $this->Form->create('Webcontent', array('onsubmit' => 'setPlainText()'));
 echo $this->Form->input('title',array('label' => '标题', 'div' => array('class' => 'input_1')));
 echo $this->Form->input('abstract',array('label' => '导读','placeholder'=>'导读','rows' => '3'));
 echo $this->Form->label('Webcontent.category','分类','required');
@@ -48,6 +54,7 @@ echo $this->Form->select('category', $categories);
 	<input type="button" onclick="append()" value="+" />
 	<ul id="plpular_tags_icon" style="width: 100%"></ul>
     <input id="hidden_tag_names" name="data[selectedTagNames]" type="hidden" value="1,2"/>
+    <input id="hidden_plain_text" name="data[plainText]" type="hidden" />
 </div>
 <div id="editorContainer" name="editorContainerDiv">
 	<label for="contentEditor" class="required">正文</label>

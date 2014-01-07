@@ -4,12 +4,11 @@ App::uses('Folder', 'Utility');
 App::uses('File', 'Utility');
 
 // 错误处理，Model层定义，查询
-
 class WebcontentsController extends AppController {
 
 	public $helpers = array('Html', 'Form', 'Time', 'Paginator');
 	public $components = array('Session', 'Paginator');
-	public $uses = array('Webcontent', 'Tag','Comment','User', 'WebcontentsTag');
+	public $uses = array('Webcontent', 'Tag','Comment','User', 'WebcontentsTag', 'SearchIndex');
 
     public $paginate = array(
         'limit' => 8,
@@ -22,7 +21,7 @@ class WebcontentsController extends AppController {
 	public function tag($tagId = null) {
 		
 	}
-		
+	
 	public function category($category = 0) {
 		$this->Paginator->settings = $this->paginate;
 		if($category == 0) {
@@ -56,14 +55,16 @@ class WebcontentsController extends AppController {
 		// WebcontentsController::_echoArray($this->request->data);
 		
 		if ($this->request->is('post')) {
-			// selectedTagIDs
-			$tagsStr = $this->request->data['selectedTagNames'];
-			array_splice($this->request->data, 1, 1);
-
+			
 			// webcontentPage
 			$this->request->data['Webcontent']['path'] = $this->_saveToFile(
-				$this->request->data['webcontentPage']);
-			array_splice($this->request->data, 1, 1);
+				array_pop($this->request->data));
+			
+			// plainText
+			$plainText = array_pop($this->request->data);
+			
+			// selectedTagIDs
+			$tagsStr = array_pop($this->request->data);
 
 			$this->request->data['Webcontent']['user_id'] = $this->_getCurrentUserID();
 
@@ -73,6 +74,11 @@ class WebcontentsController extends AppController {
 				if($this->WebcontentsTag->saveContentAsscoTags($pageId, str_getcsv($tagsStr))) {
 					return $this->redirect(array('action' => 'index'));
 				};
+				
+				if(!$this->SearchIndex->createIndex($plainText, 1, $pageId)) {
+					echo 'Create search-index failed.';
+					$this->Session->setFlash(__('Create search-index failed.'));			
+				}
 			} else {
 				debug($this->Webcontent->validationErrors);
 				$this->Session->setFlash(__('Unable to add the tag.'));
@@ -129,6 +135,16 @@ class WebcontentsController extends AppController {
 				'limit' => 3,
 				'order' => 'browse_count DESC'
 			));
+	}
+	
+	public function getWebcontentInfoById($value) {
+		if (empty($this->request->params['requested'])) {
+			throw new ForbiddenException();
+		}
+		
+		return $this->Webcontent->find('first', array('fields' => array('title', 'created'),
+														'conditions' => array('id' => $value),
+														'recursive' => -1));
 	}
 	
 	public function getCategories() {
@@ -224,10 +240,10 @@ class WebcontentsController extends AppController {
 	
 	public function afterFilter() {
 		if($this->request->param('action') == 'view') {
-
 			$id = $this->request->param('pass');
 			$this->Webcontent->browsedOnce($id);
 		}
+		parent::afterFilter();
 	}
 }
 

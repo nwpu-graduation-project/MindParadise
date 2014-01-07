@@ -8,7 +8,7 @@
 if(!isset($category)) {
 	$category = 0;
 }
-
+echo $this->element('search_bar');
 echo $this->element('artical_categories',array('current' => $category));
 echo $this->element('most_viewed_articals');
 ?>
