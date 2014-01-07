@@ -267,7 +267,90 @@ height:19px;
 #notifications .flash-message .form .btn:hover {
   color: #363a3f;
 }
+/*================================MESSAGE =====================================*/
+#message-list
+{
+	padding: 10px;
+}
 
+#message-list .message-warpper
+{
+	margin-top: 10px;
+	padding: 10px;
+	border: 1px solid gray;
+	border-radius: 4px;
+}
+#message-list .unread-mark
+{	
+	border-top: 6px solid green;
+}
+#message-list .message-warpper .message-title
+{
+	display: inline-block;
+}
+
+#message-list .message-warpper .message-title span
+{
+	float:left;
+}
+
+#message-list .message-warpper .message-title span.name
+{
+	font-weight: 700;
+}
+
+#message-list .message-warpper .message-content
+{
+	margin-top: 4px;
+	padding: 6px 6px 6px 12px;
+	border: 1px solid gray;
+	border-radius: 4px;
+	line-height: 30px;
+	margin-left: 20px;
+	min-height: 60px;
+}
+/*================================COMMENTS =====================================*/
+#comment-list
+{
+	padding: 10px;
+}
+
+#comment-list .comment-warpper
+{
+	margin-top: 10px;
+	padding: 10px;
+	border: 1px solid gray;
+	border-radius: 4px;
+}
+#comment-list .unread-mark
+{	
+	border-top: 6px solid green;
+}
+#comment-list .comment-warpper .comment-title
+{
+	display: inline-block;
+}
+
+#comment-list .comment-warpper .comment-title span
+{
+	float:left;
+}
+
+#comment-list .comment-warpper .comment-title span.name
+{
+	font-weight: 700;
+}
+
+#comment-list .comment-warpper .comment-content
+{
+	margin-top: 4px;
+	padding: 6px 6px 6px 12px;
+	border: 1px solid gray;
+	border-radius: 4px;
+	line-height: 30px;
+	margin-left: 20px;
+	min-height: 60px;
+}
 
 
 /*===================================== LOGO AND NAVIGATION CSS ===============*/

@@ -9,11 +9,10 @@
       </ul>
     </li>
     <li><a href="/messages/index">我的消息</a></li>
-    <li><a href="#">我的评论</a></li>
+    <li><a href="/personalCenter/myComments">我的评论</a></li>
     <li><a href="#">我的案例</a></li>
     <li><a href="#">我的文章</a></li>
-    <li><a href="#">我的视频/a></li>
+    <li><a href="#">我的视频</a></li>
     <li><a href="#">我的图片</a></li>
-    <li><a href="#"></a></li>
   </ul>
 </div>

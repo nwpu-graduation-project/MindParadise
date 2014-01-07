@@ -8,15 +8,15 @@ class MessagesController extends AppController
     public $paginate = array(
         'limit' => 8,
         'order' => array(
-        	'Message.f_read' => 'desc',
+        	'Message.f_read' => 'asc',
             'Message.created' => 'desc'
         ),
-        'recursive' => -1
+        'recursive' => -1,
     );
 	function index()
 	{
 		$this->Paginator->settings = $this->paginate;
-		$messages = $this->Paginator->paginate('Message');
+		$messages = $this->Paginator->paginate('Message',array('user_id' => $this->Auth->user('id')));
 		$this->set('messages', $messages);
 	}
 

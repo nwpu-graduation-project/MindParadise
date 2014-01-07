@@ -30,4 +30,23 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+  
+  // unbind the associations defined in the model
+  public function unbindAll($associations = null)
+  {
+  	if(!$associations)
+  	{
+  		$associations = array(
+	        'hasMany' => $this->hasMany,
+	        'hasOne' => $this->hasOne,
+	        'belongsTo' => $this->belongsTo,
+	        'hasAndBelongsToMany' => $this->hasAndBelongsToMany,
+      	);
+  	}
+    
+    foreach( $associations as $associationKey => $associationValue)
+      foreach( $associationValue as $relation => $value)
+        $this->unbindModel(array($associationKey => array($relation)));
+
+  }
 }

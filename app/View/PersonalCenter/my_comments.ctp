@@ -15,38 +15,34 @@ $this->end();
 ?>
 
 
-<h1>消息列表</h1>
-<div id='message-list'>
+<h1>我的评论</h1>
+<div id='comment-list'>
 <?php
-foreach($messages as $message):
-  $str = null;
-  switch($message['Message']['type'])
-  {
-    case 1: $str = '回复了你';break;
-    case 2: $str = '发表了评论';break;
-    case 3: $str = '答复了你';break;
-    case 4: $str = '向您咨询';break;
-    default:
-  }
-?>
-<?php if($message['Message']['f_read'] == 1): ?>
-  <div class='message-warpper'>
-<?php else: ?>
-  <div class='message-warpper unread-mark'>
-<?php endif ?>
-    <div class='message-title'>
-    <span class='name'><?php echo $message['Message']['trigger_username']; ?></span>
-    <span>'在'</span>
-    <span>
-      <?php
-        echo $this->Html->link($message['Message']['link_title'], $message['Message']['link_url']);
-        echo $str;
-      ?>
-    </span>
+foreach($commentsOnOthers as $comment):
+?>	
+  <div class='comment-warpper'>
+    <div class='comment-title'>
+
+		<span class='name'><?php echo $comment['Commentor']['username']; ?></span>
+
+		<?php if(!$comment['Comment']['parent_comment_id']): ?>
+			<span>评论了</span>
+			<span>
+			  <?php
+			    echo $this->Html->link($comment['Webcontent']['title'], '/webcontents/view/'.$comment['Webcontent']['id']);
+			  ?>
+			</span>
+		<?php else:?>
+			<span>回复了</span>
+			<span>
+			<?php echo $comment['CommenttedUser']['username'].':'; ?>
+			</span>
+		<?php endif ?>
+
     </div>
-    <div class='message-content'>
+    <div class='comment-content'>
     <?php
-    	echo $message['Message']['abstract'];
+    	echo $this->Html->link($comment['Comment']['content'], '/webcontents/view/'.$comment['Webcontent']['id'].'#'.$comment['Webcontent']['id'].'_'.$comment['Comment']['id']);
     ?>
     </div>
   </div>

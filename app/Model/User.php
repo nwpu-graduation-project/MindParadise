@@ -22,21 +22,11 @@ class User extends AppModel
     );
 
   // public $hasOne = array(
-  //       'profile' => array(
+  //       'Profile' => array(
   //         'className' => 'UserProfile',
   //         'foreignKey' => 'user_id'),
   //   );
 
-  // public function unBindAll()
-  // {
-
-  //   foreach( $hasMany as $key => $value)
-  //     $this->unBindModel('hasMany' => array($key);
-
-  //   foreach( $hasOne as $key => $value)
-  //     $this->unBindModel('hasOne' => array($key));
-
-  // }
 
   public function beforeSave($options = array()) 
   {
