@@ -16,10 +16,9 @@ $this->end();
 
 
 <h1>消息列表</h1>
-
+<div id='message-list'>
 <?php
-foreach($messages as $message)
-{
+foreach($messages as $message):
   $str = null;
   switch($message['Message']['type'])
   {
@@ -29,11 +28,33 @@ foreach($messages as $message)
     case 4: $str = '向您咨询';break;
     default:
   }
-	echo $message['Message']['trigger_username'].'在'.$message['Message']['link_title'].$str;
-	echo $message['Message']['abstract'];
-	echo $message['Message']['link_url'];
-}
 ?>
+<?php if($message['Message']['f_read'] == 1): ?>
+  <div class='message-warpper'>
+<?php else: ?>
+  <div class='message-warpper unread-mark'>
+<?php endif ?>
+    <div class='message-title'>
+    <span class='name'><?php echo $message['Message']['trigger_username']; ?></span>
+    <span>'在'</span>
+    <span>
+      <?php
+        echo $this->Html->link($message['Message']['link_title'], $message['Message']['link_url']);
+        echo $str;
+      ?>
+    </span>
+    </div>
+    <div class='message-content'>
+    <?php
+    	echo $message['Message']['abstract'];
+    ?>
+    </div>
+  </div>
+<?php
+endforeach
+?>
+</div>
+
 
 
 <?php

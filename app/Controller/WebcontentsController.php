@@ -11,6 +11,12 @@ class WebcontentsController extends AppController {
 	public $components = array('Session', 'Paginator');
 	public $uses = array('Webcontent', 'Tag','Comment','User', 'WebcontentsTag');
 
+	function beforeFilter()
+	{
+		$this->Auth->allow();
+		//$this->Auth->autoRedirect = false;
+		parent::beforeFilter();
+	}
     public $paginate = array(
         'limit' => 8,
         'order' => array(

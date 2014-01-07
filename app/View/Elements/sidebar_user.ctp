@@ -9,7 +9,7 @@
       </ul>
     </li>
     <li><a href="/messages/index">我的消息</a></li>
-    <li><a href="#">我的评论</a></li>
+    <li><a href="/personalCenter/myComments">我的评论</a></li>
     <li><a href="#">我的案例</a></li>
   </ul>
 </div>
