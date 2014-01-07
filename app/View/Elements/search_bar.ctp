@@ -67,7 +67,7 @@ $dark-red: #a01f4a;
 
 <?php $this->end(); ?>
 
-<div id="" class="blog_side_bg" style="width 209; padding: 7px 7px 7px 7px;">
+<div id="blog_cat" class="blog_side_bg" style="padding-bottom: 20px;margin-bottom : 20px">
 
 <form class="search" action="/search/" method="post" style="width 209;">
 	<input class="searchTerm" name="data[keyword]" placeholder="输入关键词，按回车搜索" />

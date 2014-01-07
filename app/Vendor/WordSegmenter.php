@@ -25,7 +25,7 @@ class WordSegmenter {
 				$encoded = $encoded . $this -> zh2en($word['word']) . ' ';
 			}
 		}
-		echo $encoded;
+		// echo $encoded;
 		return $encoded;
 
 		// 在 send_text 之后可以调用 get_tops() 返回分词结果的词语按权重统计的前 N 个词

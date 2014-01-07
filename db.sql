@@ -64,12 +64,12 @@ DROP TABLE IF EXISTS `mind_paradise`.`categories` ;
 
 CREATE  TABLE IF NOT EXISTS `mind_paradise`.`categories` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `parentid` INT(11) NULL DEFAULT '0' ,
+  `parent_id` INT(11) NULL DEFAULT NULL ,
   `name` VARCHAR(10) NOT NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `FK_Reference_2` (`parentid` ASC) ,
+  INDEX `FK_Reference_2` (`parent_id` ASC) ,
   CONSTRAINT `FK_Reference_2`
-    FOREIGN KEY (`parentid` )
+    FOREIGN KEY (`parent_id` )
     REFERENCES `mind_paradise`.`categories` (`id` )
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)
@@ -331,7 +331,21 @@ CREATE  TABLE IF NOT EXISTS `mind_paradise`.`webcontents_tags` (
     REFERENCES `mind_paradise`.`webcontents` (`id` ))
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `mind_paradise`.`search_indices`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS search_indices;
 
+CREATE TABLE search_indices(
+    id      INT(11) AUTO_INCREMENT,
+    type    int NOT NULL,
+    content_id    INT(11) NOT NULL,
+    content       TEXT NOT NULL,
+    PRIMARY KEY (`id`),
+    FULLTEXT(content)
+)
+ENGINE=MyISAM
+DEFAULT CHARACTER SET = latin1;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

@@ -2,7 +2,7 @@
 
 $replace = array();
 foreach ($keywordsArray as $key => $value) {
-	$replace[] = 'PGZvbnQgY29sb3I9cmVkPjxiPg== '.$value.' PC9iPjwvZm9udD4=';
+	$replace[] = base64_encode('<font color="red"><b id="key_word_'.$key.'">').' '.$value.' PC9iPjwvZm9udD4=';
 }
 
 function decode($text) {
@@ -14,22 +14,37 @@ function decode($text) {
 		return $decoded;
 }
 
+function previewText($text) {
+	$prev = explode("。", $text);
+	$counter = 0;
+	foreach ($prev as $key => $value) {
+		if (stripos($value, '<b id="key_word_')) {
+			echo $value;
+			$counter++;
+			if($counter == 3) {
+				break;
+			}
+			echo '...';
+		}
+	}
+}
+
 foreach ($result as $key => $value) {
 	echo '<div>';
 	switch ($value['search_indices']['type']) {
 		case '1':
-			echo '<div><a href="/webcontents/view/'.$value['search_indices']['content_id'].'" style="float: none">';
+			echo '<div><h2><a href="/webcontents/view/'.$value['search_indices']['content_id'].'" style="float: none">';
 			$webcontent = $this->requestAction(
 					'/webcontents/getWebcontentInfoById/'.$value['search_indices']['content_id']);
 			echo $webcontent['Webcontent']['title'];
-			echo '</a><br>'.$webcontent['Webcontent']['created'].'</div>';
+			echo '</a></h2>'.$webcontent['Webcontent']['created'].'</div>';
 			break;
 		default:
 			
 			break;
 	}
 	echo '<div><p>';
-	echo decode( str_replace ($keywordsArray, $replace, $value['search_indices']['content']) );
+	echo previewText(decode( str_replace ($keywordsArray, $replace, $value['search_indices']['content']) ));
 	echo '</p></div><br>';
 	echo '</div>';
 }

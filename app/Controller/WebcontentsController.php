@@ -77,14 +77,16 @@ class WebcontentsController extends AppController {
 			$this->Webcontent->create();
 			if ($this->Webcontent->save($this->request->data)) {
 				$pageId = $this->Webcontent->id;
-				if($this->WebcontentsTag->saveContentAsscoTags($pageId, str_getcsv($tagsStr))) {
-					return $this->redirect(array('action' => 'index'));
+				if(!$this->WebcontentsTag->saveContentAsscoTags($pageId, str_getcsv($tagsStr))) {
+					echo 'Saving tags failed.';
 				};
 				
 				if(!$this->SearchIndex->createIndex($plainText, 1, $pageId)) {
-					echo 'Create search-index failed.';
+					echo 'Creating search-index failed.';
 					$this->Session->setFlash(__('Create search-index failed.'));			
 				}
+				
+				return $this->redirect(array('action' => 'index'));
 			} else {
 				debug($this->Webcontent->validationErrors);
 				$this->Session->setFlash(__('Unable to add the tag.'));

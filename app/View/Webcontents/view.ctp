@@ -56,8 +56,8 @@ echo $this->element('artical_categories',array('current' => $webcontent['Webcont
 	<div>
 	<?php echo $page; ?>
 	</div>
-	<a href="#" class="blgo_read"><?php echo ++$webcontent['Webcontent']['browse_count'].'次阅读'; ?></a>
-	<a href="#" class="blgo_comment"><?php echo $webcontent['Webcontent']['comment_count'].'条评论'; ?></a>
+	<a href="#blog_right" class="blgo_read"><?php echo ++$webcontent['Webcontent']['browse_count'].'次阅读'; ?></a>
+	<a href="#leave_comment" class="blgo_comment"><?php echo $webcontent['Webcontent']['comment_count'].'条评论'; ?></a>
 	<?php echo $this->Html->link('发表评论',array('action' => 'postcomment',$webcontent['Webcontent']['id'])); ?>
 	<div class="blgo_developer_icon">
 	<ul>
@@ -102,7 +102,7 @@ echo $this->element('artical_categories',array('current' => $webcontent['Webcont
     		</span>
     		<em><?php echo $this->Time->nice($childComment['created'],NULL,'%Y-%m-%d');?></em>
     	</h5>
-    	<div class="person_comment short_width" id="<?php echo $webcontent['Webcontent']['id'].'_'.$childComment['id']; ?>>
+    	<div class="person_comment short_width" id="<?php echo $webcontent['Webcontent']['id'].'_'.$childComment['id']; ?>">
     	<img src="/images/anoyous_icon.png" alt="" class="comment_tooltip">
     	<?php echo $childComment['content'] ?>
     	</div>
