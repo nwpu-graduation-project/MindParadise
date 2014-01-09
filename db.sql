@@ -295,7 +295,6 @@ CREATE  TABLE IF NOT EXISTS `mind_paradise`.`tokens` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 2;
 
-
 -- -----------------------------------------------------
 -- Table `mind_paradise`.`user_profiles`
 -- -----------------------------------------------------
@@ -304,13 +303,28 @@ DROP TABLE IF EXISTS `mind_paradise`.`user_profiles` ;
 CREATE  TABLE IF NOT EXISTS `mind_paradise`.`user_profiles` (
   `id` INT(11) NOT NULL ,
   `user_id` INT(11) NOT NULL ,
+  `first_name` VARCHAR(45) NULL COMMENT '名' ,
+  `family_name` VARCHAR(45) NULL COMMENT '姓' ,
+  `age` INT NULL COMMENT '年龄' ,
+  `gender` TINYINT NULL COMMENT '性别' ,
+  `birthplace` VARCHAR(45) NULL COMMENT '出生地点' ,
+  `birthday` DATE NULL COMMENT '出生日期' ,
+  `profession` VARCHAR(45) NULL COMMENT '职业' ,
+  `nationality` VARCHAR(45) NULL COMMENT '民族' ,
+  `education` VARCHAR(45) NULL COMMENT '学历' ,
+  `finacial_situation` VARCHAR(45) NULL COMMENT '经济状况' ,
+  `religion` VARCHAR(45) NULL COMMENT '宗教' ,
+  `marital_status` VARCHAR(45) NULL COMMENT '婚姻状况' ,
+  `hobby` VARCHAR(45) NULL COMMENT '业余爱好' ,
+  `health_condition` VARCHAR(45) NULL COMMENT '健康状况' ,
+  `present_address` VARCHAR(45) NULL COMMENT '现住址' ,
+  `phone_number` VARCHAR(20) NULL COMMENT '电话号码' ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC) ,
   CONSTRAINT `FK_Reference_18`
     FOREIGN KEY (`user_id` )
     REFERENCES `mind_paradise`.`users` (`id` ))
-ENGINE = InnoDB;
-
+ENGINE = InnoDB
 
 -- -----------------------------------------------------
 -- Table `mind_paradise`.`webcontents_tags`
