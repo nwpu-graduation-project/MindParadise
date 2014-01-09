@@ -77,7 +77,7 @@ class WebcontentsController extends AppController {
 			$this->Webcontent->create();
 			if ($this->Webcontent->save($this->request->data)) {
 				$pageId = $this->Webcontent->id;
-				if(!$this->WebcontentsTag->saveContentAsscoTags($pageId, str_getcsv($tagsStr))) {
+				if(!$this->WebcontentsTag->saveContentAsscoTags($pageId, explode('``', $tagsStr))) {
 					echo 'Saving tags failed.';
 				};
 				
@@ -91,6 +91,7 @@ class WebcontentsController extends AppController {
 				debug($this->Webcontent->validationErrors);
 				$this->Session->setFlash(__('Unable to add the tag.'));
 			}
+			
 		}
 	}
 
@@ -221,30 +222,6 @@ class WebcontentsController extends AppController {
 			}
 		}
 	}
-
-	public static function _echoArray(array $array, $level = 0) {
-		foreach ($array as $key => $value) {
-			if (is_array($value)) {
-				for ($i = 0; $i < $level; $i++) {
-					echo '*---';
-				}
-				unset($i);
-				echo $key."=> {<br>";
-				WebcontentsController::_echoArray($value, $level + 1);
-				for ($i = 0; $i < $level; $i++) {
-					echo '*---';
-				}
-				unset($i);
-				echo '}<br>';
-			} else {
-				for ($i = 0; $i < $level; $i++) {
-					echo '*---';
-				}
-				unset($i);
-				echo $key."=>".$value.'<br>';
-			}
-		}
-	}
 	
 	public function afterFilter() {
 		if($this->request->param('action') == 'view') {
@@ -253,6 +230,7 @@ class WebcontentsController extends AppController {
 		}
 		parent::afterFilter();
 	}
+	
 }
 
 ?>

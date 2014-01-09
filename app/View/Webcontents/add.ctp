@@ -37,11 +37,26 @@ echo '<script src="/ueditor_mini/umeditor.min.js"></script>';
 		element.value = um.getContentTxt();
 		return true;
 	}
+	
+	function getTags() {
+		var ulTag = document.getElementById("plpular_tags_icon");
+		var liTags = ulTag.childNodes;
+		var i=0;
+		var str = "";
+		for(i=0;i<liTags.length;i++) {
+			// alert(liTags[i].firstChild.firstChild.innerHtml);
+			str += liTags[i].textContent;
+			if(i< (liTags.length -1) ) {
+				str += "`";
+			}
+		}
+		alert(str);
+	}
 </script>
 <?php
 $this->end();
 
-echo $this->Form->create('Webcontent', array('onsubmit' => 'setPlainText()'));
+echo $this->Form->create('Webcontent', array('onsubmit' => 'getTags()'));
 echo $this->Form->input('title',array('label' => '标题', 'div' => array('class' => 'input_1')));
 echo $this->Form->input('abstract',array('label' => '导读','placeholder'=>'导读','rows' => '3'));
 echo $this->Form->label('Webcontent.category','分类','required');

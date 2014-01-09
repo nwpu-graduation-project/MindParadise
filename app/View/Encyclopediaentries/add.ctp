@@ -33,7 +33,7 @@ echo $this->Html->script('treeview');
 				headingNodes[i].id = 'heading_'+ headings[index]+'_'+i;
 			}
 		}
-		genTree( document.getElementById("pageEditor"));
+		// genTree( document.getElementById("pageEditor"));
 	}
 	
 	function genTree(pnode) {
@@ -44,7 +44,8 @@ echo $this->Html->script('treeview');
 		}
 		
 		var nodes = pnode.childNodes;
-		alert(nodes.length);
+		// alert(nodes.length);
+		alert(um.execCommand('getsections'));
 		for(index=0;index<nodes.length;index++) {
 			alert(pnode.tagName +":" + nodes[index].tagName);
 			alert(nodes[index].childNodes.length);
@@ -58,6 +59,18 @@ echo $this->Html->script('treeview');
 	}
 	
 	function setPlainText() {
+		
+		
+		var divNode = document.getElementById("pageEditor")
+		var headings = ["h1", "h2", "h3", "h4", "h5", "h6"];
+		for(index=0;index<headings.length;index++) {
+			var headingNodes = UM.dom.domUtils.getElementsByTagName(divNode, headings[index]);
+			for(i=0; i<headingNodes.length; i++) {
+				// alert(headingNodes[i].innerHTML);
+				headingNodes[i].id = 'heading_'+ headings[index]+'_'+i;
+			}
+		}
+		alert(um.getContent());
 		var element = document.getElementById("plainText");
 		element.value = um.getContentTxt();
 		return true;
