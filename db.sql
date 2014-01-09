@@ -197,20 +197,32 @@ CREATE  TABLE IF NOT EXISTS `mind_paradise`.`comments` (
 ENGINE = InnoDB;
 
 
--- -----------------------------------------------------
--- Table `mind_paradise`.`consultant_profiles`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mind_paradise`.`consultant_profiles` ;
+DROP TABLE IF EXISTS `consultant_profiles`;
 
-CREATE  TABLE IF NOT EXISTS `mind_paradise`.`consultant_profiles` (
-  `consultant_id` INT(11) NOT NULL ,
-  `id` INT(11) NOT NULL ,
-  PRIMARY KEY (`id`) ,
-  UNIQUE INDEX `consultant_id_UNIQUE` (`consultant_id` ASC) ,
-  CONSTRAINT `FK_Reference_16`
-    FOREIGN KEY (`consultant_id` )
-    REFERENCES `mind_paradise`.`users` (`id` ))
-ENGINE = InnoDB;
+CREATE TABLE `consultant_profiles` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `alias` varchar(45) CHARACTER  DEFAULT NULL,
+  `realname` varchar(45) CHARACTER  NOT NULL,
+  `age` varchar(45) CHARACTER  DEFAULT NULL,
+  `gender` varchar(45) CHARACTER  NOT NULL,
+  `education` varchar(100) CHARACTER  NOT NULL,
+  `phone` varchar(45) CHARACTER  NOT NULL,
+  `qq_number` varchar(45) CHARACTER  DEFAULT NULL,
+  `microblog` varchar(45) CHARACTER  DEFAULT NULL,
+  `blog` varchar(45) CHARACTER  DEFAULT NULL,
+  `weixin_number` varchar(45) CHARACTER  DEFAULT NULL,
+  `personal_information` text CHARACTER  NOT NULL,
+  `experience` text CHARACTER  NOT NULL,
+  `profession` text CHARACTER  NOT NULL,
+  `price` text CHARACTER  NOT NULL,
+  `photo` varchar(255) CHARACTER  NOT NULL,
+  `created_time` datetime NOT NULL,
+  `modified_time` datetime DEFAULT NULL,
+  `consultant_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `consultant_id` (`consultant_id`),
+  CONSTRAINT `consultant_profiles_ibfk_1` FOREIGN KEY (`consultant_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB
 
 
 -- -----------------------------------------------------
@@ -310,6 +322,20 @@ CREATE  TABLE IF NOT EXISTS `mind_paradise`.`user_profiles` (
     FOREIGN KEY (`user_id` )
     REFERENCES `mind_paradise`.`users` (`id` ))
 ENGINE = InnoDB;
+
+
+DROP TABLE IF EXISTS `case_articles`;
+CREATE TABLE `case_articles` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) CHARACTER  DEFAULT NULL,
+  `body` text CHARACTER ,
+  `count` int(11) DEFAULT '0',
+  `photo` varchar(255) CHARACTER  DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB
+
 
 
 -- -----------------------------------------------------
