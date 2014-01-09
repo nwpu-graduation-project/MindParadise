@@ -273,7 +273,7 @@ DROP TABLE IF EXISTS `mind_paradise`.`tags` ;
 CREATE  TABLE IF NOT EXISTS `mind_paradise`.`tags` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `tag` VARCHAR(10) NOT NULL ,
-  `viewed_count` INT NOT NULL ,
+  `viewed_count` INT NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `tag_UNIQUE` (`tag` ASC) )
 ENGINE = InnoDB;

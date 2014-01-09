@@ -32,31 +32,32 @@ echo '<script src="/ueditor_mini/umeditor.min.js"></script>';
 		obj.parentNode.removeChild(obj)
 	}
 	
-	function setPlainText() {
+	function onSubmit() {
+		
+		// set plain text
 		var element = document.getElementById("hidden_plain_text");
 		element.value = um.getContentTxt();
-		return true;
-	}
-	
-	function getTags() {
+		
+		// set seleted tag names
 		var ulTag = document.getElementById("plpular_tags_icon");
 		var liTags = ulTag.childNodes;
 		var i=0;
 		var str = "";
 		for(i=0;i<liTags.length;i++) {
-			// alert(liTags[i].firstChild.firstChild.innerHtml);
 			str += liTags[i].textContent;
 			if(i< (liTags.length -1) ) {
 				str += "`";
 			}
 		}
-		alert(str);
+		var hidden_tag_names = document.getElementById("hidden_tag_names");
+		hidden_tag_names.value = str;
+		return true;
 	}
 </script>
 <?php
 $this->end();
 
-echo $this->Form->create('Webcontent', array('onsubmit' => 'getTags()'));
+echo $this->Form->create('Webcontent', array('onsubmit' => 'onSubmit()'));
 echo $this->Form->input('title',array('label' => '标题', 'div' => array('class' => 'input_1')));
 echo $this->Form->input('abstract',array('label' => '导读','placeholder'=>'导读','rows' => '3'));
 echo $this->Form->label('Webcontent.category','分类','required');
@@ -68,7 +69,7 @@ echo $this->Form->select('category', $categories);
 	<input type="text" id="add_tag"  maxlength="7" size="10"/>
 	<input type="button" onclick="append()" value="+" />
 	<ul id="plpular_tags_icon" style="width: 100%"></ul>
-    <input id="hidden_tag_names" name="data[selectedTagNames]" type="hidden" value="1,2"/>
+    <input id="hidden_tag_names" name="data[selectedTagNames]" type="hidden" />
     <input id="hidden_plain_text" name="data[plainText]" type="hidden" />
 </div>
 <div id="editorContainer" name="editorContainerDiv">

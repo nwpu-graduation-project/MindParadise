@@ -58,8 +58,6 @@ class WebcontentsController extends AppController {
 			$this->set('categories',$this->_getCategories());
 		}
 		
-		// WebcontentsController::_echoArray($this->request->data);
-		
 		if ($this->request->is('post')) {
 			
 			// webcontentPage
@@ -77,7 +75,7 @@ class WebcontentsController extends AppController {
 			$this->Webcontent->create();
 			if ($this->Webcontent->save($this->request->data)) {
 				$pageId = $this->Webcontent->id;
-				if(!$this->WebcontentsTag->saveContentAsscoTags($pageId, explode('``', $tagsStr))) {
+				if(!$this->WebcontentsTag->saveContentAsscoTags($pageId, $this->_tagNames2ID($tagsStr))) {
 					echo 'Saving tags failed.';
 				};
 				
@@ -166,7 +164,7 @@ class WebcontentsController extends AppController {
 	}
 	
 	protected function _getCategories() {
-		$categories = array(1 => '新闻',2 => '文章', 3 => '视频', 4 => '图片');
+		$categories = array(1 => '新闻',2 => '文章', 3 => '视频', 4 => '图片', 5 => '心理测试');
 		return $categories;
 	}
 
@@ -223,6 +221,41 @@ class WebcontentsController extends AppController {
 		}
 	}
 	
+	protected function _tagNames2ID($str) {
+		$names = explode('`', $str);
+		$tagIdArray = array();
+		// print_r($names);
+		foreach ($names as $key => $value) {
+			$tagId = $this->Tag->find('first', array(
+				'conditions' => array('tag' => $value),
+				'recursive' => -1,
+				'fields' => array('id')
+				)
+			);
+			
+			if($tagId == NULL) {
+				$tagName = array(
+					'Tag' => array(
+						'tag' => $value
+					)
+				);
+				
+				$this->Tag->create();				
+				if($this->Tag->save($tagName,TRUE,array('tag'))) {
+					$tagIdArray[] = $this->Tag->id;
+					$this->Tag->clear();
+				} else {
+					$this->Tag->clear();
+					echo 'Save tag failed';
+				}
+			} else {
+				$tagIdArray[] = $tagId['Tag']['id'];
+			}
+		}
+		
+		return $tagIdArray;
+	}
+	
 	public function afterFilter() {
 		if($this->request->param('action') == 'view') {
 			$id = $this->request->param('pass');
@@ -230,7 +263,6 @@ class WebcontentsController extends AppController {
 		}
 		parent::afterFilter();
 	}
-	
 }
 
 ?>
