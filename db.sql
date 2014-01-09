@@ -222,7 +222,7 @@ CREATE TABLE `consultant_profiles` (
   PRIMARY KEY (`id`),
   KEY `consultant_id` (`consultant_id`),
   CONSTRAINT `consultant_profiles_ibfk_1` FOREIGN KEY (`consultant_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB
+) ENGINE=InnoDB ;
 
 
 -- -----------------------------------------------------
@@ -336,7 +336,7 @@ CREATE  TABLE IF NOT EXISTS `mind_paradise`.`user_profiles` (
   CONSTRAINT `FK_Reference_18`
     FOREIGN KEY (`user_id` )
     REFERENCES `mind_paradise`.`users` (`id` ))
-ENGINE = InnoDB
+ENGINE = InnoDB ;
 
 DROP TABLE IF EXISTS `case_articles`;
 CREATE TABLE `case_articles` (
@@ -348,7 +348,7 @@ CREATE TABLE `case_articles` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB
+) ENGINE=InnoDB ;
 
 
 
