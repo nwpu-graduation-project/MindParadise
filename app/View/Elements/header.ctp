@@ -63,8 +63,9 @@
         <div class="logo"> <a href="index.html"><img src="/img/logo.png" alt=""></a> </div>
         <ul id="navigation">
           <li><a href="/users/index"><span>首页</span></a></li>
-          <li><a href="#"><span>专家团队</span></a></li>
-          <li><a href="#"><span>案例分析</span></a>
+          <li><a href="/Experts/index"><span>专家团队</span></a></li>
+          <li><a href="/CaseArticles/index"><span>案例分析</span></a>
+            <!--
             <ul>
               <li> <a href="#" class="life">Life with P84</a> <span class="nav_line"></span></li>
               <li> <a href="#" class="life_1">Always full power</a> <span class="nav_line"></span></li>
@@ -72,6 +73,7 @@
               <li> <a href="#" class="life_3">Infinite creativity</a> <span class="nav_line"></span></li>
               <li> <a href="#" class="life_4">How to install P84</a> </li>
             </ul>
+          -->
           </li>
           <li><a href="/webcontents/"><span>心理知识</span></a></li>
           <li><a href="/encyclopediaentries/view"><span>心理百科</span></a></li>
