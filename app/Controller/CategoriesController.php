@@ -33,7 +33,8 @@ class CategoriesController extends AppController {
 		}
 			
 		foreach ($array as $key => $value) {
-			echo '<li><a href="#" class="harFull">';
+			echo '<li><a onclick="selectID('.$value['Category']['id'].
+				')" id="category_'.$value['Category']['id'].'" class="harFull" style="cursor:pointer">';
 			echo $value['Category']['name'].'</a>';
 			
 			if($value['children'] != NULL) {

@@ -1,15 +1,14 @@
 <div id="artical_editor" class="center_frame" style="width: 1100px">
 
 <?php
-
 $this->start('css');
-echo '<link rel="stylesheet" type="text/css" href="/ueditor_mini/themes/default/css/umeditor.min.css">';
+echo '<link rel="stylesheet" type="text/css" href="/ueditor/themes/default/css/ueditor.min.css">';
 $this->end();
 
 $this->start('script');
 echo '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>';
-echo '<script src="/ueditor_mini/umeditor.config.js"></script>';
-echo '<script src="/ueditor_mini/umeditor.min.js"></script>';
+echo '<script src="/ueditor/ueditor.config.js"></script>';
+echo '<script src="/ueditor/ueditor.all.js"></script>';
 ?>
 <script type="text/javascript">
 	function append() {
@@ -77,7 +76,7 @@ echo $this->Form->select('category', $categories);
 	<script type="text/plain" id="contentEditor" name="data[webcontentPage]" style="width:100%; height:300px;">
 	</script>
 </div>
-<script type="text/javascript">var um = UM.getEditor("contentEditor");</script>
+<script type="text/javascript">var um = UE.getEditor("contentEditor");</script>
 
 <?php
 echo $this->Form->end('提交');

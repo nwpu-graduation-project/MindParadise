@@ -21,45 +21,26 @@ echo $this->Html->script('treeview');
 ?>
 
 <script>
-	var upperHeadings = ["H1", "H2", "H3", "H4", "H5", "H6"];
-	
 	function genIndex () {
 		var divNode = document.getElementById("pageEditor")
 		var headings = ["h1", "h2", "h3", "h4", "h5", "h6"];
 		for(index=0;index<headings.length;index++) {
 			var headingNodes = UM.dom.domUtils.getElementsByTagName(divNode, headings[index]);
 			for(i=0; i<headingNodes.length; i++) {
-				// alert(headingNodes[i].innerHTML);
 				headingNodes[i].id = 'heading_'+ headings[index]+'_'+i;
 			}
 		}
-		// genTree( document.getElementById("pageEditor"));
 	}
 	
-	function genTree(pnode) {
+	function selectID(id) {
+		var element = document.getElementById("selectedCategoryId");
+		element.value = id;
 		
-		alert(pnode.tagName);
-		if(upperHeadings.indexOf(pnode.tagName) >= 0) {
-				alert(pnode.id);
-		}
-		
-		var nodes = pnode.childNodes;
-		// alert(nodes.length);
-		alert(um.execCommand('getsections'));
-		for(index=0;index<nodes.length;index++) {
-			alert(pnode.tagName +":" + nodes[index].tagName);
-			alert(nodes[index].childNodes.length);
-			// alert(nodes[index].hasChildNodes());
-			// if(nodes[index].hasChildNodes() || nodes[index].tagName != "P") {
-				// genTree(nodes[index]);
-			// } else if(upperHeadings.indexOf(nodes[index].tagName) >= 0) {
-				// alert(nodes[index].id);
-			// }
-		}
+		var nameInput = document.getElementById("categoryName");
+		nameInput.value = document.getElementById("category_"+id).textContent;
 	}
 	
 	function setPlainText() {
-		
 		
 		var divNode = document.getElementById("pageEditor")
 		var headings = ["h1", "h2", "h3", "h4", "h5", "h6"];
@@ -87,12 +68,14 @@ $this->end();
 <?php echo $this->element('category_selector'); ?>
 	</div>
 	
-	<form action="/encyclopediaentries/add" id="WebcontentAddForm" method="post"
+	<form action="/encyclopediaentries/add" id="entryAddForm" method="post"
 		accept-charset="utf-8" onsubmit="return setPlainText()">
-	<input type="hidden" name="data[category_id]" value="1"/>
+	<input type="hidden" id="selectedCategoryId" name="data[category_id]" />
 	<input type="hidden" id="plainText" name="data[plainText]" />
 	<div id="editorContainer" name="editorContainerDiv" style="width: 70%;float: left">
 		<input type="text" name="data[entry]" maxlength="10" placeholder="词条名" style="font-size: 36px"/>
+		<label for="">分类</label>
+		<input type="text" id="categoryName" disabled="disabled" style="font-size: 24px"/>
 		<div>
 		<script type="text/plain" id="pageEditor" name="data[entryPage]" style="width:100%; height:900px;">
 <h1>hehe</h1>
@@ -100,7 +83,9 @@ $this->end();
 		</div>
 		<script type="text/javascript">
 			var um = UM.getEditor("pageEditor");
+			
 		</script>
+		<input type="button" onclick="hehe()" value="hehe">
 		<input type="submit" value="提交">
 	</div>
 	

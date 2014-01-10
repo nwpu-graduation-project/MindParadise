@@ -1,12 +1,12 @@
 <!-- a simple div with some links -- >
-<div class="breadcrumb">
+<div class="breadcrumb flat">
 	<a href="#" class="active">Browse</a>
 	<a href="#">Compare</a>
 	<a href="#">Order Confirmation</a>
 	<a href="#">Checkout</a>
 </div -->
 <!-- another version - flat style with animated hover effect -->
-<div id="catrgoy_holder" class="breadcrumb flat">
+<div id="catrgoy_holder" class="breadcrumb">
 	<a href="#">操作系统</a>
 	<a href="#">LINUX</a>
 	<a href="#">基于Slackware</a>

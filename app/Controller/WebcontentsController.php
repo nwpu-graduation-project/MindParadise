@@ -9,13 +9,7 @@ class WebcontentsController extends AppController {
 	public $helpers = array('Html', 'Form', 'Time', 'Paginator');
 	public $components = array('Session', 'Paginator');
 	public $uses = array('Webcontent', 'Tag','Comment','User', 'WebcontentsTag', 'SearchIndex');
-
-	function beforeFilter()
-	{
-		$this->Auth->allow();
-		//$this->Auth->autoRedirect = false;
-		parent::beforeFilter();
-	}
+	
     public $paginate = array(
         'limit' => 8,
         'order' => array(
@@ -23,6 +17,14 @@ class WebcontentsController extends AppController {
         ),
         'recursive' => 1
     );
+	
+	public function beforeFilter()
+	{
+		$this->Auth->allow();
+		$this->Auth->deny('add', 'postComment');
+		//$this->Auth->autoRedirect = false;
+		parent::beforeFilter();
+	}
 	
 	public function tag($tagId = null) {
 		
@@ -89,7 +91,6 @@ class WebcontentsController extends AppController {
 				debug($this->Webcontent->validationErrors);
 				$this->Session->setFlash(__('Unable to add the tag.'));
 			}
-			
 		}
 	}
 
@@ -184,7 +185,6 @@ class WebcontentsController extends AppController {
 			$file->close();
 			return NULL;
 		}
-    	
 	}
 	
 	public function postComment($pageId = NULL, $parentCommentId = NULL) {
