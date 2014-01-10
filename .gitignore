@@ -21,9 +21,13 @@ Icon?
 ehthumbs.db
 Thumbs.db
 .project
-.directoryapp/webroot/ueditor_mini/php/upload
+.directory
+app/webroot/ueditor_mini/php/upload
 app/webroot/pages
 app/webroot/js/um.format.js
 app/webroot/dict.utf8.xdb
 app/webroot/files/entry_page
 app/webroot/ueditor/php/upload1
+app/webroot/img/uploads/
+app/webroot/upload/uploads
+

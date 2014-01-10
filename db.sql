@@ -3,7 +3,7 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
 DROP SCHEMA IF EXISTS `mind_paradise` ;
-CREATE SCHEMA IF NOT EXISTS `mind_paradise` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `mind_paradise` DEFAULT SET utf8 ;
 USE `mind_paradise` ;
 
 -- -----------------------------------------------------
@@ -201,28 +201,28 @@ DROP TABLE IF EXISTS `consultant_profiles`;
 
 CREATE TABLE `consultant_profiles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `alias` varchar(45) CHARACTER  DEFAULT NULL,
-  `realname` varchar(45) CHARACTER  NOT NULL,
-  `age` varchar(45) CHARACTER  DEFAULT NULL,
-  `gender` varchar(45) CHARACTER  NOT NULL,
-  `education` varchar(100) CHARACTER  NOT NULL,
-  `phone` varchar(45) CHARACTER  NOT NULL,
-  `qq_number` varchar(45) CHARACTER  DEFAULT NULL,
-  `microblog` varchar(45) CHARACTER  DEFAULT NULL,
-  `blog` varchar(45) CHARACTER  DEFAULT NULL,
-  `weixin_number` varchar(45) CHARACTER  DEFAULT NULL,
-  `personal_information` text CHARACTER  NOT NULL,
-  `experience` text CHARACTER  NOT NULL,
-  `profession` text CHARACTER  NOT NULL,
-  `price` text CHARACTER  NOT NULL,
-  `photo` varchar(255) CHARACTER  NOT NULL,
+  `alias` varchar(45)  DEFAULT NULL,
+  `realname` varchar(45)  NOT NULL,
+  `age` varchar(45)  DEFAULT NULL,
+  `gender` varchar(45)  NOT NULL,
+  `education` varchar(100)  NOT NULL,
+  `phone` varchar(45)  NOT NULL,
+  `qq_number` varchar(45)  DEFAULT NULL,
+  `microblog` varchar(45)  DEFAULT NULL,
+  `blog` varchar(45)  DEFAULT NULL,
+  `weixin_number` varchar(45)  DEFAULT NULL,
+  `personal_information` text  NOT NULL,
+  `experience` text  NOT NULL,
+  `profession` text  NOT NULL,
+  `price` text  NOT NULL,
+  `photo` varchar(255)  NOT NULL,
   `created_time` datetime NOT NULL,
   `modified_time` datetime DEFAULT NULL,
   `consultant_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `consultant_id` (`consultant_id`),
   CONSTRAINT `consultant_profiles_ibfk_1` FOREIGN KEY (`consultant_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB
+) ENGINE=InnoDB ;
 
 
 -- -----------------------------------------------------
@@ -336,19 +336,19 @@ CREATE  TABLE IF NOT EXISTS `mind_paradise`.`user_profiles` (
   CONSTRAINT `FK_Reference_18`
     FOREIGN KEY (`user_id` )
     REFERENCES `mind_paradise`.`users` (`id` ))
-ENGINE = InnoDB
+ENGINE = InnoDB ;
 
 DROP TABLE IF EXISTS `case_articles`;
 CREATE TABLE `case_articles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) CHARACTER  DEFAULT NULL,
-  `body` text CHARACTER ,
+  `title` varchar(50)  DEFAULT NULL,
+  `body` text ,
   `count` int(11) DEFAULT '0',
-  `photo` varchar(255) CHARACTER  DEFAULT NULL,
+  `photo` varchar(255)  DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB
+) ENGINE=InnoDB ;
 
 
 
@@ -385,7 +385,7 @@ CREATE TABLE search_indices(
     FULLTEXT(content)
 )
 ENGINE=MyISAM
-DEFAULT CHARACTER SET = latin1;
+DEFAULT SET = latin1;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
