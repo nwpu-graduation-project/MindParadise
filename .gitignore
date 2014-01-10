@@ -26,3 +26,4 @@ app/webroot/pages
 app/webroot/js/um.format.js
 app/webroot/dict.utf8.xdb
 app/webroot/img/uploads/
+app/webroot/upload/uploads
