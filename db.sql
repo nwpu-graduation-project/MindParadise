@@ -235,7 +235,7 @@ CREATE  TABLE IF NOT EXISTS `mind_paradise`.`encyclopedia_entries` (
   `category_id` INT(11) NOT NULL ,
   `user_id` INT(11) NULL DEFAULT NULL COMMENT 'author' ,
   `entry` VARCHAR(10) NOT NULL ,
-  `post_time` DATETIME NOT NULL ,
+  `created` DATETIME NOT NULL ,
   `modified` DATETIME NOT NULL ,
   `file_path` VARCHAR(100) NOT NULL ,
   `browser_num` INT(11) NULL DEFAULT '0' ,
