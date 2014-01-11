@@ -1,5 +1,8 @@
 <?php
 App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
+App::uses('UserProfile', 'Model');
+App::uses('ConsultantProfile', 'Model');
+App::uses('AdministratorProfile', 'Model');
 
 
 class User extends AppModel
@@ -195,6 +198,43 @@ class User extends AppModel
       }
        
       return substr($password, 0, $length);
+  }
+
+  /**
+    * Generate a profile for the user when user created
+    */
+
+  public function afterSave($created, $options = Array())
+  {
+    //
+    if($created)
+    {
+      switch($this->data['User']['role'])
+      {
+        case 1:
+        case 2:
+          $profileObj = new UserProfile();
+          $profileObj->create();
+          $data = array('user_id' => $this->id, 'avatar' => '/upload/images/default.gif');
+          $profileObj->save($data);
+          break;
+        case 3:
+          $profileObj = new ConsultantProfile();
+          $profileObj->create();
+          $data = array('consultant_id' => $this->id, 'avatar' => '/upload/images/default.gif');
+          $profileObj->save($data);
+          break;
+        case 4:
+          $profileObj = new AdministratorProfile();
+          $profileObj->create();
+          $data = array('admin_id' => $this->id, 'avatar' => '/upload/images/default.gif');
+          $profileObj->save($data);
+          break;
+        default:
+          //error
+      }
+    }
+    parent::afterSave();
   }
 
 

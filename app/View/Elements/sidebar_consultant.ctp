@@ -2,9 +2,10 @@
   <h4>个人中心</h4>
   <ul id="categories">
     <li>
-      <a href="#">个人信息</a>
+      <a href="/personalCenter/profileView">个人信息</a>
       <ul class="sub_menu">
-        <li><a href="#">修改个人信息</a></li>
+        <li><a href="/personalCenter/profileEdit">修改个人信息</a></li>
+        <li><a href="/personalCenter/modifyAvatar">修改头像</a></li>
         <li><a href="/users/changePassword">修改密码</a></li>
       </ul>
     </li>
