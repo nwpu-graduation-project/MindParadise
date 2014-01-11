@@ -34,7 +34,6 @@ class Webcontent extends AppModel {
 		$this->saveField('browse_count', ++$webcontent['Webcontent']['browse_count']);
 		$this->clear();
 	}
-    
 }
 
 ?>

@@ -46,6 +46,7 @@ hr{clear:both}
   //zoom:1;
 }
 .skinPlank a {
+	/*width: 185px;*/
   font:19px/1.2em Arial, Helvetica, sans-serif;
   color:#fff;
   background:#7F7F7F;
