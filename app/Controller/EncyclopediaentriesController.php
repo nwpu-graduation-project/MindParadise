@@ -18,17 +18,48 @@ class EncyclopediaentriesController extends AppController {
 	}
 	
 	public function index() {
-		$this->render('add');
 	}
 	
-	public function view() {
-		// echo print_r($this->EncyclopediaEntry->find('first'));
+	public function view($id) {
+		if (!$id) {
+            throw new NotFoundException(__('Invalid post'));
+        }
+        $entry = $this->EncyclopediaEntry->find('first',array(
+					'conditions' => array('EncyclopediaEntry.id' => $id),
+					'recursive' => 0)
+				);
+        if (!$entry) {
+            throw new NotFoundException(__('Invalid post'));
+        }
+    
+        if ($this->request->is('get')) {
+        	$this->set('entry',$entry);
+			
+			$page = '';
+			$file = new File($entry['EncyclopediaEntry']['path']);
+			if($file->open('rb')) {
+				$page = $file->read();
+    		} else {
+        		echo "open ".$file->pwd()." failed";
+    		}
+    		$file->close();
+			$this->set('page',$page);
+			
+			$indexPage = '';
+			$indexFile = new File($entry['EncyclopediaEntry']['path'].'.index');
+			if($indexFile->open('rb')) {
+				$indexPage = $indexFile->read();
+    		} else {
+        		echo "open ".$indexFile->pwd()." failed";
+    		}
+    		$indexFile->close();
+			$this->set('indexPage',$indexPage);
+        }
 	}
 	
 	public function add() {
 		if ($this->request->is('get')) {
 			// verify the user
-			$this->render('new');
 		}
 		
 		if ($this->request->is('post')) {
@@ -50,7 +81,7 @@ class EncyclopediaentriesController extends AppController {
 					$this->Session->setFlash(__('Create search-index failed.'));			
 				}
 				
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'view', $pageId));
 			} else {
 				debug($this->EncyclopediaEntry->validationErrors);
 				$this->Session->setFlash(__('Unable to add the tag.'));
@@ -65,8 +96,9 @@ class EncyclopediaentriesController extends AppController {
 		$file = new File($dir->pwd().DS.$name.'.inc', true, 0644);
 		if($file->open('wb')) {
 			$file->write($content);
-			$file->close();
 			$return = $file->pwd();
+			$file->close();
+			
     	} else {
         	echo "open ".$file->pwd()." failed";
 			$file->close();
@@ -82,6 +114,14 @@ class EncyclopediaentriesController extends AppController {
 			$indexFile->close();			
 		}
 		return $return;
+	}
+	
+	public function afterFilter() {
+		if($this->request->param('action') == 'view') {
+			$id = $this->request->param('pass');
+			$this->EncyclopediaEntry->browsedOnce($id);
+		}
+		parent::afterFilter();
 	}
 	
 }

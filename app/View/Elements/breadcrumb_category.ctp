@@ -1,16 +1,15 @@
 <!-- a simple div with some links -- >
-<div class="breadcrumb flat">
-	<a href="#" class="active">Browse</a>
-	<a href="#">Compare</a>
-	<a href="#">Order Confirmation</a>
-	<a href="#">Checkout</a>
-</div -->
+<div class="breadcrumb flat"></div -->
+<?php $array = $this->requestAction('/categories/getAncestors/'.$categoryID); 
+?>
 <!-- another version - flat style with animated hover effect -->
 <div id="catrgoy_holder" class="breadcrumb">
-	<a href="#">操作系统</a>
-	<a href="#">LINUX</a>
-	<a href="#">基于Slackware</a>
-	<a href="#" class="active">Slax</a>
+	<?php
+	while (count($array) > 1) {
+		echo '<a href="#">'.array_pop($array).'</a>';
+	}
+	echo '<a href="#" class="active">'.array_pop($array).'</a>';
+	?>
 </div>
 
 <!-- Prefixfree -->

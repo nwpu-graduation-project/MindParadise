@@ -22,13 +22,13 @@
   <?php echo $this->element('header'); ?>
   <!-- header end -->
   <!-- warpper start -->
-  <div class="wrapper">
-    <div id="content">
+  <div id="wrapper">
+    <!-- div id="content" -->
 
       <?php echo $this->Session->flash(); ?>
       <?php echo $this->Session->flash('Auth'); ?>
       <?php echo $this->fetch('content'); ?>
-    </div>
+    <!-- /div -->
   </div>
   <!-- warpper end -->
 

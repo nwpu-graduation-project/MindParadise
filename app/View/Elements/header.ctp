@@ -76,7 +76,7 @@
           -->
           </li>
           <li><a href="/webcontents/"><span>心理知识</span></a></li>
-          <li><a href="/encyclopediaentries/view"><span>心理百科</span></a></li>
+          <li><a href="/encyclopediaentries/"><span>心理百科</span></a></li>
           <li><a href="#"><span>留言咨询</span></a></li>
           <li><a href="#"><span>在线咨询</span></a></li>
 

@@ -1,19 +1,17 @@
 <?php
 
-include_once('WebcontentsController.php');
-
 class CategoriesController extends AppController {
 
 	public $helpers = array('Html');
 	public $components = array('Session');
 	public $uses = array('Category','EncyclopediaEntry');
+
 	
 	public function view() {
 		if ($this->request->is('get')) {
 		}
 		
 		if ($this->request->is('post')) {
-			echo WebcontentsController::_echoArray($this->request->data);
 		}
 	}
 	
@@ -22,6 +20,14 @@ class CategoriesController extends AppController {
 			throw new ForbiddenException();
 		} else {
 			$this->_printAllCategories($this->Category->find('threaded'));
+		}
+	}
+	
+	public function getAncestors($id) {
+		if (empty($this->request->params['requested'])) {
+			throw new ForbiddenException();
+		} else {
+			return $this->_getAncestors($id);
 		}
 	}
 	
@@ -43,7 +49,17 @@ class CategoriesController extends AppController {
 			}
 			echo '</li>';
 		}
-		
 		echo '</ul>';
+	}
+	
+	protected function _getAncestors($id, $array = array()) {
+		$category = $this->Category->findById($id);
+		if($category['Category']['name'] != NULL) {
+			$array[] = $category['Category']['name'];
+		}
+		if($category['Category']['parent_id'] != NULL) {
+			$array = $this->_getAncestors($category['Category']['parent_id'], $array);
+		}
+		return $array;
 	}
 }

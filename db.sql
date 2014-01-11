@@ -3,7 +3,7 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
 DROP SCHEMA IF EXISTS `mind_paradise` ;
-CREATE SCHEMA IF NOT EXISTS `mind_paradise` DEFAULT SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `mind_paradise` DEFAULT CHARACTER SET utf8 ;
 USE `mind_paradise` ;
 
 -- -----------------------------------------------------
@@ -150,7 +150,7 @@ CREATE  TABLE IF NOT EXISTS `mind_paradise`.`webcontents` (
   `modified` DATETIME NOT NULL ,
   `comment_count` INT(11) NULL DEFAULT '0' COMMENT '评论数' ,
   `browse_count` INT(11) NULL DEFAULT '0' COMMENT '浏览数' ,
-  `path` VARCHAR(100) NOT NULL ,
+  `path` VARCHAR(150) NOT NULL ,
   `f_public` TINYINT(4) NULL DEFAULT NULL ,
   `f_visible` TINYINT(4) NULL DEFAULT NULL ,
   `f_top` TINYINT(4) NULL DEFAULT NULL ,
@@ -237,8 +237,8 @@ CREATE  TABLE IF NOT EXISTS `mind_paradise`.`encyclopedia_entries` (
   `entry` VARCHAR(10) NOT NULL ,
   `created` DATETIME NOT NULL ,
   `modified` DATETIME NOT NULL ,
-  `file_path` VARCHAR(100) NOT NULL ,
-  `browser_num` INT(11) NULL DEFAULT '0' ,
+  `path` VARCHAR(150) NOT NULL ,
+  `browse_count` INT(11) NULL DEFAULT 0,
   PRIMARY KEY (`id`) ,
   INDEX `FK_Reference_1` (`category_id` ASC) ,
   INDEX `FK_Reference_4` (`user_id` ASC) ,
@@ -385,7 +385,7 @@ CREATE TABLE search_indices(
     FULLTEXT(content)
 )
 ENGINE=MyISAM
-DEFAULT SET = latin1;
+DEFAULT CHARACTER SET = latin1;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

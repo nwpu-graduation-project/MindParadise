@@ -26,6 +26,10 @@ class WebcontentsController extends AppController {
 		parent::beforeFilter();
 	}
 	
+	public function test() {
+		
+	}
+	
 	public function tag($tagId = null) {
 		
 	}
