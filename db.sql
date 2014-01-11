@@ -315,6 +315,7 @@ DROP TABLE IF EXISTS `mind_paradise`.`user_profiles` ;
 CREATE  TABLE IF NOT EXISTS `mind_paradise`.`user_profiles` (
   `id` INT(11) NOT NULL ,
   `user_id` INT(11) NOT NULL ,
+  `avatar` VARCHAR(45) NULL COMMENT '头像' ,
   `first_name` VARCHAR(45) NULL COMMENT '名' ,
   `family_name` VARCHAR(45) NULL COMMENT '姓' ,
   `age` INT NULL COMMENT '年龄' ,

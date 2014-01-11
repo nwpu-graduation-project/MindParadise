@@ -41,22 +41,22 @@ class AppController extends Controller {
 	protected function currentUser()
 	{
 
-		// //Set User's ID in model which is needed for validation
-		// $id = $this->Auth->user('id');
+		//Set User's ID in model which is needed for validation
+		$id = $this->Auth->user('id');
 
-		// // Load the user (avoid populating $this->data)
-		// $currentUser = null;
-		// if($id)
-		// {
-		// 	$currentUser = $this->User->find('first',array(
-		// 		'conditions' => array('id' => $id),
-		// 		'recursive' => -1,
-		// 	));
-		// }
-		// return $currentUser;
+		// Load the user (avoid populating $this->data)
+		$currentUser = null;
+		if($id)
+		{
+			$currentUser = $this->User->find('first',array(
+				'conditions' => array('id' => $id),
+				'recursive' => -1,
+			));
+		}
+		return $currentUser;
 
-		$current = $this->Auth->user();
-		return $current? array('User' => $this->Auth->user()) : false;
+		// $current = $this->Auth->user();
+		// return $current? array('User' => $this->Auth->user()) : false;
 	}
 
 	function getUnreadMessages()
