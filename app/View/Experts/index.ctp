@@ -1,27 +1,28 @@
 <!-- File: /app/View/Experts/view.ctp -->
+	<?php $this->start('css'); ?>
+    <link rel="stylesheet" href="/css/main.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/css/expert_display.css" type="text/css" media="screen">
+   <?php $this->end(); ?>
+   
+   <?php $this->start('script'); ?>
+    <script src="/js/jQuery.max.js" type="text/javascript"></script>
+    <script src="/js/expert_javascript.js" type="text/javascript"></script>      
+    <?php $this->end(); ?>
 
-<html>
-<body>
-<h1>专家团队成员信息</h1>
-<center>
-<?php foreach ($experts as $expert) : ?>
-<table width="60%">
+<br><br><br><br>
+<br>
+<div id="main">
+   	<div id="list">
+    	<ul></ul>
+    </div>
+   	<div id="pagecount"></div>
+   	
+</div>
+
+
+
 		
-	<tr>
-		<td width="80%"><?php echo $this->Html->link($expert['Expert']['realname'], array('controller' => 'experts', 'action' => 'view', $expert['Expert']['id'])); ?></td><td width="20%"></td>
-	</tr>
-	<tr>
-		<td width="80%"><?php echo $expert['Expert']['personal_information']; ?></td><td width="20%"><?php $string = $expert['Expert']['photo']; echo "<img src='/img/uploads/$string' width='50' height='50' alt='photo' />"; ?></td>
-	</tr>
-	<tr>
-		<td width="80%"><?php echo $expert['Expert']['created_time']; ?></td><td width="20%"></td>
-	</tr>
-	<tr><hr width="60%"></tr>
-</table>
-<?php endforeach; ?>
-<?php unset($expert); ?>
-<hr width="60%">
-</center>
-</body>
-</html>
+
+
+
 
