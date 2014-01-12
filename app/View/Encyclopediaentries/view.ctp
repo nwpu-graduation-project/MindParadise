@@ -46,13 +46,16 @@ echo $this->Html->script('treeview');
 $this->end();
 ?>
 
-<div id="wrapper">
 	<div id="blog_content">
 		<div class="center_frame">
 			
 			<div id="blog_left">
+				<div id="entryIndex" class="blog_side_bg">
 				<h2 style="font-size: 30px;height: 36px; margin-bottom: 5px;">目录</h2>
 				<?php echo $indexPage; ?>
+				</div>
+				
+				<?php echo $this->element('entry_infomation',array('entry' => $entry)); ?>
 			</div>
 			
 			<?php echo $this->element('breadcrumb_category',
@@ -62,16 +65,6 @@ $this->end();
 				
 				<div class="post_blog">
 					<h2><?php echo $entry['EncyclopediaEntry']['entry']; ?></h2>
-					<table border="0" style="float : left; text-align: center">
-						<tr>
-							<th>创建者</th><td><?php echo $entry['Author']['username']; ?></td>
-							<th>浏览量</th><td><?php echo $entry['EncyclopediaEntry']['browse_count']; ?></td>
-						</tr>
-						<tr>
-							<th>创建时间</th><td><?php echo $entry['EncyclopediaEntry']['created']; ?></td>
-							<th>修改时间</th><td><?php echo $entry['EncyclopediaEntry']['modified']; ?></td>
-						</tr>
-					</table>
 				</div>
 				
 				<div class="entry_view" style="width: 100%; padding-left: 5px">
@@ -84,5 +77,4 @@ $this->end();
 	<div id="page_navigation">
     <div class="center_frame"> <a href="/encyclopediaentries/index" class="leave_back"></a> </div>
     </div>
-</div>
 </div>

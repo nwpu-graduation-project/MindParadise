@@ -6,8 +6,16 @@ App::uses('File', 'Utility');
 class EncyclopediaentriesController extends AppController {
 
 	public $helpers = array('Html');
-	public $components = array('Session');
+	public $components = array('Session', 'Paginator');
 	public $uses = array('Category','EncyclopediaEntry', 'SearchIndex');
+	
+	public $paginate = array(
+        'limit' => 10,
+        'order' => array(
+            'EncyclopediaEntry.id' => 'asc'
+        ),
+        'recursive' => -1
+    );
 	
 	public function beforeFilter()
 	{
@@ -18,6 +26,23 @@ class EncyclopediaentriesController extends AppController {
 	}
 	
 	public function index() {
+	}
+	
+	public function category($category = NULL) {
+		if(empty($category)) {
+			;
+		} else {
+			;
+		}
+		$this->Paginator->settings = $this->paginate;
+			$this->set('entries', $this->Paginator->paginate('EncyclopediaEntry',
+				array('EncyclopediaEntry.category_id' => $category)));
+		
+    	$this->set('currentCategory',$category);
+		
+		$this->set('childCategories', $this->Category->find('all',
+				array('conditions' => array('parent_id' => $category),
+					 'recursive' => -1) ));
 	}
 	
 	public function view($id) {
