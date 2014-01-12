@@ -315,6 +315,7 @@ DROP TABLE IF EXISTS `mind_paradise`.`user_profiles` ;
 CREATE  TABLE IF NOT EXISTS `mind_paradise`.`user_profiles` (
   `id` INT(11) NOT NULL ,
   `user_id` INT(11) NOT NULL ,
+  `avatar` VARCHAR(255) NULL COMMENT '头像' ,
   `first_name` VARCHAR(45) NULL COMMENT '名' ,
   `family_name` VARCHAR(45) NULL COMMENT '姓' ,
   `age` INT NULL COMMENT '年龄' ,
@@ -331,6 +332,7 @@ CREATE  TABLE IF NOT EXISTS `mind_paradise`.`user_profiles` (
   `health_condition` VARCHAR(45) NULL COMMENT '健康状况' ,
   `present_address` VARCHAR(45) NULL COMMENT '现住址' ,
   `phone_number` VARCHAR(20) NULL COMMENT '电话号码' ,
+  `qq_number` VARCHAR(20) NULL COMMENT 'qq号码' ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC) ,
   CONSTRAINT `FK_Reference_18`
