@@ -74,7 +74,6 @@ $(function() {
 		'auto'				: false,
 		'multi'				: false,
 		'queueSizeLimit' 	: 1,
-		'formData'			: {'uid':'18'},
 		'buttonText'		: '请选择图片',
 		'height'			: 20,
 		'width'				: 120,
@@ -119,9 +118,11 @@ $(function() {
 		},
 		'onClearQueue' : function(queueItemCount) {
             //alert( $('#img1') );
+            //$("#upload_controller").hide();
         },
 		'onCancel' : function(file) {
             //alert('The file ' + file.name + ' was cancelled.');
+            $("#upload_controller").hide();
         },
         'onSelect' : function(file)
         {
@@ -200,7 +201,7 @@ $(function() {
 							$('#avatar').attr('src',msg.result_des.small);
 						});
 					} else {
-						alert(msg.result_code+"裁剪失败！");
+						alert("重试一次！或者换张图片试试");
 					}
 				}
 			});

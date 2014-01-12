@@ -8,8 +8,6 @@ class UserProfile extends AppModel
 				'fields' => array('username', 'email'),
 				),
 		);
-
-
 }
 
 ?>

@@ -60,7 +60,7 @@
     <div class="bg_111">
       <div class="center_frame"> 
         <!--Logo And Navigation Start Here-->
-        <div class="logo"> <a href="index.html"><img src="/img/logo.png" alt=""></a> </div>
+        <div class="logo"> <a href="/index"><img src="/img/logo.png" alt=""></a> </div>
         <ul id="navigation">
           <li><a href="/users/index"><span>首页</span></a></li>
           <li><a href="/Experts/index"><span>专家团队</span></a></li>
