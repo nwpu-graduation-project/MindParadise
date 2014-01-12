@@ -1,4 +1,7 @@
-<div id="wrapper">
+<?php $this->start('css'); ?>
+<style>
+</style>
+<?php $this->end(); ?>
 
 <div id="blog_content">
     <div class="center_frame">
@@ -10,8 +13,6 @@ echo $this->element('artical_categories',array('current' => $webcontent['Webcont
     	</div>
 
 <div id="blog_right">
-<?php // WebcontentsController::_echoArray($webcontent); ?>
-<?php // WebcontentsController::_echoArray($comments); ?>
 
 <div class="post_blog">
 	<h2>
@@ -53,7 +54,7 @@ echo $this->element('artical_categories',array('current' => $webcontent['Webcont
 		</span>
 		<dfn> <?php echo $webcontent['User']['username']; ?></dfn>
 	</h3>
-	<div>
+	<div calss="content_view">
 	<?php echo $page; ?>
 	</div>
 	<a href="#blog_right" class="blgo_read"><?php echo ++$webcontent['Webcontent']['browse_count'].'次阅读'; ?></a>
@@ -128,6 +129,4 @@ echo $this->element('artical_categories',array('current' => $webcontent['Webcont
 
 <div id="page_navigation">
     <div class="center_frame"> <a href="/webcontents/index" class="leave_back">&nbsp;</a> </div>
-</div>
-
 </div>
