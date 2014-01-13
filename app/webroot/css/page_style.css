@@ -83,7 +83,8 @@ nav .wrap-nav{height: 37px;}
 
 #main-content{}
 #main-content article{ clear: both; background:#ffffff url("../images/bgbox.png") repeat-x; padding:20px; margin-bottom:20px; border:1px solid #CCC;}
-#main-content article h2{font-size:22px; line-height:25px;}
+#main-content article h2{font-size:22px; line-height:25px;text-align: center;}
+#main-content article h3{font-size:22px; line-height:25px;}
 #main-content article .info{font-style:italic; background:#5EB7CB; color:#ffffff; padding:3px 5px;}
 #main-content article .info a{color: #ffffff; text-decoration:underline;}
 #main-content article img{float:none; margin-right:20px; border:1px solid #CCC;}

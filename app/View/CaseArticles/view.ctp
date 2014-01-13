@@ -23,13 +23,13 @@
 						
 						<span>发布于:<?php echo h($caseArticle['CaseArticle']['created']); ?>&nbsp;浏览</span><?php echo h($caseArticle['CaseArticle']['count']); ?>次&nbsp;评论<?php echo h($caseArticle['CaseArticle']['count']); ?>条<br>
 						作者:<span class="info"><?php echo h($caseArticle['CaseArticle']['source']); ?></span><br><br>
-						<h3><b>导读:<?php echo h($caseArticle['CaseArticle']['abstract']); ?></b></h3><br>
+						<h4><b>导读:<?php echo h($caseArticle['CaseArticle']['abstract']); ?></b></h4><br>
 	
 							<div align="center"><?php $string = $caseArticle['CaseArticle']['photo']; 
 						echo "<img src='/img/cases_photos/$string' alt='photo'/>"; ?></div><br>
 							
 					
-						<p><?php echo h($caseArticle['CaseArticle']['body']); ?></p>
+						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo h($caseArticle['CaseArticle']['body']); ?></p>
 					</article>
 					
 					<div class="comment">
@@ -88,18 +88,18 @@
 						<div class="content">
 							<div class="posts">
 								<img src="/display/images/post01.png"/>
-								<h4><a href="http://www.xinli001.com/info/10766/">沙盘中常见动物的象征意义</a></h4>
-								<p>浏览者590次</p>
+								<h4><a href="http://www.xinli001.com/info/10766/">沙盘中常见动物的象征意义</a></h4><br>
+								<p>浏览590次</p>
 							</div>
 							<div class="posts">
 								<img src="/display/images/post02.png"/>
-								<h4><a href="http://www.xinli001.com/info/10686/">有用才是王道:12月译文精选</a></h4>
-								<p>浏览者1500次</p>
+								<h4><a href="http://www.xinli001.com/info/10686/">有用才是王道:12月译文精选</a></h4><br>
+								<p>浏览1500次</p>
 							</div>
 							<div class="posts">
 								<img src="/display/images/post03.png"/>
-								<h4><a href="http://www.xinli001.com/info/10839/">儿童身上的两颗种子</a></h4>
-								<p>浏览者1090次</p>
+								<h4><a href="http://www.xinli001.com/info/10839/">儿童身上的两颗种子</a></h4><br>
+								<p>浏览1090次</p>
 							</div>
 						</div>
 					</div>
