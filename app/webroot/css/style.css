@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 body {
 	font-size:15px;
-	font-family:"myriad Pro";
+	font-family:"宋体";
 	background-image:url(../img/body_bg.png);
 	background-position:0 0;
 	background-repeat:repeat;
@@ -32,7 +32,7 @@ body {
 }
 /*===================================== HEADER CSS ============================*/
 #header {
-	float:left;
+	/*float:left;*/
 	width:100%;
 }
 /*===================================== TOP HEADER CSS ========================*/
@@ -568,7 +568,7 @@ height:19px;
 }
 /*===================================== WRAPPER CSS ===========================*/	
 #wrapper {
-	float:left;
+/*	float:left;*/
 	width:100%;
 	margin-top:-1px;
 }
@@ -735,14 +735,93 @@ height:19px;
 	width:424px;
 	margin-right:-30px;
 }
+/*===========================================FRIENDLY LINK ===========================================*/
+#friendly {
+	margin: 0 auto;
+	border-top: 1px dashed #DDD;
+	padding: 8px 45px 5px 70px;
+	position: relative;
+	width: 850px;
+	background: #F6F6F6
+}
+#friendly a:link, #friendly a:visited, #friendly a:hover, #friendly a:active {
+	color: #777;
+	margin-right: 10px
+}
+#friendly a:visited {
+	color: #669
+}
+#friendly .item {
+	position: absolute;
+	top: 8px;
+	left: 0;
+	color: #999
+}
+#friendly .more:link, #friendly .more:visited, #friendly .more:hover, #friendly .more:active {
+	position: absolute;
+	top: 8px;
+	right: 0;
+	margin: 0;
+	color: #999
+}
+#friendly .over {
+	height: 8000%
+}
+#friendly .flist {
+	display: block;
+	line-height: normal;
+	width: 850px
+}
+#friendly .flist ul {
+	display: block;
+	height: 18px;
+	overflow: hidden;
+	width: 110%
+}
+#friendly .flist li {
+	float: left;
+	height: 18px;
+	margin-left: 10px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 111px;
+}
+#friendly .flist a {
+	margin-right: 10px
+}
+
 /*===================================== FOOTER CSS ============================*/
 #footer {
-	float:left;
-	width:100%;
-	background-image:url(../img/white_texture.png);
-	background-position:0 0;
-	background-repeat:repeat;
-	height:412px;
+	position: relative;
+	margin: 0 auto;
+	width: 960px;
+	padding-bottom: 10px;
+	height: 32px;
+	line-height: 34px;
+	color: #777
+}
+#footer .copy:link, #footer .copy:visited, #footer .copy:hover, #footer .copy:active {
+	color: #777
+}
+#footer a:link, #footer a:active {
+	color: #777
+}
+#footer a:visited {
+	color: #669
+}
+#footer a:hover {
+	color: #777
+}
+#footer .copy_right {
+	text-align: center;
+}
+#footer .flinks {
+	border-bottom: 1px dashed #DDD;
+	text-align: center;
+}
+#footer .flinks a {
+	color: #369;
 }
 #footer1 {
 	width:960px;
@@ -2559,9 +2638,6 @@ li {
 	line-height:26px;
 	color:#505050;
 	margin-bottom:15px;
-}
-a {
-	float:left;
 }
 .post_blog .blgo_read {
 	float:left;

@@ -20,7 +20,7 @@
 
 <body style="">
   <!-- header start -->
-  <div id="header">
+  <div id="header" class='clearfix'>
     <div id="top_header">
       <div class="center_frame">
         <div class="top">
@@ -114,12 +114,10 @@
   </div>
   <!-- header end -->
   <!-- warpper start -->
-  <div class="wrapper">
-    <div id="content">
-    </div>
+  <div id="wrapper">
   </div>
   <!-- warpper end -->
-
+  <?php echo $this->element('friendlylink'); ?>
   <?php echo $this->element('footer'); ?>
 
   <?php echo $this->element('sql_dump'); ?>

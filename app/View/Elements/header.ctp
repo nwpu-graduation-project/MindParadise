@@ -1,4 +1,4 @@
-<div id="header">
+<div id="header" class='clearfix'>
   <div id="top_header">
     <div class="center_frame">
       <div class="top">
