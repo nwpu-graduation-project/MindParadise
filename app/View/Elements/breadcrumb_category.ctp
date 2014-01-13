@@ -1,14 +1,20 @@
 <!-- a simple div with some links -- >
 <div class="breadcrumb flat"></div -->
-<?php $array = $this->requestAction('/categories/getAncestors/'.$categoryID); 
-?>
-<!-- another version - flat style with animated hover effect -->
+
 <div id="catrgoy_holder" class="breadcrumb">
 	<?php
-	while (count($array) > 1) {
-		echo '<a href="#">'.array_pop($array).'</a>';
+	echo '<a href="/encyclopediaentries/category/" href="#catrgoy_holder">全部分类</a>';
+	if($categoryID != NULL) {
+		$array = $this->requestAction('/categories/getAncestors/'.$categoryID);
+		while (count($array) > 1) {
+			$category = array_pop($array);
+			echo '<a href="/encyclopediaentries/category/'.$category['Category']['id'].'">'.
+				$category['Category']['name'].'</a>';
+		}
+		$category = array_pop($array);
+			echo '<a class="active" href="/encyclopediaentries/category/'.$category['Category']['id'].'">'.
+				$category['Category']['name'].'</a>';
 	}
-	echo '<a href="#" class="active">'.array_pop($array).'</a>';
 	?>
 </div>
 

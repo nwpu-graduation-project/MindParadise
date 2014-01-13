@@ -198,24 +198,25 @@ ENGINE = InnoDB;
 
 
 DROP TABLE IF EXISTS `consultant_profiles`;
-
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `consultant_profiles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `alias` varchar(45)  DEFAULT NULL,
-  `realname` varchar(45)  NOT NULL,
-  `age` varchar(45)  DEFAULT NULL,
-  `gender` varchar(45)  NOT NULL,
-  `education` varchar(100)  NOT NULL,
-  `phone` varchar(45)  NOT NULL,
-  `qq_number` varchar(45)  DEFAULT NULL,
-  `microblog` varchar(45)  DEFAULT NULL,
-  `blog` varchar(45)  DEFAULT NULL,
-  `weixin_number` varchar(45)  DEFAULT NULL,
-  `personal_information` text  NOT NULL,
-  `experience` text  NOT NULL,
-  `profession` text  NOT NULL,
-  `price` text  NOT NULL,
-  `photo` varchar(255)  NOT NULL,
+  `alias` varchar(45) CHARACTER SET gbk DEFAULT NULL,
+  `realname` varchar(45) CHARACTER SET gbk NOT NULL,
+  `age` varchar(45) CHARACTER SET gbk DEFAULT NULL,
+  `gender` varchar(45) CHARACTER SET gbk NOT NULL,
+  `education` varchar(100) CHARACTER SET gbk NOT NULL,
+  `phone` varchar(45) CHARACTER SET gbk NOT NULL,
+  `qq_number` varchar(45) CHARACTER SET gbk DEFAULT NULL,
+  `microblog` varchar(45) CHARACTER SET gbk DEFAULT NULL,
+  `blog` varchar(45) CHARACTER SET gbk DEFAULT NULL,
+  `weixin_number` varchar(45) CHARACTER SET gbk DEFAULT NULL,
+  `personal_information` text CHARACTER SET gbk NOT NULL,
+  `experience` text CHARACTER SET gbk NOT NULL,
+  `profession` text CHARACTER SET gbk NOT NULL,
+  `price` text CHARACTER SET gbk NOT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
   `created_time` datetime NOT NULL,
   `modified_time` datetime DEFAULT NULL,
   `consultant_id` int(11) DEFAULT NULL,
@@ -341,15 +342,22 @@ CREATE  TABLE IF NOT EXISTS `mind_paradise`.`user_profiles` (
 ENGINE = InnoDB ;
 
 DROP TABLE IF EXISTS `case_articles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `case_articles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(50)  DEFAULT NULL,
-  `body` text ,
+  `title` varchar(50) CHARACTER SET gbk DEFAULT NULL,
+  `body` text CHARACTER SET gbk,
   `count` int(11) DEFAULT '0',
-  `photo` varchar(255)  DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `comment_number` int(11) DEFAULT '0',
+  `owner_id` int(11) DEFAULT NULL,
+  `abstract` varchar(300) NOT NULL,
+  `source` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `owner_id` (`owner_id`)
 ) ENGINE=InnoDB ;
 
 

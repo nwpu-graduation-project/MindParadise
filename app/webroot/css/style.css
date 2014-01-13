@@ -701,7 +701,7 @@ height:19px;
 	font-family:"myriad Pro";
 	font-size:15px;
 }
-#main_contant .box_1 a, #main_contant .box_2 a, #main_contant .box_3 a {
+#main_contant .box_1 a, #main_contant .box_2 a/*, #main_contant .box_3 a */{
 	float:left;
 	margin-top:30px;
 	width:83px;
@@ -710,7 +710,7 @@ height:19px;
 	background-position:0 0;
 	background-repeat:no-repeat;
 }
-#main_contant .box_1 a:hover, #main_contant .box_2 a:hover, #main_contant .box_3 a:hover {
+#main_contant .box_1 a:hover, #main_contant .box_2 a:hover/*, #main_contant .box_3 a:hover */{
 	background-image:url(../img/more_info_hover.png);
 	background-position:0 0;
 	background-repeat:no-repeat;

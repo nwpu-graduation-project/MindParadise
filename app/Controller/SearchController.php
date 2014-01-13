@@ -5,6 +5,12 @@ class SearchController extends AppController {
 	public $helpers = array('Html');
 	public $uses = array('SearchIndex');
 	
+	public function beforeFilter()
+	{
+		$this->Auth->allow();
+		parent::beforeFilter();
+	}
+	
 	public function index() {
 		if($this->request->is('get')) {
 			$this->set('result', 'No keyword specificed.');

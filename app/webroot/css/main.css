@@ -1,14 +1,10 @@
 @charset "UTF-8";
-/* 代码整理：懒人之家 lanrenzhijia.com */
-/* 代码整理：懒人之家 lanrenzhijia.com */
 .clear {
 	clear: both;
 }
 .push {
 	height: 30px;
 }
-/* 代码整理：懒人之家 lanrenzhijia.com */
-/* ORDER PAGE CORRECTLY */
 * {
 	margin: 0;
 	padding: 0;
@@ -21,7 +17,6 @@ body {
 	font-family: Helvetica, Verdana, Arial, sans-serif;
 	width: 100%;
 	height: 100%;
-	background: #3EA9DF;
 }
 /* END */
 
@@ -146,4 +141,3 @@ body {
 .done {
 	margin-top: 50px;
 }
-/* 代码整理：懒人之家 lanrenzhijia.com */

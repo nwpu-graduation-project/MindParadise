@@ -18,8 +18,7 @@ class ExpertsController extends AppController {
     	if ($this->request->is('post')) {
     		$this->Expert->create();
 
-    		$username = $this->request->data['username'];
-    		$password = $this->request->data['password'];
+    		
     		$alias = $this->request->data['alias'];
     		$realname = $this->request->data['realname'];
     		$age = $this->request->data['age'];
@@ -36,11 +35,10 @@ class ExpertsController extends AppController {
     		$profession = $this->request->data['profession'];
     		$price = $this->request->data['price'];
 
-    		$picture_name = $_FILES['photo']['name'];
-    		move_uploaded_file($_FILES['photo']['tmp_name'], "./img/uploads/".$username.$picture_name);
-    		$this->request->data['Expert']['photo'] = $username.$picture_name;
-    		$this->request->data['Expert']['username'] = $username;
-    		$this->request->data['Expert']['password'] = $password;
+    		$picture_name = $_FILES['avatar']['name'];
+    		move_uploaded_file($_FILES['avatar']['tmp_name'], "./img/experts_photos/".$picture_name);
+
+    		$this->request->data['Expert']['avatar'] = $picture_name;
     		$this->request->data['Expert']['alias'] = $alias;
     		$this->request->data['Expert']['realname'] = $realname;
     		$this->request->data['Expert']['age'] = $age;

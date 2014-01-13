@@ -1,6 +1,7 @@
 <?php $this->start('css'); ?>
 <style>
 div .option {
+	/*width: 200px;*/
 	height: 36px;
 }
 div input[type=radio]{
@@ -9,6 +10,7 @@ div input[type=radio]{
 }
 
 div label{
+	width: 200px;
   display: inline;
   font-size: 1.35em;
   padding: 5px 5px 5px 10px;
@@ -42,7 +44,7 @@ div input[type=radio]:checked ~ label{
 
   <div class="option">
     <input type="radio" id="f-option" name="selector">
-    <label for="f-option">Do you like Cat</label>
+    <label for="f-option">Do you like Cat  .</label>
   </div>
   <div class="option">
     <input type="radio" id="s-option" name="selector">

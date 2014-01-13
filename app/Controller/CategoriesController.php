@@ -55,7 +55,7 @@ class CategoriesController extends AppController {
 	protected function _getAncestors($id, $array = array()) {
 		$category = $this->Category->findById($id);
 		if($category['Category']['name'] != NULL) {
-			$array[] = $category['Category']['name'];
+			$array[] = $category; // $category['Category']['name'];
 		}
 		if($category['Category']['parent_id'] != NULL) {
 			$array = $this->_getAncestors($category['Category']['parent_id'], $array);
