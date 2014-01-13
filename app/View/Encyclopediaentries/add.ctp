@@ -112,6 +112,39 @@ $this->start('script');
 	
 	function hehe() {
 	}
+	
+	UE.commands['addentrylink'] = {
+    	execCommand : function(){
+	        //此处的this指代编辑器实例，可以通过这个this调用实例下的任何方法和属性
+	        /* var imgs = this.document.getElementsByTagName("h1");
+	        for(var i= 0,img;img = imgs[i++];){
+	            alert("Hello,UE developer!");
+	        } */
+	       var selectedText = this.selection.getText();
+	       if(!selectedText) {
+	       		alert('请先选择要添加内链的文本。');
+	       } else {
+ 				UE.ajax.request( '/encyclopediaentries/getEntryID', {
+     				method: 'POST',
+     				timeout: 10000,
+     				async: true,//是否是异步请求。 true为异步请求， false为同步请求
+     				data: { //请求携带的数据。如果请求为GET请求， data会经过stringify后附加到请求url之后。
+						name: 'ueditor'
+					},
+
+				    //请求成功后的回调， 该回调接受当前的XMLHttpRequest对象作为参数。
+				    onsuccess: function ( xhr ) {
+				        console.log( xhr.responseText );
+				    },
+				
+				    //请求失败或者超时后的回调。
+				    onerror: function ( xhr ) {
+				         console.log( xhr.responseText );
+				    }
+				});
+	       }
+       }
+    };
 </script>
 <?php
 echo $this->Html->script('treeview');

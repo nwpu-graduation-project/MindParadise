@@ -3,6 +3,11 @@
 class TagsController extends AppController {
 	public $helpers = array('Html', 'Form');
 	public $components = array('Session');
+	
+	public function beforeFilter() {
+		$this->Auth->allow();
+		parent::beforeFilter();
+	}
 
 	public function index() {
 		$this->set('tags', $this->Tag->find('all'));

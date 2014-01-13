@@ -113,6 +113,10 @@ class EncyclopediaentriesController extends AppController {
 			}
 		}
 	}
+
+	public function getEntryID() {
+		echo 'hehe';
+	}
 	
 	protected function _saveToFile($content, $index) {
 		$return = NULL;

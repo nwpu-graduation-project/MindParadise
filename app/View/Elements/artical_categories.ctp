@@ -5,9 +5,9 @@
 $categories = $this->requestAction('/webcontents/getCategories');
 foreach ($categories as $key => $value) {
 	if($current == $key) {
-		echo '<li><a href="/webcontents/category/'.$key.'" class="active">'.$value.'</a></li>';
+		echo '<li><a href="/webcontents/category/'.$key.'#blog_right" class="active">'.$value.'</a></li>';
 	} else {
-		echo '<li><a href="/webcontents/category/'.$key.'">'.$value.'</a></li>';
+		echo '<li><a href="/webcontents/category/'.$key.'#blog_right">'.$value.'</a></li>';
 	}
 }
 ?>

@@ -18,8 +18,7 @@ class WebcontentsController extends AppController {
         'recursive' => 1
     );
 	
-	public function beforeFilter()
-	{
+	public function beforeFilter() {
 		$this->Auth->allow();
 		$this->Auth->deny('add', 'postComment');
 		//$this->Auth->autoRedirect = false;
@@ -27,11 +26,40 @@ class WebcontentsController extends AppController {
 	}
 	
 	public function test() {
-		
+		if($this->request->is('get')) {
+			
+		}
+		if($this->request->is('post')) {
+			// var_dump($this->request->data);
+			$result = 0;
+			foreach ($this->request->data as $key => $value) {
+				$result += (int)$value;
+			}
+			$this->set('result', $result);
+			$description = "Thank you for the test.";
+			$this->set('description', $description);
+		}
 	}
 	
 	public function tag($tagId = null) {
-		
+		$this->Paginator->settings = $this->paginate;
+		if(empty($tagId)) {
+			return $this->redirect(array('controller' => 'tags', 'action' => 'index'));
+		} else {
+			// $this->Tag->findById($tagId, array(''));
+			$db = $this->Webcontent->getDataSource();
+			$result = $db->fetchAll(
+    			'SELECT DISTINCT webcontent_id from webcontents_tags where tag_id = ?',
+    			array($tagId)
+			);
+			$array = array();
+			foreach ($result as $key => $value) {
+				$array[] = $value['webcontents_tags']['webcontent_id'];
+			}
+			$this->set('webcontents', $this->Paginator->paginate('Webcontent',
+				array('Webcontent.id' => $array)));
+		}
+		$this->render('index');
 	}
 	
 	public function category($category = 0) {
@@ -169,7 +197,8 @@ class WebcontentsController extends AppController {
 	}
 	
 	protected function _getCategories() {
-		$categories = array(1 => '新闻',2 => '文章', 3 => '视频', 4 => '图片', 5 => '心理测试');
+		$categories = array(1 => '新闻',2 => '文章', 3 => '视频', 4 => '图片',
+							5 => '游戏', 6 => '心理测试');
 		return $categories;
 	}
 

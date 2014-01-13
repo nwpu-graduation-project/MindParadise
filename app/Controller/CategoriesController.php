@@ -5,7 +5,11 @@ class CategoriesController extends AppController {
 	public $helpers = array('Html');
 	public $components = array('Session');
 	public $uses = array('Category','EncyclopediaEntry');
-
+	
+	public function beforeFilter() {
+		$this->Auth->allow();
+		parent::beforeFilter();
+	}
 	
 	public function view() {
 		if ($this->request->is('get')) {
