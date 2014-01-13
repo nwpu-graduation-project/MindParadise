@@ -15,7 +15,7 @@ $this->end();
 <div class='main'>
 	<div class='account'>
 		
-		<h1>修改密码</h1>
+		<h3>修改密码</h3>
 		<p>你是<?php echo $currentUser['User']['username']; ?>，最后登录时间是<?php echo $currentUser['User']['lastlogin']; ?>.</p>
 		 
 		<?php

@@ -22,7 +22,7 @@
   <?php echo $this->element('header'); ?>
   <!-- header end -->
   <!-- warpper start -->
-  <div id="wrapper">
+  <div id="wrapper" class='clearfix'>
     <!-- div id="content" -->
 
       <?php echo $this->Session->flash(); ?>
@@ -31,7 +31,7 @@
     <!-- /div -->
   </div>
   <!-- warpper end -->
-
+  <?php echo $this->element('friendlylink'); ?>
   <?php echo $this->element('footer'); ?>
   
 

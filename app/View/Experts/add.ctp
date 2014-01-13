@@ -21,7 +21,7 @@
 	<p><label>重点阅历:</label><textarea name="experience" row="3" col="10"></textarea><font color="red">*</font></p>
 	<p><label>擅长领域:</label><textarea name="profession" row="3" col="10"></textarea><font color="red">*</font></p>
 	<p><label>收费标准:</label><textarea name="price" row="3" col="10"></textarea><font color="red">*</font></p>
-	<p><label>文件名:</label><input type="file" name="photo"><font color="red">*</font></p>
+	<p><label>文件名:</label><input type="file" name="avatar"><font color="red">*</font></p>
 	<p><input type="submit" name="submit" value="注册"></p>
 </form>
 </center>
