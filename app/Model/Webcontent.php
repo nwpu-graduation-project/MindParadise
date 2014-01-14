@@ -12,7 +12,7 @@ class Webcontent extends AppModel {
         'WecontentTags' =>
             array(
                 'className' => 'Tag',
-                'fields' => 'tag',
+                'fields' => array('id', 'tag'),
                 'joinTable' => 'webcontents_tags',
                 'foreignKey' => 'webcontent_id',
                 'associationForeignKey' => 'tag_id',

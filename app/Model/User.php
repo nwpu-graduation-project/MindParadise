@@ -219,10 +219,10 @@ class User extends AppModel
           $profileObj->save($data);
           break;
         case 3:
-          $profileObj = new ConsultantProfile();
-          $profileObj->create();
-          $data = array('consultant_id' => $this->id, 'avatar' => '/upload/images/default.gif');
-          $profileObj->save($data);
+          // $profileObj = new ConsultantProfile();
+          // $profileObj->create();
+          // $data = array('consultant_id' => $this->id, 'avatar' => '/upload/images/default.gif');
+          // $profileObj->save($data);
           break;
         case 4:
           $profileObj = new AdministratorProfile();
@@ -235,6 +235,11 @@ class User extends AppModel
       }
     }
     parent::afterSave();
+  }
+
+  public function beforeDelete($cascade = true)
+  {
+    // deal with some records depends on the record, set their fk to null or others
   }
 
 

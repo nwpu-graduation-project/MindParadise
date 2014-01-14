@@ -69,7 +69,7 @@ echo $this->element('most_viewed_articals');
 	<ul>
 		<li><a href="/tags/"><img src="/images/p84.png" alt=""></a></li>
 		<?php foreach ($webcontent['WecontentTags'] as $tag) : ?>
-		<li><a href="#"><?php echo $tag['tag']; ?></a></li>
+		<li><a href="/webcontents/tag/<?php echo $tag['id']; ?>"><?php echo $tag['tag']; ?></a></li>
 		<?php endforeach; ?>
 	</ul>
 	</div>

@@ -187,10 +187,14 @@ then, change the configure of the database settings as follow:
 remmber to change the login, password and database field;
 
 #### configure the email server
-In order to achieve the recover and verify function, we need a email server. we choose gmail sever as our email sever:
-First, login your gmail account,then go 'settings'->'settings'->'Forwarding and POP/IAMP'->'POP Download', then enable the 'Enable POP for mail that arrives from now on', then save settings.
-Second, create the file email.php in the directory: app/config by excuting
-	cp email.php.default email.php
+In order to achieve the recover and verify function, we need a email server. we choose gmail sever as our email sever;
+
+First, login your gmail account,then go: 'settings'->'settings'->'Forwarding and POP/IAMP'->'POP Download', then enable the 'Enable POP for mail that arrives from now on', then save settings.
+
+Second, change the directory to 'app/config', then create the file 'email.php' by excuting: 
+
+	cp email.php.default email.php;
+	
 then, overide the content as follow:
 
 	class EmailConfig 

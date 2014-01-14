@@ -11,11 +11,22 @@
     </li>
     <li><a href="/messages/index">我的消息</a></li>
     <li><a href="/personalCenter/myComments">我的评论</a></li>
-    <li><a href="#">用户管理</a></li>
+    <li>
+      <a href="#">用户管理</a>
+       <ul class="sub_menu">
+        <li><a href="/personalCenter/userAdd">添加用户</a></li>
+      </ul>
+    </li>
+
     <li><a href="#">动态管理</a></li>
     <li><a href="#">公告管理</a></li>
     <li><a href="#">新闻管理</a></li>
-    <li><a href="#">友情链接</a></li>
+    <li>
+      <a href="/personalCenter/blogrollIndex">友情链接</a>
+      <ul class="sub_menu">
+        <li><a href="/personalCenter/blogrollAdd">添加链接</a></li>
+      </ul>
+    </li>
   </ul>
 </div>
 

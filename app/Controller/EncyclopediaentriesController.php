@@ -6,7 +6,7 @@ App::uses('File', 'Utility');
 class EncyclopediaentriesController extends AppController {
 
 	public $helpers = array('Html');
-	public $components = array('Session', 'Paginator');
+	public $components = array('Session', 'Paginator', 'RequestHandler');
 	public $uses = array('Category','EncyclopediaEntry', 'SearchIndex');
 	
 	public $paginate = array(
@@ -20,7 +20,7 @@ class EncyclopediaentriesController extends AppController {
 	public function beforeFilter()
 	{
 		$this->Auth->allow();
-		$this->Auth->deny('add');
+		$this->Auth->deny(array('add','getEntryID'));
 		//$this->Auth->autoRedirect = false;
 		parent::beforeFilter();
 	}
@@ -112,6 +112,23 @@ class EncyclopediaentriesController extends AppController {
 				$this->Session->setFlash(__('Unable to add the tag.'));
 			}
 		}
+	}
+
+	public function getEntryID() {
+		if($this->request->is('post')) {
+			$entry = $this->request->data['entry'];
+			$entryID = $this->EncyclopediaEntry->findByEntry($entry, 'id');
+			
+			if($entryID) {
+				$this->response->body($entryID['EncyclopediaEntry']['id']);
+    			$this->response->type('txt');
+    		} else {
+    			$this->response->statusCode(404);
+    		}
+    		
+    		return $this->response;
+		}
+		throw new NotFoundException(__('Invalid post'));
 	}
 	
 	protected function _saveToFile($content, $index) {

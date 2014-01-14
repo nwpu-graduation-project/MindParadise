@@ -2,15 +2,64 @@
 $this->start('css');
 echo $this->Html->css('treeview');
 ?>
-<link rel="stylesheet" type="text/css" href="/ueditor/themes/default/css/ueditor.min.css">
+<link rel="stylesheet" type="text/css" href="/ueditor/themes/default/css/ueditor.min.css" />
 <style type="text/css">
 	.edui-container {
 		border: none;
 		box-shadow: none;
 	}
-	.fixTop{
+	.fixTop {
 		position: fixed;
-    	top: -1px;
+		top: -1px;
+	}
+
+	/*--------------------------------------------*/
+	form #editorContainer  input[type="submit"]:hover {
+		background-image: url(../img/leave_post_comment_hover.png);
+		background-position: 0 0;
+		background-repeat: no-repeat;
+	}
+	form #editorContainer  input[type="submit"] {
+		float: none;
+		border: none;
+		background: none;
+		width: 298px;
+		height: 45px;
+		margin-top: 3px;
+		line-height: 42px;
+		background-image: url(../img/leave_post_comment.png);
+		background-position: 0 0;
+		background-repeat: no-repeat;
+		color: #fff;
+		font-family: "myriad Pro";
+		font-size: 20px;
+		font-weight: bold;
+		cursor: pointer;
+	}
+	input, textarea {
+		outline: none;
+	}
+
+	form input[type="text"]#entry-name-input {
+		background-image: url(../images/leave_name.png);
+	}
+	form input[type="text"]#category-name {
+		margin-left: 70px;
+		background-image: url(../images/leave_name.png);
+	}
+	
+	form input[type="text"]#entry-name-input,
+	form input[type="text"]#category-name {
+		width: 240px;
+		background-position: 0 0;
+		background-repeat: no-repeat;
+		border: none;
+		padding-left: 60px;
+		padding-top: 13px;
+		padding-bottom: 14px;
+		margin-bottom: 10px;
+		font-size: 16px;
+		color: #292929;
 	}
 </style>
 <?php
@@ -91,7 +140,7 @@ $this->start('script');
 		var element = document.getElementById("selectedCategoryId");
 		element.value = id;
 		
-		var nameInput = document.getElementById("categoryName");
+		var nameInput = document.getElementById("category-name");
 		nameInput.value = document.getElementById("category_"+id).textContent;
 	}
 	
@@ -112,15 +161,55 @@ $this->start('script');
 	
 	function hehe() {
 	}
+	
+	UE.commands['addentrylink'] = {
+    	execCommand : function(){
+	        //此处的this指代编辑器实例，可以通过这个this调用实例下的任何方法和属性
+	        /* var imgs = this.document.getElementsByTagName("h1");
+	        for(var i= 0,img;img = imgs[i++];){
+	            alert("Hello,UE developer!");
+	        } */
+	       var selectedText = this.selection.getText();
+	       if(!selectedText) {
+	       		alert('请先选择要添加内链的文本。');
+	       } else {
+ 				UE.ajax.request( '/encyclopediaentries/getEntryID', {
+     				method: 'POST',
+     				timeout: 10000,
+     				async: false,//是否是异步请求。 true为异步请求， false为同步请求
+     				data: { //请求携带的数据。如果请求为GET请求， data会经过stringify后附加到请求url之后。
+						entry: selectedText
+					},
+					
+				    onsuccess: function ( xhr ) {
+				    	var linkStr = "/encyclopediaentries/view/"+xhr.responseText;
+				    	var obj = {
+				    		href: linkStr,
+     						title: "访问词条："+selectedText,
+     						target:'_blank'
+				    	};
+				    	ue.execCommand( 'link', obj);
+				    	// alert("添加链接成功。")
+				    },
+				    
+				    onerror: function ( xhr ) {
+				    	// 404
+				    	alert("没有找到对应的词条信息。");
+				    	// others
+				    }
+				});
+	       }
+       }
+    };
 </script>
 <?php
 echo $this->Html->script('treeview');
 $this->end();
 ?>
 
-<div id="main" style="float: none">
+<div id="main" style="float: none" style="margin-top: 20px">
 	
-	<div id="left" style="float: left">
+	<div id="left" style="float: left; margin-left: 90px">
 	<?php echo $this->element('category_selector'); ?>
 	</div>
 	<div id="directionContainer" style="display: none"></div>
@@ -129,13 +218,13 @@ $this->end();
 		accept-charset="utf-8" onsubmit="return onSubmit()">
 	
 
-	<div id="editorContainer" name="editorContainerDiv" style="width: 70%;float: left">
+	<div id="editorContainer" name="editorContainerDiv" style="width: 70%;float: left; margin-top: 10px">
 		<!-- entry name -->
-		<input type="text" name="data[EncyclopediaEntry][entry]" maxlength="10" placeholder="词条名" style="font-size: 36px"/>
+		<input type="text" id="entry-name-input" name="data[EncyclopediaEntry][entry]" maxlength="10" placeholder="词条名"/>
 		
 		<!-- category id and name -->
-		<label for="categoryName">分类</label>
-		<input type="text" id="categoryName" disabled="disabled" style="font-size: 24px"/>
+		<!-- label for="category-name">分类</label -->
+		<input type="text" id="category-name" disabled="disabled" maxlength="10" size="5" placeholder="请选择分类"/>
 		<input type="hidden" id="selectedCategoryId" name="data[EncyclopediaEntry][category_id]" />
 		
 		<!-- index -->
@@ -144,7 +233,8 @@ $this->end();
 		<!-- editor and plain text-->
 		<div>
 		<script type="text/plain" id="pageEditor" name="data[entryPage]" style="width:100%; height:900px;">
-<p></p><h1>hehe</h1><p>afdsaffsdfsadfdaafdsaffafdafdsfdsafsdaf<br/></p><h2>afsdddddddddd</h2><p>dafdsafdsafdsaf<br/></p><h2>ffdafffffdsafdsafsafdsafd</h2><p>dafdfdsafdsafdsfdasfdsfdsf<br/></p><h3>fdsafdafdaf</h3><p></p>
+<h1>hehe</h1><p>afdsaffsdfsadfdaafdsaffafdafdsfdsafsdaf<br/></p><h2>afsdddddddddd</h2><p>dafdsafdsafdsaf<br/></p>
+<h2>ffdafffffdsafdsafsafdsafd</h2><p>dafdfdsafdsafdsfdasfdsfdsf<br/></p><h3>fdsafdafdaf</h3><p>slax</p>
 		</script>
 		</div>
 		<input type="hidden" id="plainText" name="data[plainText]" />
@@ -153,8 +243,8 @@ $this->end();
 			var ue = UE.getEditor('pageEditor');
 		</script>
 
-		<input type="button" onclick="hehe()" value="hehe">
-		<input type="submit" value="提交">
+		<!-- input type="button" onclick="hehe()" value="hehe" -->
+		<input type="submit" value="保 存 词 条">
 	</div>
 	
 	</form>
