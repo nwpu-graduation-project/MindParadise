@@ -31,7 +31,7 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 	var $components = array('Auth','Email','Session');
-	var $uses = array('User','Message');
+	var $uses = array('User','Message','Blogroll');
 
 	public $layout = 'index';
 
@@ -59,7 +59,7 @@ class AppController extends Controller {
 		// return $current? array('User' => $this->Auth->user()) : false;
 	}
 
-	function getUnreadMessages()
+	private function getUnreadMessages()
 	{
 		$id = $this->Auth->user('id');
 
@@ -77,10 +77,34 @@ class AppController extends Controller {
 		return $unreadMessages;
 	}
 
+	private function getBlogrolls()
+	{
+		return $this->Blogroll->find('all');
+	}
+
 	function beforeRender()
 	{
 		$this->set('currentUser', $this->currentUser());
 		$this->set('unreadMessages', $this->getUnreadMessages());
+		$this->set('blogrolls', $this->getBlogrolls());
 		parent::beforeRender();
+	}
+
+	protected function checkAdmin()
+	{
+		$currentUser = $this->currentUser();
+
+		if($currentUser && $currentUser['User']['role'] == 4)
+				return true;
+		return false;
+	}
+
+	protected function checkConsultant()
+	{
+		$currentUser = $this->currentUser();
+
+		if($currentUser && $currentUser['User']['role'] == 3)
+				return true;
+		return false;
 	}
 }

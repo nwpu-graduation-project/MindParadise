@@ -38,6 +38,9 @@ class UsersController extends AppController
   function register()
   {
     $this->layout = 'register';
+    if(parent::currentUser())
+      $this->redirect(array('controller' => 'users', 'action' => 'index'));
+    
     if (!empty($this->data)) 
     {
       $this->User->create();
