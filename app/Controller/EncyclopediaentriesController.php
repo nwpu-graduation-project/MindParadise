@@ -137,7 +137,7 @@ class EncyclopediaentriesController extends AppController {
 		}
 		
 		return $this->EncyclopediaEntry->find('first', array('fields' => array('entry', 'created'),
-														'conditions' => array('id' => $value),
+														'conditions' => array('id' => $id),
 														'recursive' => -1));
 	}
 	

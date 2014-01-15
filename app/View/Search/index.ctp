@@ -33,18 +33,18 @@ foreach ($result as $key => $value) {
 	echo '<div>';
 	switch ($value['search_indices']['type']) {
 		case '1':
-			echo '<div><h2><a href="/webcontents/view/'.$value['search_indices']['content_id'].'" style="float: none">';
+			echo '<div><h2>心理知识--<a href="/webcontents/view/'.$value['search_indices']['content_id'].'" style="float: none">';
 			$webcontent = $this->requestAction(
 					'/webcontents/getWebcontentInfoById/'.$value['search_indices']['content_id']);
 			echo $webcontent['Webcontent']['title'];
 			echo '</a></h2>'.$webcontent['Webcontent']['created'].'</div>';
 			break;
 		case '2':
-			echo '<div><h2><a href="/encyclopediaentries/view/'.$value['search_indices']['content_id'].'" style="float: none">';
+			echo '<div><h2>心理百科--<a href="/encyclopediaentries/view/'.$value['search_indices']['content_id'].'" style="float: none">';
 			$entry = $this->requestAction(
 					'/encyclopediaentries/getEntryInfoById/'.$value['search_indices']['content_id']);
 			echo $entry['EncyclopediaEntry']['entry'];
-			echo '</a></h2>'.$webcontent['EncyclopediaEntry']['created'].'</div>';
+			echo '</a></h2>'.$entry['EncyclopediaEntry']['created'].'</div>';
 			break;
 		default:
 			

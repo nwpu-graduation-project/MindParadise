@@ -4,13 +4,14 @@ require_once (dirname(__FILE__) . '/pscws4.class.php');
 class WordSegmenter {
 	protected $pscws;
 
-	public function WordSegmenter() {
+	public function WordSegmenter($ignore = false) {
 		$this -> pscws = new PSCWS4('utf8');
 
 		// 接下来, 设定一些分词参数或选项, set_dict 是必须的, 若想智能识别人名等需要 set_rule
 		// 包括: set_ignore, set_multi, set_debug, set_duality ... 等方法
 		$this -> pscws -> set_dict('./dict.utf8.xdb');
 		$this -> pscws -> set_rule('./rules.utf8.ini');
+		$this -> pscws -> set_ignore($ignore);
 
 	}
 
@@ -52,11 +53,15 @@ class WordSegmenter {
 	}
 	
 	public function parseKeyword($keyword) {
+		$ignore = array('dec', 'deg', 'di', 'etc', 'as', 'msp', 'u', 'uj');
 		$encoded = "";
 		$this -> pscws -> send_text($keyword);
 		while ($some = $this -> pscws -> get_result()) {
 			foreach ($some as $word) {
-				$encoded = $encoded . $this -> zh2en($word['word']) . ' ';
+				if(!in_array($word['attr'], $ignore)) {
+					// echo $word['word'].':'.$word['attr'].'----';
+					$encoded = $encoded . $this -> zh2en($word['word']) . ' ';
+				}
 			}
 		}
 		// echo $encoded;

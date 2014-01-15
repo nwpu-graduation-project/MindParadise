@@ -26,7 +26,7 @@ class SearchIndex extends AppModel {
 		// foreach ($keywordArray as $key => $keywrod) {
 			// $keywords = $keywords.' '.$keywrod;
 		// }
-		$segmenter = new WordSegmenter();
+		$segmenter = new WordSegmenter(true);
 		$keywords = $segmenter->parseKeyword($keywords);
 		$keywords = trim($keywords);
 		$keywords = $this->getDatasource()->value($keywords, 'TEXT');
