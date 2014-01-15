@@ -1,3 +1,12 @@
+<?php $this->start('css');?>
+<style>
+.text{
+	float: none;
+	margin-left: 0px;
+}
+</style>
+<?php $this->end();?>
+
 <!-- BLOG_CONTENT START HERE -->
 <div id="blog_content">
 	<!-- CENTER_FRAME START HERE -->

@@ -10,7 +10,7 @@ $this->end();
 <h3> 个人信息 </h3>
 <div class='clearfix'>
 	<div>
-		<?php echo $this->Html->image(		$profile['UserProfile']['avatar'], array('alt' => '头像')); ?>
+		<?php echo $this->Html->image($profile['UserProfile']['avatar'], array('alt' => '头像')); ?>
 	</div>
 	<div>
 		<?php echo $this->Html->link('修改头像', array('action' => 'modifyAvatar')); ?>

@@ -37,6 +37,13 @@ DROP TABLE IF EXISTS `mind_paradise`.`adminstrator_profiles` ;
 CREATE  TABLE IF NOT EXISTS `mind_paradise`.`adminstrator_profiles` (
   `id` INT(11) NOT NULL ,
   `admin_id` INT(11) NOT NULL ,
+  `avatar` VARCHAR(255) NULL COMMENT '头像' ,
+  `first_name` VARCHAR(45) NULL COMMENT '名' ,
+  `family_name` VARCHAR(45) NULL COMMENT '姓' ,
+  `age` INT NULL COMMENT '年龄' ,
+  `gender` TINYINT NULL COMMENT '性别' ,
+  `phone_number` VARCHAR(20) NULL COMMENT '电话号码' ,
+  `qq_number` VARCHAR(20) NULL COMMENT 'qq号码' ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `user_id_UNIQUE` (`admin_id` ASC) ,
   CONSTRAINT `FK_Reference_17`
@@ -52,7 +59,8 @@ DROP TABLE IF EXISTS `mind_paradise`.`blogrolls` ;
 
 CREATE  TABLE IF NOT EXISTS `mind_paradise`.`blogrolls` (
   `id` INT(11) NOT NULL ,
-  `site` VARCHAR(30) NOT NULL ,
+  `url` VARCHAR(255) NOT NULL ,
+  `title` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
@@ -196,26 +204,27 @@ CREATE  TABLE IF NOT EXISTS `mind_paradise`.`comments` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
+-- -----------------------------------------------------
+-- Table `mind_paradise`.`consultant_profiles`
+-- -----------------------------------------------------
 DROP TABLE IF EXISTS `consultant_profiles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `consultant_profiles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `alias` varchar(45) CHARACTER SET gbk DEFAULT NULL,
-  `realname` varchar(45) CHARACTER SET gbk NOT NULL,
-  `age` varchar(45) CHARACTER SET gbk DEFAULT NULL,
-  `gender` varchar(45) CHARACTER SET gbk NOT NULL,
-  `education` varchar(100) CHARACTER SET gbk NOT NULL,
-  `phone` varchar(45) CHARACTER SET gbk NOT NULL,
-  `qq_number` varchar(45) CHARACTER SET gbk DEFAULT NULL,
-  `microblog` varchar(45) CHARACTER SET gbk DEFAULT NULL,
-  `blog` varchar(45) CHARACTER SET gbk DEFAULT NULL,
-  `weixin_number` varchar(45) CHARACTER SET gbk DEFAULT NULL,
-  `personal_information` text CHARACTER SET gbk NOT NULL,
-  `experience` text CHARACTER SET gbk NOT NULL,
-  `profession` text CHARACTER SET gbk NOT NULL,
-  `price` text CHARACTER SET gbk NOT NULL,
+  `alias` varchar(45) DEFAULT NULL,
+  `realname` varchar(45) NOT NULL,
+  `age` varchar(45) DEFAULT NULL,
+  `gender` varchar(45) NOT NULL,
+  `education` varchar(100) NOT NULL,
+  `phone` varchar(45) NOT NULL,
+  `qq_number` varchar(45) DEFAULT NULL,
+  `microblog` varchar(45) DEFAULT NULL,
+  `blog` varchar(45) DEFAULT NULL,
+  `weixin_number` varchar(45) DEFAULT NULL,
+  `personal_information` text NOT NULL,
+  `experience` text NOT NULL,
+  `profession` text NOT NULL,
+  `price` text NOT NULL,
   `avatar` varchar(255) DEFAULT NULL,
   `created_time` datetime NOT NULL,
   `modified_time` datetime DEFAULT NULL,
@@ -346,8 +355,8 @@ DROP TABLE IF EXISTS `case_articles`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `case_articles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) CHARACTER SET gbk DEFAULT NULL,
-  `body` text CHARACTER SET gbk,
+  `title` varchar(50) DEFAULT NULL,
+  `body` text,
   `count` int(11) DEFAULT '0',
   `photo` varchar(255) DEFAULT NULL,
   `created` datetime DEFAULT NULL,

@@ -4,9 +4,9 @@ class PersonalCenterController extends AppController
 {
 	public $helpers = array('Html', 'Form', 'Time', 'Paginator');
 	public $components = array('Paginator');
-	public $uses = array('User','Comment','UserProfile','ConsultantProfile','AdministartorProfile');
+	public $uses = array('User','Comment','UserProfile','ConsultantProfile','AdminstratorProfile','Blogroll');
 
-	// 个人中心首页
+	///////////////////////////////////////////// 个人中心首页//////////////////////////////////////////
 	function index()
 	{
 		$currentUser = parent::currentUser();
@@ -26,22 +26,22 @@ class PersonalCenterController extends AppController
 			// 	this->render("tourist_index");
 			// 	break;
 			case 2: // normal user
-				$this->render("user_index");
+				$this->render("_index_for_user");
 				break;
 			case 3: // consultant
-				$this->render("consultant_index");
+				$this->render("_index_for_consultant");
 				break;
 			case 4: // administrator
-				$this->render("admin_index");
+				$this->render("_index_for_admin");
 				break;
 			default: // error
 		}
 	}
 
+	///////////////////////////////////////////// 个人信息 ////////////////////////////////////////////
 	// 个人档案查询
 	function profileView()
 	{
-
 		$profile = $this->_getCurrentUserProfileModelNameAndObj();
 		$profileModelName = $profile['profileModelName'];
 		$profileInfo 	  = $profile['profileInfo'];
@@ -55,13 +55,13 @@ class PersonalCenterController extends AppController
 			// 	break;
 			case 2: // normal user
 			
-				$this->render("user_profile_view");
+				$this->render("_profile_view_for_user");
 				break;
 			case 3: // consultant
-				$this->render("consultant_profile_view");
+				$this->render("_profile_view_for_consultant");
 				break;
 			case 4: // administrator
-				$this->render("admin_profile_view");
+				$this->render("_profile_view_for_admin");
 				break;
 			default: // error
 		}
@@ -99,13 +99,13 @@ class PersonalCenterController extends AppController
 			// 	this->render("tourist_index");
 			// 	break;
 			case 2: // normal user
-				$this->render("user_profile_edit");
+				$this->render("_profile_edit_for_user");
 				break;
 			case 3: // consultant
-				$this->render("consultant_profile_edit");
+				$this->render("_profile_edit_for_consultant");
 				break;
 			case 4: // administrator
-				$this->render("admin_profile_edit");
+				$this->render("_profile_edit_for_admin");
 				break;
 			default: // error
 		}
@@ -177,7 +177,8 @@ class PersonalCenterController extends AppController
 			    if( !is_dir($targetPath) ){
 			        mkdir($targetPath,0775,true);
 			    }
-			    $new_file_name = 'avatar_ori.'.$ext;
+			    $timestamp = time();
+			    $new_file_name = $timestamp.'_ori.'.$ext;
 			    $targetFile = $targetPath . $new_file_name;
 			    move_uploaded_file($tempFile,$targetFile);
 			    if( !file_exists( $targetFile ) ){
@@ -188,7 +189,7 @@ class PersonalCenterController extends AppController
 			        $ret['result_des'] = 'File is not exist';
 			    } else {
 			    	// delete other same name with different extension.
-			    	$this->_rmSameNameDiffExtFile($targetFile);
+			    	$this->_rmPreviewsFiles($targetFile);
 
 					resize($new_file_name);
 			        $img = DS.'upload'.DS.'uploads'.DS.$this->Auth->user('id').DS.$new_file_name;
@@ -288,9 +289,9 @@ class PersonalCenterController extends AppController
 					);
   
 			        // delete other same name with different extension.
-					$this->_rmSameNameDiffExtFile($thumbname01);
-					$this->_rmSameNameDiffExtFile($thumbname02);
-					$this->_rmSameNameDiffExtFile($thumbname03);
+					$this->_rmPreviewsFiles($thumbname01);
+					$this->_rmPreviewsFiles($thumbname02);
+					$this->_rmPreviewsFiles($thumbname03);
 
 					// save the avatar path to the profile table
 					$this->$profileModelName->id = $profileInfo[$profileModelName]['id'];
@@ -307,7 +308,7 @@ class PersonalCenterController extends AppController
 	}
 
 
-	// 个人评论
+	//////////////////////////////////////// 个人评论//////////////////////////////////////////////////
  	function myComments()
  	{
  		//$this->Comment->unbindModel(array('belongsTo' => array('CommenttedUser')));
@@ -350,14 +351,159 @@ class PersonalCenterController extends AppController
 		//$this->set('', );
  	}
 
- 	// 用户管理
- 	function usersMangement()
+ 	/////////////////////////////////////// 用户管理///////////////////////////////////////////////////
+ 	function userIndex()
  	{
+ 		if(!parent::checkAdmin())
+ 		{
+ 			//error : have no previlege
+ 		}
 
  	}
 
- 	//////////////////////////  function for the class ////////////////////////////////////
+ 	function userAdd()
+ 	{
+ 		if(!parent::checkAdmin())
+ 		{
+ 			//error : have no previlege
+ 		}
 
+ 		if ($this->request->is('post')) {
+ 			$this->User->create();
+ 			if ($this->User->save($this->request->data)) {
+ 				$this->Session->setFlash(__('用户添加成功.'));
+ 				return $this->redirect(array('action' => 'userIndex'));
+ 			}
+ 			$this->Session->setFlash(__('无法添加用户.'));
+ 		}
+ 	}
+
+ 	function userView($id = null)
+ 	{
+ 		if(!parent::checkAdmin())
+ 		{
+ 			//error : have no previlege
+ 		}
+ 	}
+
+ 	function userEdit($id = null)
+ 	{
+ 		if(!parent::checkAdmin())
+ 		{
+ 			//error : have no previlege
+ 		}
+ 	}
+
+ 	function userDelete($id = null)
+ 	{
+ 		if(!parent::checkAdmin())
+ 		{
+ 			//error : have no previlege
+ 		}
+ 		if ($this->request->is('get')) {
+			throw new MethodNotAllowedException();
+		}
+		if ($this->User->delete($id)) {
+			$this->Session->setFlash(
+			__('The user with id: %s has been deleted.', h($id))
+		);
+		return $this->redirect(array('action' => 'userIndex'));
+		}
+ 	}
+
+ 	////////////////////////////////////////友情链接//////////////////////////////////////////////////
+ 	function blogrollIndex()
+ 	{
+ 		if(!parent::checkAdmin())
+ 		{
+ 			//error : have no previlege
+ 		}
+ 	}
+
+ 	function blogrollAdd()
+ 	{
+ 		if(!parent::checkAdmin())
+ 		{
+ 			//error : have no previlege
+ 		}
+
+ 		if ($this->request->is('post')) {
+ 			$this->Blogroll->create();
+ 			if ($this->Blogroll->save($this->request->data)) {
+ 				$this->Session->setFlash(__('Your blogroll has been saved.'));
+ 				return $this->redirect(array('action' => 'blogrollIndex'));
+ 			}
+ 			$this->Session->setFlash(__('Unable to add your blogroll.'));
+ 		}
+ 	}
+
+ 	function blogrollView($id = null)
+ 	{
+ 		if(!parent::checkAdmin())
+ 		{
+ 			//error : have no previlege
+ 		}
+
+ 		if (!$id) {
+ 			throw new NotFoundException(__('Invalid blogroll'));
+ 		}
+ 		$blogroll = $this->Blogroll->findById($id);
+ 		if (!$blogroll) {
+ 			throw new NotFoundException(__('Invalid blogroll'));
+ 		}
+ 		$this->set('blogroll', $blogroll);
+
+ 	}
+ 	
+ 	function blogrollEdit($id = null)
+ 	{
+ 		if(!parent::checkAdmin())
+ 		{
+ 			//error : have no previlege
+ 		}
+
+ 		if (!$id) {
+ 			throw new NotFoundException(__('Invalid blogroll'));
+ 		}
+ 		$blogroll = $this->Blogroll->findById($id);
+ 		if (!$blogroll) {
+ 			throw new NotFoundException(__('Invalid blogroll'));
+ 		}
+ 		if ($this->request->is(array('post', 'put'))) {
+ 			$this->blogroll->id = $id;
+ 			if ($this->Blogroll->save($this->request->data)) {
+ 				$this->Session->setFlash(__('Your blogroll has been updated.'));
+ 				return $this->redirect(array('action' => 'index'));
+ 			}
+ 			$this->Session->setFlash(__('Unable to update your blogroll.'));
+ 		}
+ 		if (!$this->request->data) {
+ 			$this->request->data = $blogroll;
+ 		}
+
+
+ 	}
+
+ 	function blogrollDelete($id = null)
+ 	{
+ 		if(!parent::checkAdmin())
+ 		{
+ 			//error : have no previlege
+ 		}
+
+ 		if ($this->request->is('get')) {
+			throw new MethodNotAllowedException();
+		}
+		if ($this->Blogroll->delete($id)) {
+		$this->Session->setFlash(
+		__('The blogroll with id: %s has been deleted.', h($id))
+		);
+		return $this->redirect(array('action' => 'blogrollIndex'));
+		}
+
+ 	}
+
+ 	////////////////////////////////  function for the class /////////////////////////////////////////
  	public function _getCurrentUserProfileModelNameAndObj()
  	{
  		$currentUser = parent::currentUser();
@@ -367,7 +513,6 @@ class PersonalCenterController extends AppController
 			// erro 
 			// set flash
 			// redirect to login
-
 		}
 
 		$profileModelName = null;
@@ -387,8 +532,8 @@ class PersonalCenterController extends AppController
 				$profileInfo	= $this->ConsultantProfile->findByConsultantId($currentUser['User']['id']);
 				break;
 			case 4: // administrator
-				$profileModelName = 'AdministartorProfile';
-				$profileInfo	= $this->AdministratorProfile->findByAdminId($currentUser['User']['id']);
+				$profileModelName = 'AdminstratorProfile';
+				$profileInfo	= $this->AdminstratorProfile->findByAdminId($currentUser['User']['id']);
 				break;
 			default: // error
 		}
@@ -397,10 +542,47 @@ class PersonalCenterController extends AppController
 		else 
 			return null;
  	}
- 	private function _rmSameNameDiffExtFile($filename)
+ 	public function _getUserProfileModelNameAndObj($id)
+ 	{
+ 		$user = $this->User->findById($id);
+
+		if(!$user)
+		{
+			// erro 
+			// set flash
+			// redirect to login
+		}
+
+		$profileModelName = null;
+		$profileInfo = null;
+		switch($user['User']['role'])
+		{
+
+			// case 1: // tourist
+			// 	break;
+			case 2: // normal user
+				$profileModelName = 'UserProfile';
+				$profileInfo	= $this->UserProfile->findByUserId($user['User']['id']);
+				break;
+			case 3: // consultant
+				$profileModelName = 'ConsultantProfile';
+				$profileInfo	= $this->ConsultantProfile->findByConsultantId($user['User']['id']);
+				break;
+			case 4: // administrator
+				$profileModelName = 'AdminstratorProfile';
+				$profileInfo	= $this->AdminstratorProfile->findByAdminId($user['User']['id']);
+				break;
+			default: // error
+		}
+		if($profileModelName != null)
+			return array('profileModelName' => $profileModelName, 'profileInfo' => $profileInfo);
+		else 
+			return null;
+ 	}
+ 	private function _rmPreviewsFiles($filename)
 	{
 		$file_path = pathinfo($filename);
-		$res = glob($file_path['dirname'].DS.$file_path['filename'].'*');
+		$res = glob($file_path['dirname'].DS.'*'.substr($file_path['filename'], -4).'*');
 		if(is_array($res))
 		{
 			$rmKey = array_search($filename, $res);
@@ -415,7 +597,6 @@ class PersonalCenterController extends AppController
 		return ;
 	}
 
-	///////////////////////////////////////////////////////////////////////////////////////
  	
 }
 
