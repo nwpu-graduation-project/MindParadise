@@ -234,7 +234,7 @@ class User extends AppModel
           //error
       }
     }
-    parent::afterSave();
+    parent::afterSave($created, $options = Array());
   }
 
   public function beforeDelete($cascade = true)

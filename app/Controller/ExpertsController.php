@@ -55,7 +55,7 @@ class ExpertsController extends AppController {
     		$this->request->data['Expert']['profession'] = $profession;
     		$this->request->data['Expert']['price'] = $price;
 
-    		$this->request->data['Expert']['created_time'] = date('Y-m-d H:i:s');
+    	
     		
     		if ($this->Expert->save($this->request->data)) {		
 				 	$this->Session->setFlash(__('注册成功!'));		 	

@@ -20,7 +20,7 @@ function getData(page){
 			var li = "";
 			var list = json.list;
 			$.each(list,function(index,array){ //遍历json数据列
-				li += "<li><a href='/Experts/view/"+array['id']+"'><img src='/img/experts_photos/"+array['avatar']+"' alt='photo'><center><br>"+array['realname']+"</center></a></li>";
+				li += "<li><a href='/Experts/view/"+array['id']+"'><img src='"+array['avatar']+"' alt='photo'><center><br>"+array['realname']+"</center></a></li>";
 			});
 			$("#list ul").append(li);
 		},

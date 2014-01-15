@@ -1,0 +1,62 @@
+<?php
+$this->extend('/PersonalCenter/common_view');
+$this->start('sidebar');
+switch($currentUser['User']['role'])
+{
+	//case 1:
+	case 2: echo $this->element("sidebar_user");break;
+	case 3: echo $this->element("sidebar_consultant");break;
+	case 4: echo $this->element("sidebar_admin");break;
+	default://error
+}
+$this->end();
+?>
+<?php $this->start('css');?>
+<style>
+.text{
+	margin-left: 0px;
+	width: 100%
+}
+</style>
+<?php $this->end(); ?>
+<h2>非公开案例管理</h2>
+<center>
+<table>
+	<tr>
+		<th>ID</th>
+		<th>咨询次数</th>
+		<th>客户ID</th>
+		<th>查看</th>
+		<th>修改</th>
+		<th>删除</th>
+		<th>创建时间</th>
+		<th>更新时间</th>
+	</tr>
+
+<?php foreach ($documents as $document): ?>
+
+	<tr>
+		<td><?php echo $document['Document']['id']; ?></td>
+		<td>
+			<?php echo $document['Document']['detail_order']; ?>
+		</td>
+		<td>
+			<?php echo $document['Document']['case_id']; ?>
+		</td>
+		<td><?php echo $this->Html->link('查看',array('action' => 'view', $document['Document']['id']));?>
+		</td>
+		<td><?php echo $this->Html->link('修改',array('action' => 'edit', $document['Document']['id']));?>
+		</td>
+		<td>
+			<?php echo $this->Form->postLink('删除', array('action' => 'delete', $document['Document']['id']), array('confirm' => '你确定要删除吗?'));?>
+		</td>
+		<td>
+			<?php echo $document['Document']['created']; ?>
+		</td>
+		<td>
+			<?php echo $document['Document']['modified']; ?>
+		</td>
+	</tr>
+<?php endforeach; ?>
+</table>
+</center>

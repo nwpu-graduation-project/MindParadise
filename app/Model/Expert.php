@@ -14,7 +14,7 @@ class Expert extends AppModel {
         'experience' => array('required' => array('rule' => array('notEmpty'), 'message' => '重点阅历不能为空!')),
         'profession' => array('required' => array('rule' => array('notEmpty'), 'message' => '擅长领域不能为空!')),
         'price' => array('required' => array('rule' => array('notEmpty'), 'message' => '收费标准不能为空!')),
-        'photo' => array('required' => array('rule' => array('notEmpty'), 'message' => '图片不能为空!')),
+        'avatar' => array('required' => array('rule' => array('notEmpty'), 'message' => '图片不能为空!')),
     );
 
    

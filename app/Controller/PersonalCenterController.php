@@ -4,7 +4,7 @@ class PersonalCenterController extends AppController
 {
 	public $helpers = array('Html', 'Form', 'Time', 'Paginator');
 	public $components = array('Paginator');
-	public $uses = array('User','Comment','UserProfile','ConsultantProfile','AdminstratorProfile','Blogroll');
+	public $uses = array('User','Comment','UserProfile','Expert','AdminstratorProfile','Blogroll');
 
 	///////////////////////////////////////////// 个人中心首页//////////////////////////////////////////
 	function index()
@@ -372,7 +372,7 @@ class PersonalCenterController extends AppController
  			$this->User->create();
  			if ($this->User->save($this->request->data)) {
  				$this->Session->setFlash(__('用户添加成功.'));
- 				return $this->redirect(array('action' => 'userIndex'));
+ 				return ;//$this->redirect(array('action' => 'index'));
  			}
  			$this->Session->setFlash(__('无法添加用户.'));
  		}
@@ -528,8 +528,8 @@ class PersonalCenterController extends AppController
 				$profileInfo	= $this->UserProfile->findByUserId($currentUser['User']['id']);
 				break;
 			case 3: // consultant
-				$profileModelName = 'ConsultantProfile';
-				$profileInfo	= $this->ConsultantProfile->findByConsultantId($currentUser['User']['id']);
+				$profileModelName = 'Expert';
+				$profileInfo	= $this->Expert->findByConsultantId($currentUser['User']['id']);
 				break;
 			case 4: // administrator
 				$profileModelName = 'AdminstratorProfile';
@@ -565,8 +565,8 @@ class PersonalCenterController extends AppController
 				$profileInfo	= $this->UserProfile->findByUserId($user['User']['id']);
 				break;
 			case 3: // consultant
-				$profileModelName = 'ConsultantProfile';
-				$profileInfo	= $this->ConsultantProfile->findByConsultantId($user['User']['id']);
+				$profileModelName = 'Expert';
+				$profileInfo	= $this->Expert->findByConsultantId($user['User']['id']);
 				break;
 			case 4: // administrator
 				$profileModelName = 'AdminstratorProfile';

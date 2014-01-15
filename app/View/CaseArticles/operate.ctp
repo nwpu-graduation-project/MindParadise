@@ -1,4 +1,26 @@
-<h1>案例管理</h1>
+<?php
+$this->extend('/PersonalCenter/common_view');
+$this->start('sidebar');
+switch($currentUser['User']['role'])
+{
+    //case 1:
+    case 2: echo $this->element("sidebar_user");break;
+    case 3: echo $this->element("sidebar_consultant");break;
+    case 4: echo $this->element("sidebar_admin");break;
+    default://error
+}
+$this->end();
+?>
+<?php $this->start('css');?>
+<style>
+.text{
+    margin-left: 0px;
+    width:120%;
+}
+</style>
+<?php $this->end();?>
+
+<h1>公开案例管理</h1>
 <h1>
     <?php
     echo $this->Html->link('新增案例', array('controller' => 'caseArticles', 'action' => 'add'));
@@ -11,7 +33,6 @@
         <th>标题</th>
         <th>访问次数</th>
         <th>创建时间</th>
-        <th>修改时间</th>
         <th>操作</th>
     </tr>
     <?php foreach ($caseArticles as $caseArticle): ?>
@@ -22,7 +43,6 @@
         </td>
         <td><?php echo $caseArticle['CaseArticle']['count']; ?></td>
         <td><?php echo $caseArticle['CaseArticle']['created']; ?></td>
-        <td><?php echo $caseArticle['CaseArticle']['modified']; ?></td>
         <td>
         <?php
         echo $this->Html->link('修改', array('action' => 'edit', $caseArticle['CaseArticle']['id']));

@@ -22,12 +22,9 @@
 
 						<h2><?php echo h($expert['Expert']['realname']); ?></h2>
 						
-						<span class="info">发布于:<?php echo h($expert['Expert']['created_time']); ?>&nbsp;| 职业资格:<?php echo h($expert['Expert']['education']); ?></span><br><br>
-						
-		
-	
+						<span class="info">发布于:<?php echo h($expert['Expert']['created']); ?>&nbsp;| 职业资格:<?php echo h($expert['Expert']['education']); ?></span><br><br>
 							<div align="center"><?php $string = $expert['Expert']['avatar']; 
-						echo "<img src='/img/experts_photos/$string' alt='photo'/>"; ?></div><br>
+						echo "<img src='$string' alt='photo'/>"; ?></div><br>
 							
 						
 						<div class="photos">
