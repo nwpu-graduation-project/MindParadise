@@ -131,6 +131,16 @@ class EncyclopediaentriesController extends AppController {
 		throw new NotFoundException(__('Invalid post'));
 	}
 	
+	public function getEntryInfoById($id) {
+		if (empty($this->request->params['requested'])) {
+			throw new ForbiddenException();
+		}
+		
+		return $this->EncyclopediaEntry->find('first', array('fields' => array('entry', 'created'),
+														'conditions' => array('id' => $value),
+														'recursive' => -1));
+	}
+	
 	protected function _saveToFile($content, $index) {
 		$return = NULL;
 		$dir = new Folder('./files/entry_page');

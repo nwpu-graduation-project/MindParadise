@@ -39,6 +39,13 @@ foreach ($result as $key => $value) {
 			echo $webcontent['Webcontent']['title'];
 			echo '</a></h2>'.$webcontent['Webcontent']['created'].'</div>';
 			break;
+		case '2':
+			echo '<div><h2><a href="/encyclopediaentries/view/'.$value['search_indices']['content_id'].'" style="float: none">';
+			$entry = $this->requestAction(
+					'/encyclopediaentries/getEntryInfoById/'.$value['search_indices']['content_id']);
+			echo $entry['EncyclopediaEntry']['entry'];
+			echo '</a></h2>'.$webcontent['EncyclopediaEntry']['created'].'</div>';
+			break;
 		default:
 			
 			break;
