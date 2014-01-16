@@ -26,9 +26,9 @@ $this->end();
 	<?php echo $this->Form->create('Customer'); ?>
 	<table>
 		<tr>
-			<td width="25%"><?php echo $this->Form->input('first_name', array('label' => '姓氏', 'size' => '2')); ?></td>
-			<td width="30%"><?php echo $this->Form->input('family_name', array('label' => '名字', 'size' => '2')); ?></td>
-			<td width="30%"><?php echo $this->Form->input('age', array('label' => '年龄', 'size' => '2')); ?></td>
+			<td width="25%"><?php echo $this->Form->input('first_name', array('label' => '姓氏', 'size' => '8')); ?></td>
+			<td width="30%"><?php echo $this->Form->input('family_name', array('label' => '名字', 'size' => '8')); ?></td>
+			<td width="30%"><?php echo $this->Form->input('age', array('label' => '年龄')); ?></td>
 			
 			<td width="40%">
 				<?php echo $this->Form->input('gender', array('label' => '性别', 'type' => 'select', 'options' => array(
@@ -41,14 +41,14 @@ $this->end();
 			
 		</tr>
 		<tr>
-			<td><?php echo $this->Form->input('birthday', array('label' => '出生日期', 'size' => '2')); ?></td>
-			<td><?php echo $this->Form->input('phone_number', array('label' => '电话号码', 'size' => '2')); ?></td>
-			<td><?php echo $this->Form->input('profession', array('label' => '职业', 'size' => '2')); ?></td>
-			<td><?php echo $this->Form->input('nationality', array('label' => '民族', 'size' => '2'));
+			<td><?php echo $this->Form->input('birthday', array('label' => '出生日期', 'size' => '8')); ?></td>
+			<td><?php echo $this->Form->input('phone_number', array('label' => '电话号码', 'size' => '8')); ?></td>
+			<td><?php echo $this->Form->input('profession', array('label' => '职业', 'size' => '8')); ?></td>
+			<td><?php echo $this->Form->input('nationality', array('label' => '民族', 'size' => '8'));
 				?></td>
 		</tr>
 		<tr>
-			<td><?php echo $this->Form->input('birthplace', array('label' => '出生地址', 'size' => '2')); ?></td>
+			<td><?php echo $this->Form->input('birthplace', array('label' => '出生地址', 'size' => '8')); ?></td>
 			<td><?php echo $this->Form->input('finacial_situation', array('label' => '经济状况', 'type' => 'select', 'options' => array(
 					'极度贫穷' => '极度贫穷',
 					'贫穷' => '贫穷',
@@ -64,7 +64,7 @@ $this->end();
 					'基督教' => '基督教'
 
 			))); ?></td>
-			<td><?php echo $this->Form->input('hobby', array('label' => '爱好', 'size' => '2')); ?></td>
+			<td><?php echo $this->Form->input('hobby', array('label' => '爱好', 'size' => '8')); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo $this->Form->input('marital_status', array('label' => '婚姻状况', 'type' => 'select', 'options' => array(
@@ -80,7 +80,7 @@ $this->end();
 					'疾病' => '疾病'
 
 				))); ?></td>
-			<td><?php echo $this->Form->input('qq_number', array('label' => 'QQ号码', 'size' => '2')); ?></td>
+			<td><?php echo $this->Form->input('qq_number', array('label' => 'QQ号码', 'size' => '8')); ?></td>
 			<td><?php echo $this->Form->input('education', array('label' => '学历', 'type' => 'select', 'options' => array(
 					'初中' => '初中',
 					'高中' => '高中',
