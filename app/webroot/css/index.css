@@ -1,0 +1,700 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*焦点图*/
+.mleft .focus {
+	position: relative;
+	height: 200px;
+	width: 640px
+}
+.mleft .focus h2 {
+	border-top: 1px dashed #DDD;
+	height: 40px;
+	color: #369;
+	line-height: 40px
+}
+.mleft .focus #focus_img {
+	overflow: hidden;
+	width: 640px;
+	height: 200px;
+	position: relative;
+}
+.mleft .focus #focus_img .nbox {
+	display: block;
+	width: 8000%;
+	height: 200px;
+	position: relative;
+}
+.mleft .focus #focus_img .focus_box {
+	float: left;
+	width: 640px;
+	height: 200px
+}
+.mleft .focus #focus_img .pbox {
+	float: left;
+	display: block;
+	width: 300px;
+}
+.mleft .focus #focus_img .descs {
+	float: left;
+	padding: 20px 20px 0;
+	width: 300px;
+	height: 180px;
+	color: #999;
+	background: #f6f6f6
+}
+.mleft .focus #focus_img .t:link, .mleft .focus #focus_img .t:visited, .mleft .focus #focus_img .t:hover, .mleft .focus #focus_img .t:active {
+	font-size: 14px;
+	font-weight: bold
+}
+.mleft .focus #focus_img .intro {
+	margin: 10px 0 15px;
+	position: relative;
+	width: 300px;
+	color: #494949
+}
+.mleft .focus #focus_img .rmd_read {
+	border-top: 1px dashed #DDD;
+	padding: 8px 0 0;
+	color: #999;
+	line-height: 23px;
+	width: 300px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis
+}
+.mleft .focus #focus_img .rmd_read a:link, .mleft .focus #focus_img .rmd_read a:visited, .mleft .focus #focus_img .rmd_read a:hover, .mleft .focus #focus_img .rmd_read a:active {
+	color: #999
+}
+.mleft .focus #focus_links {
+	position: absolute;
+	bottom: 10px;
+	right: 20px;
+}
+.mleft .focus #focus_links li {
+	float: left;
+	overflow: hidden;
+	margin-left: 8px;
+	display: inline;
+	width: 7px
+}
+.mleft .focus #focus_links a:link, .mleft .focus #focus_links a:visited, .mleft .focus #focus_links a:hover, .mleft .focus #focus_links a:active {
+	display: inline-block;
+	overflow: hidden;
+	width: 7px;
+	height: 7px;
+	background: url(/img/icon.png) no-repeat 0 -200px
+}
+.mleft .focus #focus_links .act a:link, .mleft .focus #focus_links .act a:visited, .mleft .focus #focus_links .act a:hover, .mleft .focus #focus_links .act a:active {
+	background-position: 0 -220px
+}
+
+/*心理产品*/
+.psy_goods {
+	overflow: hidden;
+	padding-top: 30px;
+	width: 640px
+}
+.goods_box {
+	width: 120%
+}
+.goods_box .goods {
+	margin-right: 27px;
+	display: inline;
+	width: 195px;
+}
+.goods_box .goods .gt {
+	margin-bottom: 20px;
+	font-weight: lighter;
+	font-size: 12px;
+}
+.goods_box .goods .gt span {
+	font-size: 14px
+}
+.goods_box .goods .pbox {
+	display: block;
+	padding-bottom: 3px;
+	position: relative;
+	height: 130px
+}
+.goods_box .goods .pbox .pa:link, .goods_box .goods .pbox .pa:visited, .goods_box .goods .pbox .pa:hover, .goods_box .goods .pbox .pa:active {
+	position: absolute;
+	display: block;
+	bottom: 2px;
+	left: 0;
+	width: 195px;
+	color: #FFF;
+	z-index: 888;
+	text-align: center
+}
+.goods_box .goods .pbox .mark {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 195px;
+	height: 26px;
+	filter: alpha(opacity=30);
+	opacity: 0.3;
+	z-index: 777;
+	background: #000
+}
+.goods_box .goods .first:link, .goods_box .goods .first:visited, .goods_box .goods .first:hover, .goods_box .goods .first:active {
+	display: inline-block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	_width: 195px
+}
+.goods_box .goods .pinfo {
+	overflow: hidden;
+	padding: 5px 5px 2px;
+	color: #999;
+	height: 45px
+}
+.goods_box .goods .pinfo .more {
+	display: inline-block;
+	width: 12px;
+	height: 11px;
+	background: url(/img/bgs.png) no-repeat -386px -83px
+}
+.goods_box .goods .plist {
+	padding: 15px 0 5px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 195px;
+	line-height: 22px
+}
+.goods_box .goods .plist .fcn, .lastest .npart .plist .fcn {
+	color: #999
+}
+.goods_box .goods .plist a:link, .goods_box .goods .plist a:hover, .goods_box .goods .plist a:active {
+	color: #777
+}
+
+/*心理应用*/
+.psy_part {
+	display: block;
+	padding: 25px 0 5px;
+}
+.psy_part .psy_title {
+	position: relative;
+	padding-bottom: 15px;
+	width: 640px
+}
+.psy_part .psy_title .fgreen {
+	font-size: 14px
+}
+.psy_part .psy_title .roll {
+	position: absolute;
+	top: 3px;
+	right: 0;
+}
+.psy_part .psy_title .roll .arrow:link, .psy_part .psy_title .roll .arrow:visited, .psy_part .psy_title .roll .arrow:hover, .psy_part .psy_title .roll .arrow:active {
+	margin-left: 5px;
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background: url(/img/icon.png) no-repeat 0 0
+}
+.psy_part .psy_title .roll .lact:link, .psy_part .psy_title .roll .lact:visited, .psy_part .psy_title .roll .lact:hover, .psy_part .psy_title .roll .lact:active {
+	background-position: 0 -20px
+}
+.psy_part .psy_title .roll .aright:link, .psy_part .psy_title .roll .aright:visited, .psy_part .psy_title .roll .aright:hover, .psy_part .psy_title .roll .aright:active {
+	background-position: 0 -80px
+}
+.psy_part .psy_title .roll .ract:link, .psy_part .psy_title .roll .ract:visited, .psy_part .psy_title .roll .ract:hover, .psy_part .psy_title .roll .ract:active {
+	background-position: 0 -100px
+}
+.psy_part .psy_title .roll span {
+	display: inline-block;
+	margin-left: 5px;
+	width: 7px;
+	height: 15px;
+	background: url(/img/icon.png) no-repeat 0 -40px
+}
+.psy_part .psy_title .roll .act {
+	background-position: 0 -60px
+}
+.psy_part .roll_box {
+	display: block;
+	position: relative;
+	overflow: hidden;
+	width: 640px;
+}
+.psy_part .roll_box .hbox {
+	display: block;
+	width: 8000%;
+}
+.psy_part .psy_fm {
+	float: left;
+	overflow: hidden;
+	width: 640px;
+	height: 195px
+}
+.psy_part .psy_fm .fbox {
+	float: left;
+	padding-right: 20px;
+	width: 397px
+}
+.psy_part .psy_fm .fbox .pbox {
+	float: left;
+	margin-right: 20px;
+	width: 195px;
+}
+.psy_part .psy_fm .fbox .fa:link, .psy_part .psy_fm .fbox .fa:visited, .psy_part .psy_fm .fbox .fa:hover, .psy_part .psy_fm .fbox .fa:active {
+	font-size: 14px;
+	display: block;
+}
+.psy_part .psy_fm .fbox .fgrey {
+	display: block;
+	padding: 5px 0
+}
+.psy_part .psy_fm .fbox .fgrey a:link, .psy_part .psy_fm .fbox .fgrey a:visited, .psy_part .psy_fm .fm_list .fgrey a:link, .psy_part .psy_fm .fm_list .fgrey a:visited {
+	color: #999
+}
+.psy_part .psy_fm .listen {
+	margin-bottom: -1px;
+	*margin-bottom: 2px;
+	_margin-bottom: 1px;
+	display: inline-block;
+	width: 16px;
+	height: 14px;
+	background: url(/img/icon.png) no-repeat 0 -118px
+}
+.psy_part .psy_fm .fm_list {
+	float: left;
+	overflow: hidden;
+	width: 223px;
+	height: 195px;
+}
+.psy_part .psy_fm .fm_list dd {
+	overflow: hidden;
+	display: block;
+	height: 73px;
+	width: 223px;
+	line-height: 22px
+}
+.psy_part .psy_fm .fm_list dd .pbox {
+	float: left;
+	margin-right: 15px;
+	width: 50px;
+	height: 50px
+}
+.psy_part .psy_fm .fm_list dd .descs {
+	overflow: hidden;
+	float: left;
+	position: relative;
+	width: 158px
+}
+.psy_part .psy_fm .fm_list dd .descs .more {
+	position: absolute;
+	right: -3px;
+	bottom: 0;
+	_bottom: 3px;
+}
+.psy_part .psy_fm .fm_list dd .fa {
+	display: block;
+	width: 158px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.psy_part .psy_group {
+	float: left;
+	overflow: hidden;
+	width: 640px;
+	height: 206px
+}
+.psy_part .psy_group ul {
+	width: 110%
+}
+.psy_part .psy_group li {
+	float: left;
+	display: inline;
+	margin: 0 40px 40px 0;
+	width: 300px;
+	height: 83px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis
+}
+.psy_part .psy_group li .pbox {
+	float: left;
+	padding-top: 3px;
+	width: 95px
+}
+.psy_part .psy_group li .t:link, .psy_part .psy_group li .t:visited, .psy_part .psy_group li .t:hover, .psy_part .psy_group li .t:active {
+	font-size: 14px
+}
+.psy_part .psy_group li .nlink:link, .psy_part .psy_group li .nlink:visited, .psy_part .psy_group li .nlink:hover, .psy_part .psy_group li .nlink:active {
+	color: #777
+}
+.psy_part .psy_group li .fcn {
+	color: #CCC
+}
+.psy_part .psy_group li .links {
+	display: block;
+	padding-top: 5px
+}
+.psy_part .psy_test {
+	float: left;
+	overflow: hidden;
+	width: 640px
+}
+.psy_part .psy_test dl {
+	width: 110%
+}
+.psy_part .psy_test dd {
+	float: left;
+	display: inline;
+	margin-right: 21px;
+	width: 144px;
+	text-align: center
+}
+.psy_part .psy_test dd img {
+	display: block;
+	margin-bottom: 3px;
+}
+.psy_part .psy_test dd a:link, .psy_part .psy_test dd a:visited, .psy_part .psy_test dd a:hover, .psy_part .psy_test dd a:active {
+	display: block;
+	width: 144px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis
+}
+
+/*每日一测*/
+.day_test {
+	padding: 15px 10px 10px;
+	background: #F6F6F6
+}
+.day_test .dt {
+	position: relative;
+	padding-bottom: 3px;
+	border-bottom: 1px solid #DDD;
+	width: 260px;
+}
+.day_test .dt .fgreen {
+	font-size: 14px
+}
+.day_test .dt .fb {
+	font-size: 14px
+}
+.day_test .dt .more {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.day_test .dt .more a:link, .day_test .dt .more a:hover, .day_test .dt .more a:active {
+	color: #999
+}
+.day_test .ftest {
+	padding-top: 13px;
+	border-top: 1px solid #FFF;
+	height: 75px;
+	color: #999
+}
+.day_test .ftest .pbox {
+	width: 100px
+}
+.day_test .ftest a:link, .day_test .ftest a:hover, .day_test .ftest a:active {
+	color: #111
+}
+.day_test #day_sels {
+	padding-bottom: 10px;
+}
+.day_test #day_sels .items {
+	position: relative;
+	padding: 10px 0 0 30px;
+	color: #999;
+	width: 230px;
+	cursor: pointer
+}
+.day_test #day_sels .hover {
+	color: #369
+}
+.day_test #day_sels .items span {
+	position: absolute;
+	top: 12px;
+	*top: 8px;
+	left: 12px;
+}
+.day_test #day_sels .act {
+	color: #369
+}
+.day_test .day_btns {
+	padding-top: 10px;
+	border-top: 1px dotted #BBB;
+	text-align: center
+}
+.day_test .day_btns .next:link, .day_test .day_btns .next:visited, .day_test .day_btns .next:hover, .day_test .day_btns .next:active {
+	display: inline-block;
+	padding-top: 2px;
+	width: 48px;
+	height: 20px;
+	color: #2590EA;
+	background: url(/img/bgs.png) no-repeat -240px 0
+}
+.day_test .day_btns .next:visited {
+	color: #669
+}
+.day_test .day_btns .next:hover {
+	color: #2590EA;
+	text-decoration: none;
+	background-position: -300px 0
+}
+
+/*猛力推荐*/
+.pt30 {
+	padding-top: 30px
+}
+.rmd, .ads {
+	display: block
+}
+.rmd .qa_list {
+	display: block;
+	width: 280px
+}
+.rmd .qa_list li {
+	display: block;
+	position: relative;
+	padding: 10px 0;
+	border-bottom: 1px dashed #DDD;
+	width: 280px
+}
+.rmd .qa_list li .fa:link, .rmd .qa_list li .fa:visited, .rmd .qa_list li .fa:active {
+	display: inline-block;
+	width: 260px;
+	line-height: 16px
+}
+.rmd .qa_list li .fa:hover {
+	color: #369
+}
+.rmd .qa_list li .answer {
+	position: absolute;
+	top: 10px;
+	right: 0;
+	color: #999
+}
+.rmd .qa_list li a:visited {
+	color: #669
+}
+.rmd .qa_list li .fgrey a:link, .rmd .qa_list li .fgrey a:visited {
+	color: #999
+}
+
+.rmd_user .rmd_show, .rmd_user .rmd_show dl {
+	display: block;
+}
+.rmd_user .rmd_show dd {
+	float: left;
+	padding: 15px 5px 0;
+	width: 60px;
+	text-align: center;
+	line-height: 14px
+}
+.rmd_user .rmd_show dd img {
+	display: block;
+	margin: 0 auto 5px
+}
+.editor_rmd .editor_rmd_list {
+	overflow: hidden;
+	width: 280px
+}
+.editor_rmd .editor_rmd_list dl {
+	display: block;
+	width: 110%;
+	padding-top: 10px
+}
+.editor_rmd .editor_rmd_list dt {
+	float: left;
+	width: 280px;
+	height: 70px
+}
+.editor_rmd .editor_rmd_list dd {
+	float: left;
+	margin-right: 20px;
+	width: 130px;
+	display: inline;
+	height: 32px;
+	line-height: 32px;
+	border-bottom: 1px dashed #DDD
+}
+.rss .rss_show {
+	padding: 10px;
+}
+.rss .rss_show .rss_form p {
+	position: relative;
+	width: 260px
+}
+.rss .rss_show .rss_form p .ins {
+	width: 185px;
+	color: #999
+}
+.rss .rss_show .rss_form p .btns {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding-bottom: 3px;
+	padding-bottom: 0 \9;
+	width: 66px;
+	height: 22px;
+	background: url(/img/bgs.png) no-repeat 0 -40px
+}
+.rss .rss_show .rss_form p .act_btns {
+	background-position: -80px -40px
+}
+.rss .rss_show .rss_links {
+	padding-top: 13px
+}
+.rss .rss_show .rss_links a:link, .rss .rss_show .rss_links a:visited, .rss .rss_show .rss_links a:hover, .rss .rss_show .rss_links a:active {
+	display: inline-block;
+	position: relative;
+	padding-left: 25px;
+	color: #111
+}
+.rss .rss_show .rss_links a:visited {
+	color: #669
+}
+.rss .rss_show .rss_links .sina, .rss .rss_show .rss_links .qq {
+	position: absolute;
+	top: -3px;
+	left: 0;
+	display: block;
+	border: 1px solid #DDD;
+	border-right-color: #EEE;
+	border-bottom-color: #EEE;
+	padding: 2px;
+	height: 16px;
+	width: 16px;
+	background: url(/img/bgs.png) no-repeat -382px -118px
+}
+.rss .rss_show .rss_links .qq {
+	background-position: -382px -98px
+}
+.rss #rss_show .rssbook {
+	border: none
+}
+
+/*关注我们*/
+
+.focus_us {
+	padding-top: 10px;
+}
+.focus_us li {
+	position: relative;
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+	list-style: none;
+	width: 88px;
+}
+.focus_us a {
+	display: block;
+	width: 88px;
+	height: 41px;
+	text-decoration: none;
+}
+
+.focus_us .focus_us_t {
+	overflow: hidden;
+	padding-top: 10px;
+}
+.focus_us .focus_us_t p {
+	font-size: 14px;
+	color: #999;
+}
+.focus_us .a1 span {
+	display: inline-block;
+	float: left;
+	background: url(/img/focusus_icon.png) no-repeat -7px 0;
+	width: 50px;
+	height: 40px;
+}
+.focus_us .a2 span {
+	display: inline-block;
+	float: left;
+	background: url(/img/focusus_icon.png) no-repeat -7px -90px;
+	width: 55px;
+	height: 40px;
+	margin-left: 4px;
+}
+.focus_us .a3 span {
+	display: inline-block;
+	float: left;
+	background: url(/img/focusus_icon.png) no-repeat -7px -181px;
+	width: 50px;
+	height: 41px;
+	margin-left: 9px;
+}
+.focus_us .a1:hover span {
+	background: url(/img/focusus_icon.png) no-repeat -7px -45px;
+}
+.focus_us .a2:hover span {
+	background: url(/img/focusus_icon.png) no-repeat -7px -135px;
+}
+.focus_us .a3:hover span {
+	background: url(/img/focusus_icon.png) no-repeat -7px -228px;
+}
+
+.focus_us .focus_us_weixin, .focus_us .focus_us_phone {
+	display: block;
+	position: absolute;
+	background: #d8d8d8;
+	border-radius: 12px;
+	top: -250px;
+	padding-top: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+	z-index: 22222;
+	left: -45px;
+	width: 150px;
+	height: 215px;
+}
+.focus_us .focus_us_weixin em, .focus_us .focus_us_phone em {
+	position: absolute;
+	color: #d8d8d8;
+	font-size: 35px;
+	line-height: 35px;
+	font-style: normal;
+	top: 218px;
+	left: 60px;
+	z-index: -9999;
+}
+/*学习打卡*/
+
+.art_clock {
+	padding: 0px 10px 30px;
+	overflow: hidden;
+}
+.art_clock .pbox {
+	width: 40px;
+	height: 40px;
+}
+.art_clock .pinfo{
+	padding:0;
+	margin:0;
+	overflow:hidden;
+	}
+.art_clock .pinfo a{
+	display:inline-block;
+	overflow:hidden;
+	padding-left:15px;
+	width:200px;
+	white-space:nowrap;
+	line-height:20px;
+	color:#111;
+	text-overflow:ellipsis;
+	}
+.art_clock .pinfo .fgrey {
+	color: #999;
+}
+.art_clock .dt {
+	position: relative;
+	padding-bottom: 10px;
+	width: 260px
+}
+.art_clock .dt .fgreen {
+	font-size: 14px
+}

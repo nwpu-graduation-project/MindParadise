@@ -10,14 +10,15 @@
   echo $this->Html->css('error');
   echo $this->Html->css('style');
   echo $this->Html->css('basic-jquery-slider');
-    //echo $this->Html->script('jquery.min.js');
+  echo $this->Html->script('jquery.min.js');
   echo $this->fetch('meta');
   echo $this->fetch('css');
-  echo $this->fetch('script');
+  
   ?>
 </head>
 
 <body style="">
+  <?php echo $this->fetch('bshare_side'); ?>
   <!-- header start -->
   <?php echo $this->element('header'); ?>
   <!-- header end -->
@@ -33,7 +34,7 @@
   <!-- warpper end -->
   <?php echo $this->element('friendlylink'); ?>
   <?php echo $this->element('footer'); ?>
-  
+  <?php echo $this->fetch('script'); ?>
 
   <?php echo $this->element('sql_dump'); ?>
 </body>
