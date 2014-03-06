@@ -27,7 +27,7 @@ excute the command:
 
 	sudo apt-get install mysql-server mysql-client
 
-the set your mysql root password
+then set your mysql root password
 
 
 ### install php5 and Apache PHP5 module
@@ -40,7 +40,7 @@ then restart the apache2 server,excute the command:
 	sudo /etc/init.d/apache2 restart
 
 
-### let Apahce2 and PHP5 suport MySQL
+### allow Apahce2 and PHP5 suport MySQL
 excute the command:
 
 	sudo apt-get install libapache2-mod-auth-mysql
@@ -52,6 +52,15 @@ then restart the apache2 server,excute the command:
 
 a more greatful method is : 
 
+	sudo apachectl graceful;
+
+### allow Apache2 support gd lib function for supporting uploading avatars function
+exucute the command:
+
+	sudo apt-get install php5-gd
+
+then restart the apache2 server,excute the command:
+	
 	sudo apachectl graceful;
 
 ### install git 
@@ -79,13 +88,13 @@ Or execute the command to achieve the same effect:
 	
 	sudo a2enmod rewrite;
 
-##### let apache2 can write things to directory install-path/app/tmp (you should create it), execute the command:
+##### allow apache2 write things to directory install-path/app/tmp (you should create it), execute the command:
 
 	sudo chgrp -R www-data app/tmp;
 	chmod -R 774 app/tmp;
 
 ##### you must change your VirtualHost attribute DocumentRoot to 'install-path/app/webroot'.
-And make sure that an .htaccess override is allowed and that AllowOverride is set to All for the correct DocumentRoot. You should see something similar to:(change the virtualhost of apache2, which define in the file /etc/apahce2/sites-enabled/000-default or file /etc/apache2/httpd.conf)
+And make sure that an .htaccess override is allowed and that 'AllowOverride' is set to All for the correct DocumentRoot. You should see something similar to:(change the virtualhost of apache2, which define in the file /etc/apahce2/sites-enabled/000-default or file /etc/apache2/httpd.conf)
 
 you can make it in 2 ways below:
 ###### you can modify the file /etc/apahce2/sites-enabled/000-default like this.
@@ -187,7 +196,7 @@ then, change the configure of the database settings as follow:
 remmber to change the login, password and database field;
 
 #### configure the email server
-In order to achieve the recover and verify function, we need a email server. we choose gmail sever as our email sever;
+In order to achieve the user's recover and user'sverify function, we need a email server. we choose gmail sever as our email sever;
 
 First, login your gmail account,then go: 'settings'->'settings'->'Forwarding and POP/IAMP'->'POP Download', then enable the 'Enable POP for mail that arrives from now on', then save settings.
 

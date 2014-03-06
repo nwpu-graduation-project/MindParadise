@@ -13,7 +13,7 @@
   echo $this->Html->script('jquery.min.js');
   echo $this->fetch('meta');
   echo $this->fetch('css');
-  
+  echo $this->fetch('script');
   ?>
 </head>
 
@@ -34,7 +34,7 @@
   <!-- warpper end -->
   <?php echo $this->element('friendlylink'); ?>
   <?php echo $this->element('footer'); ?>
-  <?php echo $this->fetch('script'); ?>
+  
 
   <?php echo $this->element('sql_dump'); ?>
 </body>
