@@ -1,5 +1,5 @@
 <?php 
-class AdminstratorProfile extends AppModel
+class AdministratorProfile extends AppModel
 {
 	public $belongsTo = array(
 			'User' => array(

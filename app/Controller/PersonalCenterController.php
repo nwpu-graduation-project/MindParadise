@@ -4,7 +4,7 @@ class PersonalCenterController extends AppController
 {
 	public $helpers = array('Html', 'Form', 'Time', 'Paginator');
 	public $components = array('Paginator');
-	public $uses = array('User','Comment','UserProfile','Expert','AdminstratorProfile','Blogroll');
+	public $uses = array('User','Comment','UserProfile','Expert','AdministratorProfile','Blogroll');
 
 	///////////////////////////////////////////// 个人中心首页//////////////////////////////////////////
 	function index()
@@ -532,8 +532,8 @@ class PersonalCenterController extends AppController
 				$profileInfo	= $this->Expert->findByConsultantId($currentUser['User']['id']);
 				break;
 			case 4: // administrator
-				$profileModelName = 'AdminstratorProfile';
-				$profileInfo	= $this->AdminstratorProfile->findByAdminId($currentUser['User']['id']);
+				$profileModelName = 'AdministratorProfile';
+				$profileInfo	= $this->AdministratorProfile->findByAdminId($currentUser['User']['id']);
 				break;
 			default: // error
 		}
@@ -569,8 +569,8 @@ class PersonalCenterController extends AppController
 				$profileInfo	= $this->Expert->findByConsultantId($user['User']['id']);
 				break;
 			case 4: // administrator
-				$profileModelName = 'AdminstratorProfile';
-				$profileInfo	= $this->AdminstratorProfile->findByAdminId($user['User']['id']);
+				$profileModelName = 'AdministratorProfile';
+				$profileInfo	= $this->AdministratorProfile->findByAdminId($user['User']['id']);
 				break;
 			default: // error
 		}

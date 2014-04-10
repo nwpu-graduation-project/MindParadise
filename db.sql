@@ -30,11 +30,11 @@ AUTO_INCREMENT = 6;
 
 
 -- -----------------------------------------------------
--- Table `mind_paradise`.`adminstrator_profiles`
+-- Table `mind_paradise`.`administrator_profiles`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mind_paradise`.`adminstrator_profiles` ;
+DROP TABLE IF EXISTS `mind_paradise`.`administrator_profiles` ;
 
-CREATE  TABLE IF NOT EXISTS `mind_paradise`.`adminstrator_profiles` (
+CREATE  TABLE IF NOT EXISTS `mind_paradise`.`administrator_profiles` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `admin_id` INT(11) NOT NULL ,
   `avatar` VARCHAR(255) NULL COMMENT '头像' ,

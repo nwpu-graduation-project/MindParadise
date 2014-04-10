@@ -15,7 +15,7 @@ $this->end();
 
 <h3>修改个人基本信息</h3>
 
-<?php echo $this->Form->create('AdminstratorProfile'); ?>
+<?php echo $this->Form->create('AdministratorProfile'); ?>
 <table>
 	<tr><td><?php echo $this->Form->input('family_name', array('type' => 'text', 'label' => '姓')); ?></td></tr>
 	<tr><td><?php echo $this->Form->input('first_name', array('type' => 'text', 'label' => '名')); ?></td></tr>
