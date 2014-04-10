@@ -35,7 +35,7 @@ AUTO_INCREMENT = 6;
 DROP TABLE IF EXISTS `mind_paradise`.`adminstrator_profiles` ;
 
 CREATE  TABLE IF NOT EXISTS `mind_paradise`.`adminstrator_profiles` (
-  `id` INT(11) NOT NULL ,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `admin_id` INT(11) NOT NULL ,
   `avatar` VARCHAR(255) NULL COMMENT '头像' ,
   `first_name` VARCHAR(45) NULL COMMENT '名' ,
@@ -58,7 +58,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `mind_paradise`.`blogrolls` ;
 
 CREATE  TABLE IF NOT EXISTS `mind_paradise`.`blogrolls` (
-  `id` INT(11) NOT NULL ,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `url` VARCHAR(255) NOT NULL ,
   `title` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`id`) )
@@ -123,7 +123,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `mind_paradise`.`case_details` ;
 
 CREATE  TABLE IF NOT EXISTS `mind_paradise`.`case_details` (
-  `id` INT(11) NOT NULL ,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `detail_order` DECIMAL(10,0) NOT NULL DEFAULT '1' ,
   `chief_compliant` VARCHAR(500) NOT NULL ,
   `diagnosis` VARCHAR(500) NOT NULL ,
@@ -323,7 +323,7 @@ AUTO_INCREMENT = 2;
 DROP TABLE IF EXISTS `mind_paradise`.`user_profiles` ;
 
 CREATE  TABLE IF NOT EXISTS `mind_paradise`.`user_profiles` (
-  `id` INT(11) NOT NULL ,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `user_id` INT(11) NOT NULL ,
   `avatar` VARCHAR(255) NULL COMMENT '头像' ,
   `first_name` VARCHAR(45) NULL COMMENT '名' ,

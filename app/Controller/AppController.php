@@ -56,7 +56,7 @@ class AppController extends Controller {
 		return $currentUser;
 
 		// $current = $this->Auth->user();
-		// return $current? array('User' => $this->Auth->user()) : false;
+		// return $current? array('User' => $current) : false;
 	}
 
 	private function getUnreadMessages()

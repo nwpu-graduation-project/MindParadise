@@ -172,7 +172,21 @@ then paste the content below into the the file:
 
 (attend to change the home directory xxxxx into your own directory. I have a test then find out that if you don't write the block '<Directory></Directory>' you got the same effect,I guesss the system have set 'AllowOverride' to 'All' by default )
 
+#### create the database
+first login into the local mysql sever by:
+	mysql -hlocalhost -uroot -pxxxx
+(xxxx is the password for mysql user 'root')
+then, you dive into the mysql cmd line, create the database by :
+	create database xxxx_xxxx;
+(xxxx_xxxx is the database name you determine to use, for example: mind_paradise);
 
+then, you logout the mysql cmd line by :
+	exit;
+or 
+	quit;
+last, you should import the sql file, which is provided in the root directory of the project and named db.sql; To do so you should excute the following command:
+	mysql -hlocalhost -uroot -pxxxx xxxx_xxxxx < db.sql;
+(xxxx_xxxx is the database name you defined above);
 
 #### configure the cakephp database
 create the file database.php in the directory: app/config/ by excuting 
@@ -193,7 +207,7 @@ then, change the configure of the database settings as follow:
 		);
 	}
 
-remmber to change the login, password and database field;
+remmber to change the login, password and database field( database name is the one you defined above);
 
 #### configure the email server
 In order to achieve the user's recover and user'sverify function, we need a email server. we choose gmail sever as our email sever;
