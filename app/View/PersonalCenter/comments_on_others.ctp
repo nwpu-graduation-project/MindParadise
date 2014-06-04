@@ -15,7 +15,7 @@ $this->end();
 ?>
 
 
-<h1>我的评论</h1>
+<h1>我评论的</h1>
 <div id='comment-list'>
 <?php
 foreach($commentsOnOthers as $comment):

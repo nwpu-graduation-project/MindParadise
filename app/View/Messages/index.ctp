@@ -39,7 +39,7 @@ foreach($messages as $message):
     <span>'在'</span>
     <span>
       <?php
-        echo $this->Html->link($message['Message']['link_title'], $message['Message']['link_url']);
+        echo $this->Html->link($message['Message']['link_title'], '/messages/view/'.$message['Message']['id']);
         echo $str;
       ?>
     </span>
@@ -56,7 +56,7 @@ endforeach
 </div>
 
 
-
+<ul class='paginate_nav'>
 <?php
 echo $this->Paginator->prev(
   '上一页',
@@ -99,3 +99,4 @@ echo $this->Paginator->next(
   )
 );
 ?>
+</ul>

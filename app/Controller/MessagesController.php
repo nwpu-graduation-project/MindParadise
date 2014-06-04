@@ -23,7 +23,8 @@ class MessagesController extends AppController
 	function view($id = null)
 	{
 		$this->Message->markRead($id);
-
+		$message = $this->Message->findById($id);
+		$this->redirect($message['Message']['link_url']);
 	}
 }
 
