@@ -15,29 +15,20 @@ $this->end();
 ?>
 
 
-<h1>我的评论</h1>
+<h1>回复我的</h1>
 <div id='comment-list'>
 <?php
-foreach($commentsOnOthers as $comment):
+foreach($commentsOnSelfComments as $comment):
 ?>	
   <div class='comment-warpper'>
     <div class='comment-title'>
 
 		<span class='name'><?php echo $comment['Commentor']['username']; ?></span>
 
-		<?php if(!$comment['Comment']['parent_comment_id']): ?>
-			<span>评论了</span>
-			<span>
-			  <?php
-			    echo $this->Html->link($comment['Webcontent']['title'], '/webcontents/view/'.$comment['Webcontent']['id']);
-			  ?>
-			</span>
-		<?php else:?>
-			<span>回复了</span>
-			<span>
-			<?php echo $comment['CommenttedUser']['username'].':'; ?>
-			</span>
-		<?php endif ?>
+		<span>回复了</span>
+		<span>
+		我
+		</span>
 
     </div>
     <div class='comment-content'>
@@ -51,47 +42,47 @@ endforeach
 ?>
 </div>
 
-
-
+<ul class="paginate_nav">
 <?php
 echo $this->Paginator->prev(
   '上一页',
   array(
-  	// 'escape' => FALSE,
-  	'tag' => 'li',
-  	'class' => 'page_prev',
+    // 'escape' => FALSE,
+    'tag' => 'li',
+    'class' => 'page_prev',
   ),
   '上一页',
   array(
-  	'tag' => 'li',
-  	'class' => 'page_prev',
+    'tag' => 'li',
+    'class' => 'page_prev',
   )
 );
 ?>
-			
+      
 <?php
 echo $this->Paginator->numbers(array(
-		'separator' => NULL,
-		'tag' => 'li',
-		'class' => 'page_number',
-		'currentClass' => 'current',
-		'currentTag' => 'a'
-		)
-	);
+    'separator' => NULL,
+    'tag' => 'li',
+    'class' => 'page_number',
+    'currentClass' => 'current',
+    'currentTag' => 'a'
+    )
+  );
 ?>
 
 <?php
 echo $this->Paginator->next(
   '下一页',
   array(
-  	// 'escape' => FALSE,
-  	'tag' => 'li',
-  	'class' => 'page_next',
+    // 'escape' => FALSE,
+    'tag' => 'li',
+    'class' => 'page_next',
   ),
   '下一页',
   array(
-  	'tag' => 'li',
-  	'class' => 'page_next',
+    'tag' => 'li',
+    'class' => 'page_next',
   )
 );
 ?>
+</ul>

@@ -2,8 +2,8 @@
 
 class PersonalCenterController extends AppController
 {
-	public $helpers = array('Html', 'Form', 'Time', 'Paginator');
-	public $components = array('Paginator');
+	public $helpers = array('Html', 'Form', 'Time', 'Paginator', 'Js');
+	public $components = array('Paginator', 'RequestHandler');
 	public $uses = array('User','Comment','UserProfile','Expert','AdministratorProfile','Blogroll');
 
 	///////////////////////////////////////////// 个人中心首页//////////////////////////////////////////
@@ -309,26 +309,21 @@ class PersonalCenterController extends AppController
 
 
 	//////////////////////////////////////// 个人评论//////////////////////////////////////////////////
- 	function myComments()
+ 	function commentsOnOthers()
  	{
- 		//$this->Comment->unbindModel(array('belongsTo' => array('CommenttedUser')));
- 		// $this->Comment->bindModel(array('belongsTo' => array(
- 		// 		'ParentComment' => array(
-			// 		'className' => 'Comment',
-			// 		'foreignKey' => 'parent_comment_id',
-			// 		'fields' => array('content')),
- 		// 	)));
+ 		// $this->Comment->unbindModel(array('belongsTo' => array('CommenttedUser')));
+ 		
+		$usernameIndex = array();
+		$userSet = $this->User->find('all', array(
+				'fields' => array('id', 'username'),
+				'recursive' => -1,
+			));
 
-		// $this->Comment->unbindAll();
-		// $this->Comment->bindModel(
-		// 	array('hasMany' => array(
-		// 			'FollowedComments' => array(
-		// 			'className' => 'Comment',
-		// 			'foreignKey' => 'parent_comment_id',
-		// 			'order' => 'FollowedComments.created ASC'),
-		// 			),
-		// 	)
-		// );
+		foreach($userSet as $key => $user)
+		{
+			$usernameIndex = array_merge($usernameIndex, array('id'.$user['User']['id'] => $user['User']['username']));
+			//print_r($usernameIndex);
+		}
  		
  		$this->Paginator->settings = array(
         					'limit' => 8,
@@ -337,18 +332,49 @@ class PersonalCenterController extends AppController
         					),
         					'recursive' => 0,
     					);
-		$commentsOnOthers = $this->Paginator->paginate('Comment',array('Comment.commentor_id' => $this->Auth->user('id')));
+
+		$commentsOnOthers = $this->Paginator->paginate('Comment', array('Comment.commentor_id' => $this->Auth->user('id')));
 
 		$this->set('commentsOnOthers', $commentsOnOthers);
-		
-					
+		$this->set('usernameIndex', $usernameIndex);
 
-		// $res = $this->Comment->find('all', array(
-		// 		'conditions' => array('commentor_id' => $this->Auth->user('id')),
-		// 		'recursive' => 1,
-		// 	));
-		//var_dump($res);
-		//$this->set('', );
+
+ 	}
+
+ 	function commentsOnSelfContents()
+ 	{
+ 		// $this->Comment->unbindModel(array('belongsTo' => array('CommenttedUser')));
+
+ 		$this->Paginator->settings = array(
+        					'limit' => 8,
+        					'order' => array(
+            					'Comment.created' => 'desc'
+        					),
+        					'recursive' => 0,
+    					);
+
+		$commentsOnSelfContents = $this->Paginator->paginate('Comment', array('Webcontent.user_id' => $this->Auth->user('id'), 'Comment.parent_comment_id' => null));
+
+		$this->set('commentsOnSelfContents', $commentsOnSelfContents);
+
+ 	}
+
+ 	function commentsOnSelfComments()
+ 	{
+ 		// $this->Comment->unbindModel(array('belongsTo' => array('CommenttedUser')));
+ 		
+ 		$this->Paginator->settings = array(
+        					'limit' => 8,
+        					'order' => array(
+            					'Comment.created' => 'desc'
+        					),
+        					'recursive' => 0,
+    					);
+
+		$commentsOnSelfComments = $this->Paginator->paginate('Comment', array('ParentComment.commentor_id' => $this->Auth->user('id')));
+
+		$this->set('commentsOnSelfComments', $commentsOnSelfComments);
+
  	}
 
  	/////////////////////////////////////// 用户管理///////////////////////////////////////////////////
