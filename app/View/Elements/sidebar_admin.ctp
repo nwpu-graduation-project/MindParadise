@@ -20,7 +20,7 @@
     </li>
 
     <li>
-      <a href="#">用户管理</a>
+      <a href="/personalCenter/userIndex">用户管理</a>
        <ul class="sub_menu">
         <li><a href="/personalCenter/userAdd">添加用户</a></li>
         <li><a href="/Experts/add">添加咨询师</a></li>

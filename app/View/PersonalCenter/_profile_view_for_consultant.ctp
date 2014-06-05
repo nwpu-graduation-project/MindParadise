@@ -2,7 +2,7 @@
 $this->extend('common_view');
 
 $this->start('sidebar');
-  echo $this->element('sidebar_user');
+  echo $this->element('sidebar_consultant');
 $this->end();
 
 ?>
@@ -13,7 +13,7 @@ $this->end();
 		<?php echo $this->Html->image($profile['Expert']['avatar'], array('alt' => '头像')); ?>
 	</div>
 	<div>
-		<?php echo $this->Html->link('修改头像', array('action' => 'modifyAvatar')); ?>
+		<?php echo $this->Html->link('修改头像', array('action' => 'modifyAvatar', $user_id)); ?>
 	</div>
 </div>
 --------------------------------------------------------------
@@ -35,6 +35,6 @@ $this->end();
 		<li><label>收费标准:</label><?php echo $profile['Expert']['price']; ?></li>
 	</ul>
 	<div>
-		<?php echo $this->Html->link('修改', array('action' => 'profileEdit')); ?>
+		<?php echo $this->Html->link('修改', array('action' => 'profileEdit', $user_id)); ?>
 	</div>
 </div>

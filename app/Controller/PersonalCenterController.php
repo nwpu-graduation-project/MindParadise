@@ -16,7 +16,7 @@ class PersonalCenterController extends AppController
 			// erro 
 			// set flash
 			// redirect to login
-
+			return ;
 		}
 
 		switch($currentUser['User']['role'])
@@ -40,15 +40,31 @@ class PersonalCenterController extends AppController
 
 	///////////////////////////////////////////// 个人信息 ////////////////////////////////////////////
 	// 个人档案查询
-	function profileView()
+	function profileView($id = null)
 	{
-		$profile = $this->_getCurrentUserProfileModelNameAndObj();
+		$profile = null;
+		if($id == null)
+		{
+			$profile = $this->_getCurrentUserProfileModelNameAndObj();
+			$id = $this->Auth->user('id');
+		}
+		else
+		{
+			if(!parent::checkAdmin() && $id != $this->Auth->user('id'))
+	 		{
+	 			//error : have no previlege
+	 			return ;
+	 		}
+			$profile = $this->_getUserProfileModelNameAndObj($id);
+		}
+
 		$profileModelName = $profile['profileModelName'];
 		$profileInfo 	  = $profile['profileInfo'];
 		$this->set('profile', $profileInfo);
+		$this->set('user_id', $id);
 
-		$currentUser = parent::currentUser();
-		switch($currentUser['User']['role'])
+		$user = $profile['User'];
+		switch($user['User']['role'])
 		{
 			// case 1: // tourist
 			// 	this->render("tourist_index");
@@ -65,22 +81,37 @@ class PersonalCenterController extends AppController
 				break;
 			default: // error
 		}
+
+
+	
 	}
 
 	// 个人档案修改
-	function profileEdit()
+	function profileEdit($id = null)
 	{
-		
-		$profile = $this->_getCurrentUserProfileModelNameAndObj();
+		$profile = null;
+		if($id == null)
+		{
+			$profile = $this->_getCurrentUserProfileModelNameAndObj();
+			$id = $this->Auth->user('id');
+		}
+		else
+		{
+			if(!parent::checkAdmin() && $id != $this->Auth->user('id'))
+	 		{
+	 			//error : have no previlege
+	 			return ;
+	 		}
+			$profile = $this->_getUserProfileModelNameAndObj($id);
+		}
 		$profileModelName = $profile['profileModelName'];
 		$profileInfo 	  = $profile['profileInfo'];
 
 		if ($this->request->is(array('post', 'put'))) {
-
-			$this->$profileModelName->id = $profileInfo[$profileModelName]['id'];
+			$this->$profileModelName->id = $id;
 			if ($this->$profileModelName->save($this->request->data)) {
-				$this->Session->setFlash(__('你的信息已经被更新.'));
-			return $this->redirect(array('action' => 'profileView'));
+				$this->Session->setFlash(__('信息已经被更新.'));
+				return $this->redirect(array('action' => 'profileView', $id));
 			}
 			$this->Session->setFlash(__('更新失败.'));
 		}
@@ -89,10 +120,9 @@ class PersonalCenterController extends AppController
 		{
 			$this->request->data = $profileInfo;
 		}
-
-
-		$currentUser = parent::currentUser();
-		switch($currentUser['User']['role'])
+		
+		$user =$profile['User'];
+		switch($user['User']['role'])
 		{
 
 			// case 1: // tourist
@@ -111,9 +141,14 @@ class PersonalCenterController extends AppController
 		}
 	}
 	// 修改头像
-	function modifyAvatar($act = null)
+	function modifyAvatar($id = null, $act = null)
 	{
-		define( 'ROOT_PATH', WWW_ROOT.'upload'.DS.'uploads'.DS.$this->Auth->user('id').DS);
+		if($id == null)
+		{
+			$id = $this->Auth->user('id');
+		}
+
+		define( 'ROOT_PATH', WWW_ROOT.'upload'.DS.'uploads'.DS.$id.DS);
 
 		function getImageInfo( $img ){
 			$imageInfo = getimagesize($img);
@@ -192,7 +227,10 @@ class PersonalCenterController extends AppController
 			    	$this->_rmPreviewsFiles($targetFile);
 
 					resize($new_file_name);
-			        $img = DS.'upload'.DS.'uploads'.DS.$this->Auth->user('id').DS.$new_file_name;
+					// $user_id = $id;
+					// if(!$user_id)
+					// 	$user_id = $this->Auth->user('id');
+			        $img = DS.'upload'.DS.'uploads'.DS.$id.DS.$new_file_name;
 			        $ret['result_code'] = 1;
 			        $ret['result_des'] = $img;
 
@@ -206,7 +244,21 @@ class PersonalCenterController extends AppController
 		}
 
 		// get the current user profile model name and profile object.
-		$profile = $this->_getCurrentUserProfileModelNameAndObj();
+		$profile = null;
+		if($id == null)
+		{
+			$profile = $this->_getCurrentUserProfileModelNameAndObj();
+			$id = $this->Auth->user('id');
+		}
+		else
+		{
+			if(!parent::checkAdmin() && $id != $this->Auth->user('id'))
+	 		{
+	 			//error : have no previlege
+	 			return ;
+	 		}
+			$profile = $this->_getUserProfileModelNameAndObj($id);
+		}
 		$profileModelName = $profile['profileModelName'];
 		$profileInfo 	  = $profile['profileInfo'];
 
@@ -305,6 +357,7 @@ class PersonalCenterController extends AppController
 
 		$avatar = $profileInfo[$profileModelName]['avatar'];
 		$this->set('avatar', $avatar);
+		$this->set('user_id', $id);
 	}
 
 
@@ -383,7 +436,38 @@ class PersonalCenterController extends AppController
  		if(!parent::checkAdmin())
  		{
  			//error : have no previlege
+ 			$this->redirect(array('action' => 'profileView'));
  		}
+ 		$this->Paginator->settings = array(
+        					'limit' => 8,
+        					'order' => array(
+            					'User.id' => 'asc'
+        					),
+        					'recursive' => -1,
+    					);
+ 		$users = null;
+ 		if ($this->request->is(array('post', 'put'))) 
+ 		{
+ 			$searchInfo = $this->request->data;
+ 			$condition = null;
+ 			if($searchInfo['User']['role'])
+ 				$condition = array('role' => $searchInfo['User']['role']);
+ 			if($searchInfo['User']['username'])
+ 				$condition = array_merge($condition, array('username' => $searchInfo['User']['username']));
+ 			if($searchInfo['User']['email'])
+ 				$condition = array_merge($condition, array('email' => $searchInfo['User']['email']));
+ 			$users = $this->Paginator->paginate('User', $condition);
+ 		}
+ 		else
+ 		{
+ 			$users = $this->Paginator->paginate('User');
+ 		}
+ 		if (!$this->request->data) 
+ 		{
+ 			//$this->request->data 
+ 		}
+ 		
+ 		$this->set('users', $users);
 
  	}
 
@@ -392,6 +476,7 @@ class PersonalCenterController extends AppController
  		if(!parent::checkAdmin())
  		{
  			//error : have no previlege
+ 			$this->redirect(array('action' => 'profileView'));
  		}
 
  		if ($this->request->is('post')) {
@@ -404,21 +489,21 @@ class PersonalCenterController extends AppController
  		}
  	}
 
- 	function userView($id = null)
- 	{
- 		if(!parent::checkAdmin())
- 		{
- 			//error : have no previlege
- 		}
- 	}
+ 	// function userView($id = null)
+ 	// {
+ 	// 	if(!parent::checkAdmin())
+ 	// 	{
+ 	// 		//error : have no previlege
+ 	// 	}
+ 	// }
 
- 	function userEdit($id = null)
- 	{
- 		if(!parent::checkAdmin())
- 		{
- 			//error : have no previlege
- 		}
- 	}
+ 	// function userEdit($id = null)
+ 	// {
+ 	// 	if(!parent::checkAdmin())
+ 	// 	{
+ 	// 		//error : have no previlege
+ 	// 	}
+ 	// }
 
  	function userDelete($id = null)
  	{
@@ -564,7 +649,7 @@ class PersonalCenterController extends AppController
 			default: // error
 		}
 		if($profileModelName != null)
-			return array('profileModelName' => $profileModelName, 'profileInfo' => $profileInfo);
+			return array('profileModelName' => $profileModelName, 'profileInfo' => $profileInfo, 'User' => $currentUser);
 		else 
 			return null;
  	}
@@ -601,7 +686,7 @@ class PersonalCenterController extends AppController
 			default: // error
 		}
 		if($profileModelName != null)
-			return array('profileModelName' => $profileModelName, 'profileInfo' => $profileInfo);
+			return array('profileModelName' => $profileModelName, 'profileInfo' => $profileInfo, 'User' => $user);
 		else 
 			return null;
  	}
