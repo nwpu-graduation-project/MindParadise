@@ -27,9 +27,14 @@
       </ul>
     </li>
 
-    <li><a href="#">动态管理</a></li>
-    <li><a href="#">公告管理</a></li>
-    <li><a href="#">新闻管理</a></li>
+    <li><a href="#">首页推荐管理</a></li>
+    <li>
+      <a href='/personalCenter/contentsIndex'>新闻公告管理</a>
+      <ul class="sub_menu">
+        <li><a href="/webcontents/add">添加新闻公告</a></li>
+      </ul>
+    </li>
+
     <li>
       <a href="/personalCenter/blogrollIndex">友情链接</a>
       <ul class="sub_menu">

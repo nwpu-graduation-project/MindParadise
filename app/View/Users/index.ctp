@@ -2,6 +2,93 @@
 $this->start('css');
 echo $this->Html->css('common');
 echo $this->Html->css('index');
+?>
+<style>
+.content_wrap {
+	border: 1px solid #dfdfdf;
+	padding: 5px 0;
+}
+.content_wrap li {
+	padding: 0;
+	margin: 0;
+	height: 30px;
+}
+.content_wrap li:hover {
+	padding: 10px;
+	margin-bottom: 5px;
+	position: relative;
+	height: 50px;
+	border-bottom: 1px dashed #dedede;
+	border-top: 1px dashed #dedede;
+}
+
+.content_wrap li span.view_num {
+	display: none;
+}
+
+.content_wrap li:hover span.view_num {
+	position: absolute;
+	right: 15px;
+	bottom: 10px;
+	font-size: 12px;
+	color: #999;
+	display: block;
+}
+.content_wrap li p.txt_box {
+	margin: 0;
+}
+.content_wrap li:hover p.txt_box {
+	padding-left: 5px;
+}
+.content_wrap li:hover p {
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+.content_wrap li p.txt_box a {
+	display: block;
+	color: #444;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 15px;
+	width: 228px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-decoration: none;
+}
+.content_wrap li:hover p.txt_box * {
+	display: block;
+}
+.content_wrap li:hover p.txt_box a {
+	padding: 0;
+	color: #2f7eba;
+	text-decoration: none;
+	width: 243px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.cleara:after, .clearb:before {
+content: ".";
+display: block;
+height: 0;
+clear: both;
+visibility: hidden;
+}
+.content_wrap li:hover.firstLi {
+    border-bottom: 1px dashed #dedede;
+    border-top: 0
+}
+
+.content_wrap li:hover.lastLi {
+    border-top: 1px dashed #dedede;
+    border-bottom: 0
+}
+
+
+</style>
+<?php
 $this->end(); 
 
 //bshare of the side
@@ -743,23 +830,37 @@ $this->end();
 
 		<div class="art_clock">
 			<div class="dt">
-				<span class="fgreen">最新动态······</span> &nbsp;
+				<span class="fgreen">新闻公告</span> &nbsp;
 				(<a href="http://www.xinli001.com/daka/" class="glink">更多</a>)&nbsp;
 			</div>
-			<div>
-				<p class="pbox fl"><img src="http://media.xinli001.com/images/index/item_study.gif" width="40" height="40"></p>
-				<p class="pinfo">
-					
-					
-					
-					<a href="http://www.xinli001.com/daka/589/">今天：如何识别厌恶和蔑视？</a><br>
-					
-					
-					
-					<a href="http://www.xinli001.com/daka/16/" class="fgrey">往期：排队也能很快乐？</a>
-					
-					
-				</p>
+			<div class = 'content_wrap'>
+				<ul>
+					<?php
+					$num = sizeof($webcontents);
+					$temp = 1;
+					foreach($webcontents as $webcontent):
+					?>
+						<?php if($num == 1): ?>
+                        <li class="cleara clearfix firstLi lastLi">
+                        <?php elseif($temp == 1): ?>
+                        <li class="cleara clearfix firstLi ">
+                        <?php elseif($temp == $num): ?>
+                        <li class="cleara clearfix lastLi">
+                    	<?php else: ?>
+                    	<li class="cleara clearfix">
+                        <?php endif ?>
+                            <span class="view_num"><?php echo $webcontent['Webcontent']['browse_count']; ?>人看过</span>
+                            <p class="txt_box">
+                            <?php 
+                            	echo $this->Html->link($webcontent['Webcontent']['title'], '/webcontents/view/'.$webcontent['Webcontent']['id']);
+                            ?>
+                            </p>
+                        </li>
+                    	<?php $temp++; ?>
+                	<?php endforeach ?>
+                        
+                       
+                    </ul>
 			</div>
 		</div>
 		<!--学习打卡结束-->

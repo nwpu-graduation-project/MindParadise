@@ -4,7 +4,7 @@ class PersonalCenterController extends AppController
 {
 	public $helpers = array('Html', 'Form', 'Time', 'Paginator', 'Js');
 	public $components = array('Paginator', 'RequestHandler');
-	public $uses = array('User','Comment','UserProfile','Expert','AdministratorProfile','Blogroll');
+	public $uses = array('User','Comment','UserProfile','Expert','AdministratorProfile','Blogroll', 'Webcontent');
 
 	///////////////////////////////////////////// 个人中心首页//////////////////////////////////////////
 	function index()
@@ -428,6 +428,38 @@ class PersonalCenterController extends AppController
 
 		$this->set('commentsOnSelfComments', $commentsOnSelfComments);
 
+ 	}
+ 	/////////////////////////////////////// 内容管理/////////////////////////////////////////////////
+ 	function contentsIndex()
+ 	{
+ 		if(!parent::checkConsultant() && !parent::checkAdmin())
+ 		{
+ 			//error : have no previlege
+ 			$this->redirect(array('action' => 'profileView'));
+ 		}
+ 		$this->Paginator->settings = array(
+					        'limit' => 8,
+					        'order' => array(
+					            'Webcontent.created' => 'desc'
+					        ),
+					        'recursive' => 1
+					    );
+ 		$condition = array('user_id' => $this->Auth->user('id'));
+ 		if ($this->request->is(array('post', 'put'))) 
+ 		{
+ 			$searchInfo = $this->request->data;
+ 			if($searchInfo['Webcontent']['category'])
+ 				$condition = array_merge($condition, array('category' => $searchInfo['Webcontent']['category']));
+ 		}
+ 
+ 		$webcontents = $this->Paginator->paginate('Webcontent', $condition);
+ 		
+ 		if (!$this->request->data) 
+ 		{
+ 			//$this->request->data 
+ 		}
+ 		
+ 		$this->set('webcontents', $webcontents);
  	}
 
  	/////////////////////////////////////// 用户管理///////////////////////////////////////////////////

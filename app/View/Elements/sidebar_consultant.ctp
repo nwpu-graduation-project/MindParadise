@@ -27,8 +27,10 @@
       </ul>
       
     </li>
-    <li><a href="#">我的文章</a></li>
-    <li><a href="#">我的视频</a></li>
-    <li><a href="#">我的图片</a></li>
+    <li><a href="/personalCenter/contentsIndex">我发表的内容</a>
+      <ul class="sub_menu">
+        <li><a href="/Webcontents/add">新建内容</a></li>
+      </ul>
+    </li>
   </ul>
 </div>

@@ -198,7 +198,7 @@ class WebcontentsController extends AppController {
 	
 	protected function _getCategories() {
 		$categories = array(1 => '新闻',2 => '文章', 3 => '视频', 4 => '图片',
-							5 => '游戏', 6 => '心理测试');
+							5 => '游戏', 6 => '心理测试', 7 => '公告');
 		return $categories;
 	}
 
