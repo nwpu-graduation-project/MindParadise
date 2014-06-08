@@ -9,7 +9,7 @@
 /build
 /dist
 /tags
-
+/app/webroot/img/cases_photos
 # OS generated files #
 ######################
 .DS_Store

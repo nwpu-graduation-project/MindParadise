@@ -2,7 +2,7 @@
 class DocumentsController extends AppController{
 	public $helpers = array('Html', 'Form', 'Session');
 	public $components = array('Session');
-	public $uses = array('Customer', 'Document');
+	public $uses = array('Customer', 'Document', 'Expert');
 
 	public function index() {
 
@@ -26,6 +26,10 @@ class DocumentsController extends AppController{
 		}
 		$this->set('document', $document);
 
+		$expert_id = $this->Expert->find('first', array('fields' => 'id','conditions' => array('consultant_id' => $document['Document']['consultant_id'])));
+		$expert = $this->Expert->findById($expert_id['Expert']['id']);
+		$this->set('expert', $expert);
+		
 		$case_id = $this->Document->find('first', array('fields' => 'case_id', 'conditions' => array('id' => $id)));
 		$customer = $this->Customer->findById($case_id['Document']['case_id']);
 		$this->set('customer', $customer);

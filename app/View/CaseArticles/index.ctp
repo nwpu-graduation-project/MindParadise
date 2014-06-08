@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/css/grid.css" type="text/css" media="screen">   
     <link rel="stylesheet" href="/css/reset.css" type="text/css" media="screen">
     <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/css/search_case.css" type="text/css" media="screen">
    <?php $this->end(); ?>
    
    <?php $this->start('script'); ?>
@@ -21,6 +22,22 @@
                     <div class="container_12">
                     <div class="wrapper">
                     <article class="grid_8 suffix_1 spacer-4">
+                        <br>
+                        <form class="search" action="/search/" method="post" style="width:70%;">
+                        <table>
+                        <tr>
+                            <td>
+                                <input class="searchTerm" name="data[keyword]" placeholder="输入关键词，按回车搜索" size='30'/>
+                            </td>
+                            <td>
+                                <input type="submit" value="搜索" style='width:200%'/>
+                            </td>
+                            <td>
+                                <input type="hidden" value="3" name='type'/>
+                            </td>
+                        </tr>
+                        </table>
+                        </form>
                         <h4><br>最新案例</h4>
                         <?php foreach ($caseArticles as $caseArticle) : ?>
                         <div class="p3">

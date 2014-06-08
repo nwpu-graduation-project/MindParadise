@@ -20,16 +20,16 @@ $this->end();
 </style>
 <?php $this->end();?>
 
-<h1>公开案例管理</h1>
+<h1>文章管理</h1>
 <h1>
     <?php
-    echo $this->Html->link('新增案例', array('controller' => 'caseArticles', 'action' => 'add'));
+    echo $this->Html->link('新增文章', array('controller' => 'caseArticles', 'action' => 'add'));
     ?>
 </h1>
 <br>
 <table>
     <tr>
-        <th>案例ID</th>
+        <th>文章ID</th>
         <th>标题</th>
         <th>访问次数</th>
         <th>创建时间</th>

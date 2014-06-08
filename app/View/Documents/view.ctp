@@ -20,16 +20,15 @@ $this->end();
 </style>
 <?php $this->end();?>
 
-<h2>案例显示</h2><br>
+<center><h2>咨询诊断记录</h2></center><br>
 <div class='main'>
 	<div class='account'>
 	
-	<table align='center'>
+	<table width="100%" align='center' border='1' cellspacing='0'>
 		<tr>
-			<td width="25%">第<?php echo h($document['Document']['detail_order']); ?>次咨询</td>
-			<td width="25%"></td>
-			<td width="25%"></td>
-			<td width="50%">是否公开:<?php echo h($document['Document']['f_public']); ?></td>
+			<td width="50%" colSpan='2' align='left' cellpadding='5'>第<?php echo h($document['Document']['detail_order']); ?>次咨询</td>
+			
+			<td width="50%" colSpan='2'align='right' cellpadding='5'>是否公开:<?php echo h($document['Document']['f_public']); ?></td>
 		</tr>
 		<tr>
 			<td>姓氏:<?php echo h($customer['Customer']['first_name']); ?></td>
@@ -57,22 +56,25 @@ $this->end();
 			<td>QQ号码:<?php echo h($customer['Customer']['qq_number']); ?></td>
 			<td>学历:<?php echo h($customer['Customer']['education']); ?></td>
 		</tr>
-	</table>
-	<table>
 		<tr>
-			<td>现在住址:<?php echo h($customer['Customer']['present_address']); ?></td>
+			<td colSpan='4' rowSpan='1'>现在住址:<?php echo h($customer['Customer']['present_address']); ?></td>
 		</tr>
 		<tr>
-			<td>标题:<?php echo h($document['Document']['title']); ?></td>
+			<td colSpan='4' rowSpan='1'>标题:<?php echo h($document['Document']['title']); ?></td>
 		</tr>
 		<tr>
-			<td>摘要:<?php echo h($document['Document']['abstract']); ?></td>
+			<td colSpan='4'><textarea rows='2' cols='66'>摘要:<?php echo h($document['Document']['abstract']); ?></textarea></td>
 		</tr>
 		<tr>
-			<td>主诉:<?php echo h($document['Document']['chief_compliant']); ?></td>
+			<td colSpan='4'><textarea rows='4' cols='66'>主诉:<?php echo h($document['Document']['chief_compliant']);?></textarea></td>
 		</tr>
 		<tr>
-			<td>诊断:<?php echo h($document['Document']['diagnosis']); ?></td>
+			<td colSpan='4'><textarea rows='4' cols='66'>诊断:<?php echo h($document['Document']['diagnosis']); ?></textarea></td>
+		</tr>
+		<tr>
+			<td width="50%" colSpan='2' align='left' cellpadding='5'>咨询师姓名: <?php echo h($expert['Expert']['realname']); ?></td>
+			
+			<td width="50%" colSpan='2'align='right' cellpadding='5'>创建日期: <?php echo h($document['Document']['created']); ?></td>
 		</tr>
 	</table>
 	

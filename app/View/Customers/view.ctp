@@ -20,22 +20,20 @@ $this->end();
 </style>
 <?php $this->end();?>
 
-<h2>创建一个案例</h2><br>
+<center><h2>咨询诊断书</h2></center><br>
 <div class='main'>
 	<div class='account'>
 	
 	<?php echo $this->Form->create(null, array('url' => array('controller' => 'documents',
 		'action' => 'add'))); ?>
-	<table align='center'>
+	<table align='center' border='1' cellspacing='0'>
 		<tr>
-			<td width="25%">第<?php $count = h($customer['Customer']['case_count']); echo $count+1;
+			<td width="50%" colSpan='2'>第<?php $count = h($customer['Customer']['case_count']); echo $count+1;
 				echo $this->Form->input('detail_order', array('type' => 'hidden', 'default' => $count+1));
 				$case_id = h($customer['Customer']['id']);
 				echo $this->Form->input('Document.case_id', array('type' => 'hidden', 'default' => $case_id));
 			 ?>次咨询</td>
-			<td width="25%"></td>
-			<td width="25%"></td>
-			<td width="50%">是否公开:<?php 
+			<td width="50%" colSpan='2'>是否公开:<?php 
 				$options = array('是' => '是', '否' => '否');
 				$attributes = array('legend' => false, 'value' => '否');
 
@@ -67,29 +65,24 @@ $this->end();
 			<td>QQ号码:<?php echo h($customer['Customer']['qq_number']); ?></td>
 			<td>学历:<?php echo h($customer['Customer']['education']); ?></td>
 		</tr>
-	</table>
-	<table>
 		<tr>
-			<td>现在住址:<?php echo h($customer['Customer']['present_address']); ?></td>
+			<td colSpan='4'>现在住址:<?php echo h($customer['Customer']['present_address']); ?></td>
 		</tr>
 		<tr>
-			<td><?php echo $this->Form->input('Document.title', array('label' => '标题', 'size' => '47')); ?></td>
+			<td colSpan='4'><?php echo $this->Form->input('Document.title', array('label' => '标题:', 'size' => '66')); ?></td>
 		</tr>
 		<tr>
-			<td valign='center'><?php echo $this->Form->input('Document.abstract', array('label' => '摘要', 'type' => 'textarea', 'rows' => '3', 'cols' => '46')); ?></td>
+			<td valign='center' colSpan='4'><?php echo $this->Form->input('Document.abstract', array('label' => '摘要:', 'type' => 'textarea', 'rows' => '3', 'cols' => '66')); ?></td>
 		</tr>
 		<tr>
-			<td><?php echo $this->Form->input('Document.chief_compliant', array('label' => '主诉', 'type' => 'textarea', 'rows' => '3', 'cols' => '46')); ?></td>
+			<td colSpan='4'><?php echo $this->Form->input('Document.chief_compliant', array('label' => '主诉:', 'type' => 'textarea', 'rows' => '3', 'cols' => '66')); ?></td>
 		</tr>
 		<tr>
-			<td><?php echo $this->Form->input('Document.diagnosis', array('label' => '诊断', 'type' => 'textarea', 'rows' => '3', 'cols' => '46')); ?></td>
-		</tr>
-		<tr>
-			<td align='center'><?php echo $this->Form->input('id', array('type' => 'hidden'));
-			echo $this->Form->end(__('创建'));?></td>
+			<td colSpan='4'><?php echo $this->Form->input('Document.diagnosis', array('label' => '诊断:', 'type' => 'textarea', 'rows' => '3', 'cols' => '66')); ?></td>
 		</tr>
 	</table>
-	
+	<center><?php echo $this->Form->input('id', array('type' => 'hidden'));
+			echo $this->Form->end(__('创建'));?></center>
 	
 	
 	</div>

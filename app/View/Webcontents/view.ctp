@@ -55,7 +55,7 @@ echo $this->element('artical_categories',array('current' => $webcontent['Webcont
 		<dfn> <?php echo $webcontent['User']['username']; ?></dfn>
 	</h3>
 	<div calss="content_view">
-	<?php echo $page; ?>
+	<?php echo htmlspecialchars_decode($webcontent['Webcontent']['path']); ?>
 	</div>
 	<a href="#blog_right" class="blgo_read"><?php echo ++$webcontent['Webcontent']['browse_count'].'次阅读'; ?></a>
 	<a href="#leave_comment" class="blgo_comment"><?php echo $webcontent['Webcontent']['comment_count'].'条评论'; ?></a>

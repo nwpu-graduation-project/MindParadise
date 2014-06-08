@@ -21,11 +21,12 @@ $this->end();
 </style>
 <?php $this->end();?>
 
-<h2>修改案例</h2><br>
+<center><h2>修改咨询记录</h2></center><br>
+<center>
 <div class='main'>
 	<div class='account'>
 		<?php echo $this->Form->create('Document'); ?>
-		<table>
+		<table align='center' border='1' cellspacing='0'>
 		<tr>
 			<td>是否公开:<?php 
 				$options = array('是' => '是', '否' => '否');
@@ -36,21 +37,20 @@ $this->end();
 				echo $this->Form->radio('f_public', $options, $attributes); ?></td>
 		</tr>
 		<tr>
-			<td><?php echo $this->Form->input('title', array('label' => '标题')); ?></td>
+			<td><?php echo $this->Form->input('title', array('label' => '标题:', 'size' => '47')); ?></td>
 		</tr>
 		<tr>
-			<td><?php echo $this->Form->input('abstract', array('label' => '摘要', 'rows' => '3', 'cols' => '46')); ?></td>
+			<td><?php echo $this->Form->input('abstract', array('label' => '摘要:', 'rows' => '3', 'cols' => '46')); ?></td>
 		</tr>
 		<tr>
-			<td><?php echo $this->Form->input('chief_compliant', array('label' => '主诉', 'rows' => '3', 'cols' => '46')); ?></td>
+			<td><?php echo $this->Form->input('chief_compliant', array('label' => '主诉:', 'rows' => '3', 'cols' => '46')); ?></td>
 		</tr>
 		<tr>
-			<td><?php echo $this->Form->input('diagnosis', array('label' => '诊断', 'rows' => '3', 'cols' => '46')); ?></td>
-		</tr>
-		<tr>
-			<td align='center'><?php echo $this->Form->input('id', array('type' => 'hidden'));
-			echo $this->Form->end(__('保存修改'));?></td>
+			<td><?php echo $this->Form->input('diagnosis', array('label' => '诊断:', 'rows' => '3', 'cols' => '46')); ?></td>
 		</tr>
 	</table>
+	<center><?php echo $this->Form->input('id', array('type' => 'hidden'));
+			echo $this->Form->end(__('保存修改'));?></center>
 	</div>
 </div>
+</center>

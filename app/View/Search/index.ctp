@@ -46,6 +46,13 @@ foreach ($result as $key => $value) {
 			echo $entry['EncyclopediaEntry']['entry'];
 			echo '</a></h2>'.$entry['EncyclopediaEntry']['created'].'</div>';
 			break;
+		case '3':
+			echo '<div><h2>案例文章--<a href="/caseArticles/view/'.$value['search_indices']['content_id'].'" style="float: none">';
+			$caseArticle = $this->requestAction(
+					'/caseArticles/getCaseArticleById/'.$value['search_indices']['content_id']);
+			echo $caseArticle['CaseArticle']['title'];
+			echo '</a></h2>'.$caseArticle['CaseArticle']['created'].'</div>';
+			break;
 		default:
 			
 			break;

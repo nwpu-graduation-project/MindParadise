@@ -29,7 +29,8 @@
 						echo "<img src='/img/cases_photos/$string' alt='photo'/>"; ?></div><br>
 							
 					
-						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo h($caseArticle['CaseArticle']['body']); ?></p>
+						<p>
+							<?php echo htmlspecialchars_decode($caseArticle['CaseArticle']['body']); ?></p>
 					</article>
 					
 					<div class="comment">

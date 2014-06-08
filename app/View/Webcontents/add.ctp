@@ -6,7 +6,7 @@ echo '<link rel="stylesheet" type="text/css" href="/ueditor/themes/default/css/u
 $this->end();
 
 $this->start('script');
-echo '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>';
+echo '<script src="/js/jquery.min.ueditor.js"></script>';
 echo '<script src="/ueditor/ueditor.config.js"></script>';
 echo '<script src="/ueditor/ueditor.all.js"></script>';
 ?>

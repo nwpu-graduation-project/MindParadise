@@ -19,7 +19,7 @@ $this->end();
 }
 </style>
 <?php $this->end(); ?>
-<h2>非公开案例管理</h2>
+<h2>案例管理</h2>
 <center>
 <table>
 	<tr>

@@ -23,8 +23,8 @@
 		<td><?php echo $expert['Expert']['id']; ?></td>
 		<td><?php echo $expert['Expert']['alias']; ?></td>
 		<td><?php echo $expert['Expert']['realname']; ?></td>
-		<td><?php echo $expert['Expert']['created_time']; ?></td>
-		<td><?php echo $expert['Expert']['modified_time']; ?></td>
+		<td><?php echo $expert['Expert']['created']; ?></td>
+		<td><?php echo $expert['Expert']['modified']; ?></td>
 		<td>
 			<?php
 				echo $this->Html->link('修改', array('action' => 'edit', $expert['Expert']['id']));

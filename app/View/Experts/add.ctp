@@ -3,11 +3,6 @@
 <center>
 <form action="/Experts/add" method="post" enctype="multipart/form-data">
 	<p><label>别名:</label><input type="text" name="alias"></p>
-	<p><label>别名:</label><input type="text" name="alias"></p>
-	<p><label>别名:</label><input type="text" name="alias"></p>
-	<p><label>别名:</label><input type="text" name="alias"></p>
-
-	<p><label>别名:</label><input type="text" name="alias"></p>
 	<p><label>真实姓名:</label><input type="text" name="realname"><font color="red">*</font></p>
 	<p><label>年龄:</label><input type="text" name="age"></p>
 	<p><label>性别:</label>
