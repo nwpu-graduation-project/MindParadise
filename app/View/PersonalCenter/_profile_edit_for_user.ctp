@@ -34,6 +34,6 @@ $this->end();
 	<tr><td><?php echo $this->Form->input('phone_number', array('type' => 'tel', 'label' => '电话号码')); ?></td></tr>
 	<tr><td><?php echo $this->Form->input('qq_number', array('type' => 'text', 'label' => 'qq号')); ?></td></tr>
 	<tr><td><?php echo $this->Form->input('hobby', array('type' => 'textarea', 'row' => 3, 'label' => '爱好')); ?></td></tr>
-
+	<tr><td><?php echo $this->Form->input('id', array('type' => 'hidden'));?></td></tr>
 	<tr><td><?php echo $this->Form->end('保存修改'); ?></td></tr>
 </table>

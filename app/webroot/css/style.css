@@ -3185,3 +3185,14 @@ li {
 	background-position:0 0;
 	background-repeat:no-repeat;
 }
+
+/*=====================================PAGINATE PAGE NAV========================*/
+.paginate_nav {
+	float: right;
+	margin-top: 40px;
+}
+
+.paginate_nav li{
+	float: left;
+	margin-right: 5px;
+}

@@ -43,3 +43,21 @@ $this->end();
 	</tr>
 	<?php endforeach; ?>
 </table>
+
+<ul class="paginate_nav">
+<?php
+echo $this->Paginator->prev(
+  '上一页',
+  array(
+    // 'escape' => FALSE,
+    'tag' => 'li',
+    'class' => 'page_prev',
+  ),
+  '上一页',
+  array(
+    'tag' => 'li',
+    'class' => 'page_prev',
+  )
+);
+?>
+      

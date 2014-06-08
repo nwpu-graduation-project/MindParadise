@@ -80,7 +80,7 @@ $(function() {
 		'removeCompleted'	: true,
 		'removeTimeout'		: 0,
 		'swf'				: '/upload/uploadify/uploadify.swf',
-		'uploader'			: '/personalCenter/modifyAvatar/upload',
+		'uploader'			: <?php echo "'/personalCenter/modifyAvatar/".$user_id."/upload'" ?>,
 		'fileTypeExts'		: '*.gif; *.jpg; *.jpeg; *.png;',
 		'fileSizeLimit'		: '1024KB',
 		'onUploadSuccess' : function(file, data, response) {
@@ -191,7 +191,7 @@ $(function() {
 		if( checkCoords() ){
 			$.ajax({
 				type: "POST",
-				url: "/personalCenter/modifyAvatar/cut",
+				url: <?php echo "'/personalCenter/modifyAvatar/".$user_id."/cut'" ?>,
 				data: {"img":img,"x":x,"y":y,"w":w,"h":h},
 				dataType: "json",
 				success: function(msg){

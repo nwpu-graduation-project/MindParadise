@@ -13,7 +13,7 @@ $this->end();
 		<?php echo $this->Html->image($profile['UserProfile']['avatar'], array('alt' => '头像')); ?>
 	</div>
 	<div>
-		<?php echo $this->Html->link('修改头像', array('action' => 'modifyAvatar')); ?>
+		<?php echo $this->Html->link('修改头像', array('action' => 'modifyAvatar', $user_id)); ?>
 	</div>
 </div>
 --------------------------------------------------------------
@@ -38,6 +38,6 @@ $this->end();
 		<li><label>爱好:</label><?php echo $profile['UserProfile']['hobby']; ?></li>
 	</ul>
 	<div>
-		<?php echo $this->Html->link('修改', array('action' => 'profileEdit')); ?>
+		<?php echo $this->Html->link('修改', array('action' => 'profileEdit', $user_id)); ?>
 	</div>
 </div>

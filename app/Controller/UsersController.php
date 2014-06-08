@@ -3,7 +3,7 @@ App::uses('CakeEmail', 'Network/Email');
 
 class UsersController extends AppController
 {
-  //public $uses = array('Message','Comment');
+  public $uses = array('Webcontent');
   /**
    *      * Runs automatically before the controller action is called
    *           */
@@ -28,7 +28,13 @@ class UsersController extends AppController
    */
   function index()
   {
-
+      // announcement and news module
+      $webcontents = $this->Webcontent->find('all', array(
+              'conditions' =>array('Webcontent.category' => array(1,7)),
+              'limit' => 8,
+              'order' => 'Webcontent.created DESC',
+        ));
+      $this->set('webcontents', $webcontents);
   }
 
 

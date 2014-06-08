@@ -14,7 +14,12 @@ class Comment extends AppModel {
 		'CommenttedUser' => array(
 			'className' => 'User',
 			'foreignKey' => 'commentted_user_id',
-			'fields' => array('username'))
+			'fields' => array('username')),
+ 		'ParentComment' => array(
+			'className' => 'Comment',
+			'foreignKey' => 'parent_comment_id',
+			'fields' => array('content', 'commentor_id'),
+			),
 	);
 	
 	public $hasMany = array(
