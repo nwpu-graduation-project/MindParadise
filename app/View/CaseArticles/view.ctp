@@ -4,6 +4,7 @@
 	<link rel="stylesheet" href="/css/page_style.css" type="text/css" media="screen">
     <link rel="stylesheet" href="/css/responsive.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="/css/responsiveslides.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="/css/style.css" type="text/css" media="screen">
 	<?php $this->end(); ?>
 	
 	<?php $this->start('script'); ?>
@@ -34,14 +35,57 @@
 					</article>
 					
 					<div class="comment">
-						你的邮箱不会被公开, * 为必填项!
-						<form>
-							<div><input type="text" name="name" id="name"> 姓名 *</div>
-							<div><input type="email" name="email" id="email"> 邮箱 *</div>
-							<div><input type="url" name="website" id="website"> 个人网站</div>
-							<div><textarea rows="10" name="comment" id="comment"></textarea></div>
-							<div><input type="submit" name="submit" value="提交"></div>
-						</form>
+						<?php echo $this->Html->link('发表评论',array('action' => 'postcomment',$caseArticle['CaseArticle']['id'])); ?>
+						<div id="leave_comment">
+						<?php foreach ($caseComments as $caseComment) : ?>
+							<div class="person_icon">
+								<div class="person_comment" id="<?php echo $caseArticle['CaseArticle']['id'].'_'.$caseComment['CaseComment']['id']; ?>">
+								<h5>
+									<img src="/images/anoyous.png" alt="">
+									<span><?php echo $caseComment['Commentor']['username'] ?></span>
+									<em><?php echo $this->Time->nice($caseComment['CaseComment']['created'],NULL,'%Y-%m-%d');?></em>
+								</h5>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+									<!-- <img src="/images/anoyous_icon.png" alt="" class="comment_tooltip"> -->
+								<?php echo $caseComment['CaseComment']['content'] ?>
+						    	</div>
+						    	
+						    	<?php echo $this->Html->link('回复他',array(
+						    		'action' => 'postcomment',
+						    		$caseArticle['CaseArticle']['id'],
+						    		$caseComment['CaseComment']['id'])); ?>
+						    </div>
+						    
+						    <!-- Children Comments -->
+						    <?php foreach ($caseComment['FollowedComments'] as $childComment) : ?>
+						    <div class="person_icon leve_margin">
+						    	<div class="person_comment short_width" id="<?php echo $caseArticle['CaseArticle']['id'].'_'.$childComment['id']; ?>">
+						    	<h5>
+						    		<img src="/images/anoyous.png" alt="">
+						    		<span>
+						    		<?php
+						    		echo $childComment['Commentor']['username'];
+						    		if($childComment['CommenttedUser']) {
+						    			echo ' 回复 '.$childComment['CommenttedUser']['username'];
+						    		}
+						    		?>
+						    		</span>
+						    		<em><?php echo $this->Time->nice($childComment['created'],NULL,'%Y-%m-%d');?></em>
+						    	</h5>
+						    	&nbsp;&nbsp;&nbsp;&nbsp;
+						    	<!-- <img src="/images/anoyous_icon.png" alt="" class="comment_tooltip"> -->
+						    	<?php echo $childComment['content'] ?>
+						    	</div>
+						    	
+						    	<?php echo $this->Html->link('回复他',array(
+						    		'action' => 'postcomment',
+						    		$caseArticle['CaseArticle']['id'],
+						    		$childComment['id'])); ?>
+						    </div>
+						    <?php endforeach; ?>
+						<?php endforeach; ?>
+						</div>
+
 					</div>
 				</div>
 			</div>

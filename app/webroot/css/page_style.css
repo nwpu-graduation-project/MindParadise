@@ -91,6 +91,8 @@ nav .wrap-nav{height: 37px;}
 #main-content article p{margin-bottom:20px;}
 
 #main-content .comment{font-weight:bold; margin:20px 0px; background:#ffffff url("../images/bgbox.png") repeat-x; padding:20px; border:1px solid #CCC;}
+/*#main-content .comment h1{font-size: 30px;}
+#main-content .comment h2{font-size: 30px;}*/
 #main-content .comment:after{content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
 #main-content .comment div{margin-bottom: 20px; vertical-align:middle; }
 #main-content .comment input{border: 2px solid #999999;padding: 8px 10px;width:250px;}

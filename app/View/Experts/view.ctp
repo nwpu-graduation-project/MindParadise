@@ -1,10 +1,42 @@
 <!-- File: /app/View/Experts/view.ctp -->
 
+
+<?php
+
+session_name("fancyform");
+session_start();
+
+
+$_SESSION['n1'] = rand(1,20);
+$_SESSION['n2'] = rand(1,20);
+$_SESSION['expect'] = $_SESSION['n1']+$_SESSION['n2'];
+
+
+$str='';
+if($_SESSION['errStr'])
+{
+	$str='<div class="error">'.$_SESSION['errStr'].'</div>';
+	unset($_SESSION['errStr']);
+}
+
+$success='';
+if($_SESSION['sent'])
+{
+	$success='<h1>Thank you!</h1>';
+	
+	$css='<style type="text/css">#contact-form{display:none;}</style>';
+	
+	unset($_SESSION['sent']);
+}
+?>
+
+
 	<?php $this->start('css'); ?>
   	<link rel="stylesheet" href="/css/zerogrid.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="/css/page_style.css" type="text/css" media="screen">
     <link rel="stylesheet" href="/css/responsive.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="/css/responsiveslides.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="/css/expert_comment.css" type="text/css" media="screen">
 	<?php $this->end(); ?>
 	
 	<?php $this->start('script'); ?>
@@ -40,14 +72,51 @@
 					</article>
 					
 					<div class="comment">
-						你的邮箱不会被公开, * 为必填项!
-						<form>
-							<div><input type="text" name="name" id="name"> 姓名 *</div>
-							<div><input type="email" name="email" id="email"> 邮箱 *</div>
-							<div><input type="url" name="website" id="website"> 个人网站</div>
-							<div><textarea rows="10" name="comment" id="comment"></textarea></div>
-							<div><input type="submit" name="submit" value="提交"></div>
+						<div id='form-container'>
+						<h1>留言咨询</h1><br>
+						<form id='' name='' method='post' action=''>
+							<table width='100%' border='0' cellspacing='0' cellpadding='5'>
+								<tr>
+									<td width='15%' align='center'><h2>姓名<h2></td>
+									<td width='70%'><input type='text' class='' name='' id='' value='' /></td>
+									<td width='15%' id=''>&nbsp;</td>
+								</tr>
+								<tr>
+									<td align='center'><h2>邮箱</h2></td>
+									<td><input type='text' calss='' name='' id='' value='' /></td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td align='center'><h2>主题</h2></td>
+									<td><select name='subject' id='subject'>
+										<option value='' selected='selected'>-请选择-</option>
+										<option value='question'>问题</option>
+										<option value='proposal'>解决方案</option>
+										<option value='knowledge'>心理知识</option>
+										<option value='complaint'>抱怨</option>
+									</select>
+									</td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td align='center'><h2>内容</h2></td>
+									<td><textarea name='message' id='message' calss='' cols='50' rows='5'></textarea></td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td align='center'><?=$_SESSION['n1']?> + <?=$_SESSION['n2']?> =</td>
+									<td><input input='text' class='' name='' id=''/></td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td align='right' colspan='2'><input type='submit' name='button' id='button' value='提交'/></td>
+								</tr>
+							</table>
 						</form>
+						<?=$str?><img id='loading' src='img/ajax-load.gif' width='16' height='16' alt='loading'>
+						<?=$success?>
+						</div>
 					</div>
 				</div>
 			</div>

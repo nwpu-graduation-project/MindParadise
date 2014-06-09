@@ -6,7 +6,7 @@ class CaseArticlesController extends AppController {
 
     public $helpers = array('Html', 'Form');
     public $components = array('Session', 'Paginator');
-    public $uses = array('CaseArticle', 'Expert', 'SearchIndex');
+    public $uses = array('CaseArticle', 'Expert', 'SearchIndex', 'CaseComment');
 
     public $paginate = array(
         'limit' => 3,
@@ -35,6 +35,16 @@ class CaseArticlesController extends AppController {
             throw new NotFoundException(__('无效的 caseArticle'));
         }
         $this->set('caseArticle', $caseArticle);
+
+        $caseComments = $this->CaseComment->find('all', array(
+            'conditions' => array(
+                'caseComment.case_article_id' => $id,
+                'caseComment.parent_comment_id' => null,
+                ),
+            'recursive' => 2,
+            'order' => 'CaseComment.created ASC')
+            );
+        $this->set('caseComments', $caseComments);
     }
     
     public function add() {
@@ -124,6 +134,46 @@ class CaseArticlesController extends AppController {
         return $this->CaseArticle->find('first', array('fields' => array('title', 'created'),
                                                         'conditions' => array('id' => $value),
                                                         'recursive' => -1));
+    }
+
+    public function postComment($pageId = NULL, $parentCommentId = NULL) {
+        if($this->request->is('get')) {
+            if($pageId == NULL) {
+                // should pop up some error massage and return to previous page
+                return $this->redirect(array('action' => 'index'));
+            }
+            $user_id = $this->_getCurrentUserID();
+            $this->set('caseArticleId', $pageId);
+            $this->set('commentorId', $user_id);
+            if($parentCommentId != NULL) {
+                $parentComment = $this->CaseComment->find('first',array(
+                    'conditions' => array('CaseComment.id' => $parentCommentId),
+                    'recursive' => 0));
+                if($parentComment) {
+                    $this->set('parentComment',$parentComment);
+                    // WebcontentsController::_echoArray($parentComment);
+                } else {
+                    // should pop up some error massage and return to previous page
+                }
+            }
+        }
+        
+        if ($this->request->is('post')) {
+            $this->request->data['CaseComment']['commentor_id'] = $this->_getCurrentUserID();
+            // WebcontentsController::_echoArray($this->request->data);
+            $this->CaseComment->create();
+            if ($this->CaseComment->save($this->request->data)) {
+                return $this->redirect(array('action' => 'view',
+                    $this->request->data['CaseComment']['case_article_id']));
+            } else {
+                debug($this->CaseComment->validationErrors);
+                $this->Session->setFlash(__('Unable to add the tag.'));
+            }
+        }
+    }
+
+    protected function _getCurrentUserID() {
+        return $this->Auth->user('id');
     }
 
 }
