@@ -41,7 +41,9 @@
                         <h4><br>最新案例</h4>
                         <?php foreach ($caseArticles as $caseArticle) : ?>
                         <div class="p3">
-                            <time class="tdate-2" datetime="2011-08-10"><?php echo $caseArticle['CaseArticle']['created']; ?></time>
+                            <time class="tdate-2" datetime="2011-08-10"><?php $date = $caseArticle['CaseArticle']['created']; 
+                                $formatDate = substr($date, 0,10);
+                                echo $formatDate; ?></time>
                             <h4 class="p0"><?php echo $caseArticle['CaseArticle']['title']; ?></h4>
                             <p class="p2"><?php echo $caseArticle['CaseArticle']['source']; ?></p>
                             <div class="wrapper1">
@@ -50,8 +52,8 @@
                                      echo "<img src='/img/cases_photos/$string' alt='photo' width='350Pixel' height='235Pixel'/>"; ?>
                                 </figure>
                                 <div class="extra-wrap">
-                                    <p class="margin-bot"><?php echo $caseArticle['CaseArticle']['abstract']; ?></p>
-                                    <div class="wrapper1">
+                                    <p class="margin-bot"><font color='green'>导读:&nbsp;</font><?php echo $caseArticle['CaseArticle']['abstract']; ?></p>
+                                    <div class="wrapper1" style="margin-top:180px">
                                         <?php $id = $caseArticle['CaseArticle']['id'];
                                         echo "<a class='button2 fleft' href='/caseArticles/view/$id'>More</a>";
                                         ?>
