@@ -30,6 +30,7 @@ app/webroot/files/entry_page
 app/webroot/ueditor/php/upload1
 app/webroot/img/uploads/
 app/webroot/upload/uploads
+app/webroot/upload/recommend_pictures
 app/webroot/display/
 app/webroot/img/cases_photos/
 app/webroot/img/experts_photos/

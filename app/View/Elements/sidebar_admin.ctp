@@ -27,7 +27,13 @@
       </ul>
     </li>
 
-    <li><a href="#">首页推荐管理</a></li>
+    <li>
+      <a href="/recommendContents/index">首页推荐管理</a>
+      <ul class="sub_menu">
+        <li><a href="/recommendContents/add">添加推荐</a></li>
+      </ul>
+    </li>
+
     <li>
       <a href='/personalCenter/contentsIndex'>新闻公告管理</a>
       <ul class="sub_menu">

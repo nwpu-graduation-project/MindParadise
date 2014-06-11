@@ -134,100 +134,44 @@ $this->end();
 	    <div class="focus">
 			<div id="focus_img">
 				<div class="nbox">
-					
+					<?php foreach($recommend_entries as $entry): ?>
 					<div class="focus_box">
 						<div class="pbox">
-							<a href="http://www.xinli001.com/info/10947/">
-								<img src="http://image.xinli001.com/20140113/160624440ea6140d1964ef.jpg!300x200" width="300" height="200" hover="true" alt="思维方式：你该怎样成功？" style="opacity: 1;">
+							<a href="<?php echo $entry['RecommendContent']['url']; ?>">
+								<img src="<?php echo $entry['RecommendContent']['picture']; ?>" width="300" height="200" hover="true" alt="<?php echo $entry['RecommendContent']['title']; ?>" style="opacity: 1;">
 							</a>
 						</div>
 						<div class="descs">
-							<a href="http://www.xinli001.com/info/10947/" class="t">思维方式：你该怎样成功？</a>
+							<a href="<?php echo $entry['RecommendContent']['url']; ?>"><?php echo $entry['RecommendContent']['title']; ?></a>
 							<p class="intro">
-								成功学说坚持就能成功，但坚持其实是一种结果，不是成功的原因。 <span class="fgrey">(7843人路过)</span>
+								<?php echo $entry['RecommendContent']['abstract']; ?>
+								<span class="fgrey">(7843人路过)</span>
 							</p>
 							
 							<p class="rmd_read">
 		                        <a href="http://www.xinli001.com/ceshi/416/">九型人格测试</a><br>
-		                        
+		               
 		                    </p>
 		                    
 						</div>
 					</div>
+					<?php endforeach ?>
+
 					
-					<div class="focus_box">
-						<div class="pbox">
-							<a href="http://www.xinli001.com/info/10940/">
-								<img src="http://image.xinli001.com/20140113/15162145be1e32792d1b8e.jpg!300x200" width="300" height="200" hover="true" alt="牛人读书法：大卸八块">
-							</a>
-						</div>
-						<div class="descs">
-							<a href="http://www.xinli001.com/info/10940/" class="t">牛人读书法：大卸八块</a>
-							<p class="intro">
-								我们总以为花钱买了书放书架上，这本书就是我的了。其实不然，一本躺在书架上落灰的书，是书的耻辱，也是你金钱和时间的浪费。 <span class="fgrey">(4161人路过)</span>
-							</p>
-							
-							<p class="rmd_read">
-		                        <a href="http://www.xinli001.com/info/5673/">读书的迷思之一：为什么要读书？</a><br>
-		                        
-		                    </p>
-		                    
-						</div>
-					</div>
+	
 					
-					<div class="focus_box">
-						<div class="pbox">
-							<a href="http://www.xinli001.com/info/10910/">
-								<img src="http://image.xinli001.com/20140113/163134b752542f3c7b5424.jpg!300x200" width="300" height="200" hover="true" alt="如何成为一个好父亲？">
-							</a>
-						</div>
-						<div class="descs">
-							<a href="http://www.xinli001.com/info/10910/" class="t">如何成为一个好父亲？</a>
-							<p class="intro">
-								成为父亲，是一个男人一生中的特别时刻之一。他们都努力珍惜这段时光，却从未真正意识到自己对孩子的影响。 <span class="fgrey">(2751人路过)</span>
-							</p>
-							
-							<p class="rmd_read">
-		                        <a href="http://www.xinli001.com/info/4558/">世界的不美好，她们不需要这么早知道</a><br>
-		                        
-		                    </p>
-		                    
-						</div>
-					</div>
-					
-					<div class="focus_box">
-						<div class="pbox">
-							<a href="http://www.xinli001.com/site/note/15841/">
-								<img src="http://imagexinli.b0.upaiyun.com/20140108/1718539f976ed2198295dd.jpg!300x200" width="300" height="200" hover="true" alt="【情绪情感—连载】警惕爱情婚姻的雷区及避雷方法指南">
-							</a>
-						</div>
-						<div class="descs">
-							<a href="http://www.xinli001.com/site/note/15841/" class="t">【情绪情感—连载】警惕爱情婚姻的雷区及避雷方法指南</a>
-							<p class="intro">
-								我们该如何终止爱情中的强迫性重复出现的矛盾呢？本文有心理学里超实用的如何和伴侣很好沟通的方法哦！ <span class="fgrey">(576人路过)</span>
-							</p>
-							
-							<p class="rmd_read">
-		                        <a href="http://fm.xinli001.com/99/">心理FM：对爱情坦诚还是保留？</a><br>
-		                        
-		                    </p>
-		                    
-						</div>
-					</div>
 					
 				</div>
 			</div>
 			<div id="focus_links">
 		    	<ul>
-		    		
-		        	<li class=""><a href="javascript:void(0)" target="_self"></a></li>
-		        	
-		        	<li class="act"><a href="javascript:void(0)" target="_self"></a></li>
-		        	
-		        	<li class=""><a href="javascript:void(0)" target="_self"></a></li>
-		        	
-		        	<li class=""><a href="javascript:void(0)" target="_self"></a></li>
-		        	
+		    		<?php 
+		    		$num = sizeof($recommend_entries);
+		    		for($tmp = 0; $tmp < $num; $tmp++):
+		    		?>
+		        	  <li class="act"><a href="javascript:void(0)" target="_self"></a></li>
+		        	<?php endfor ?>
+		    	
 		    	<ul>
 		    	</ul>
 		    	</ul>
@@ -836,9 +780,9 @@ $this->end();
 			<div class = 'content_wrap'>
 				<ul>
 					<?php
-					$num = sizeof($webcontents);
+					$num = sizeof($news_and_anouncements);
 					$temp = 1;
-					foreach($webcontents as $webcontent):
+					foreach($news_and_anouncements as $news_and_anouncements_entry):
 					?>
 						<?php if($num == 1): ?>
                         <li class="cleara clearfix firstLi lastLi">
@@ -849,10 +793,10 @@ $this->end();
                     	<?php else: ?>
                     	<li class="cleara clearfix">
                         <?php endif ?>
-                            <span class="view_num"><?php echo $webcontent['Webcontent']['browse_count']; ?>人看过</span>
+                            <span class="view_num"><?php echo $news_and_anouncements_entry['Webcontent']['browse_count']; ?>人看过</span>
                             <p class="txt_box">
                             <?php 
-                            	echo $this->Html->link($webcontent['Webcontent']['title'], '/webcontents/view/'.$webcontent['Webcontent']['id']);
+                            	echo $this->Html->link($news_and_anouncements_entry['Webcontent']['title'], '/webcontents/view/'.$news_and_anouncements_entry['Webcontent']['id']);
                             ?>
                             </p>
                         </li>

@@ -7,10 +7,26 @@ if($currentUser['User']['role'] == 3)
 else
 {
   echo $this->element('sidebar_admin');
-  $categoryOption = array(1 => '新闻', 7 => '公告');
+  $categoryOption = array_merge(array(1 => '新闻', 7 => '公告'), $categoryOption);
 }
 $this->end(); 
-
+$this->start('css');
+?>
+<style>
+.post_blog a.button
+{
+	float: left;
+	margin-left: 4px;
+	padding: 0px 5px 0px 5px;
+	background-color: rgb(43, 101, 224);
+	-webkit-border-radius: 4px;
+	line-height: 30px;
+	text-align: center;
+	color: #fff;
+}
+</style>
+<?php 
+$this->end();
 ?>
 <h3>个人内容管理</h3>
 
@@ -69,9 +85,15 @@ echo $this->Form->end('查询');
 	<?php echo $this->Html->link($webcontent['Webcontent']['comment_count'].'条评论',
 		'/webcontents/view/'.$webcontent['Webcontent']['id'].'#leave_comment',
 		array('class' => 'blgo_read')); ?>
-	<?php echo $this->Html->link('编辑', array('controller' => 'webontents', 'action' => 'edit', $webcontent['Webcontent']['id']))?>
-	<?php echo $this->Html->link('删除', array('controller' => 'webontents', 'action' => 'delete', $webcontent['Webcontent']['id']))?>
-
+	<?php echo $this->Html->link('编辑', array('controller' => 'webontents', 'action' => 'edit', $webcontent['Webcontent']['id']), array('class' => 'button'))?>
+	<?php echo $this->Form->postLink('删除', array('controller' => 'webontents', 'action' => 'delete', $webcontent['Webcontent']['id']), array('confirm' => '确定删除吗？','class' => 'button'))?>
+	<?php 
+		if($currentUser['User']['role'] == 4)
+		{
+			$recommend_data = array('title' => $webcontent['Webcontent']['title'], 'abstract' => $webcontent['Webcontent']['abstract'], 'url' => '/webcontents/view/'.$webcontent['Webcontent']['id']);
+			echo $this->Form->postLink('添加为首页推荐', array('controller' => 'recommendContents', 'action' => 'add'),  array('data' => array_merge($recommend_data, array('action' => 'autoAdd')), 'confirm' => '确定添加为推荐吗?', 'class' => 'button'));
+		}
+	?>
 	<div class="blgo_developer_icon">
 	<ul>
 		<li><a href="/tags/"><img src="/images/p84.png" alt=""></a></li>
