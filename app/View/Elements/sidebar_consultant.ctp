@@ -22,7 +22,9 @@
     <li>
       <a href="/Documents/index">我的案例</a>
     </li>
-
+    <li>
+      <a href="/CaseArticles/operate">案例文章</a>
+    </li>
     <li><a href="/personalCenter/contentsIndex">我发表的内容</a>
       <ul class="sub_menu">
         <li><a href="/Webcontents/add">新建内容</a></li>

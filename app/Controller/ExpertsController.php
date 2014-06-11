@@ -3,9 +3,10 @@
 class ExpertsController extends AppController {
     public $helpers = array('Html', 'Form');
     public $components = array('Session', 'Paginator');
+    public $uses = array('Contact', 'Expert');
     
     public function index () {
-    	$this->Expert->recursive = 0;
+    	// $this->Expert->recursive = 0;
         $this->set('experts',$this->paginate());
     }
 
@@ -68,6 +69,7 @@ class ExpertsController extends AppController {
     }
 
     public function view($id = null) {
+
         if (!$id) {
             throw new NotFoundException(__('id 为空'));
         }
@@ -79,6 +81,18 @@ class ExpertsController extends AppController {
         }
 
         $this->set('expert', $expert);
+        $user_id = $this->Auth->user('id');
+        $this->set('user_id', $user_id);
+
+        $contacts = $this->Contact->find('all', array(
+            'conditions' => array(
+                'contact.expert_id' => $id,
+                'contact.parent_comment_id' => null,
+                ),
+            'recursive' => 2,
+            'order' => 'Contact.created ASC')
+            );
+        $this->set('contacts', $contacts);
     }
 
     public function delete($id) {
@@ -116,5 +130,45 @@ class ExpertsController extends AppController {
             $this->Session->setFlash(__('你的信息修改失败,请重新操作或注销!'));
             return $this->redirect(array('action' => 'operate'));
         } 
+    }
+
+    public function postComment($pageId = NULL, $parentCommentId = NULL) {
+        if($this->request->is('get')) {
+            if($pageId == NULL) {
+                // should pop up some error massage and return to previous page
+                return $this->redirect(array('action' => 'index'));
+            }
+            $user_id = $this->_getCurrentUserID();
+            $this->set('expertId', $pageId);
+            $this->set('commentorId', $user_id);
+            if($parentCommentId != NULL) {
+                $parentComment = $this->Contact->find('first',array(
+                    'conditions' => array('Contact.id' => $parentCommentId),
+                    'recursive' => 0));
+                if($parentComment) {
+                    $this->set('parentComment',$parentComment);
+                    // WebcontentsController::_echoArray($parentComment);
+                } else {
+                    // should pop up some error massage and return to previous page
+                }
+            }
+        }
+        
+        if ($this->request->is('post')) {
+            $this->request->data['Contact']['commentor_id'] = $this->_getCurrentUserID();
+            // WebcontentsController::_echoArray($this->request->data);
+            $this->Contact->create();
+            if ($this->Contact->save($this->request->data)) {
+                return $this->redirect(array('action' => 'view',
+                    $this->request->data['Contact']['expert_id']));
+            } else {
+                debug($this->Contact->validationErrors);
+                $this->Session->setFlash(__('Unable to add the tag.'));
+            }
+        }
+    }
+
+    protected function _getCurrentUserID() {
+        return $this->Auth->user('id');
     }
 }
