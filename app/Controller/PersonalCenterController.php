@@ -444,7 +444,12 @@ class PersonalCenterController extends AppController
 					        ),
 					        'recursive' => 1
 					    );
- 		$condition = array('user_id' => $this->Auth->user('id'));
+
+ 		$condition = array();
+ 		// consultant only see his own contents
+ 		if(parent::checkConsultant())
+ 			$condition = array('user_id' => $this->Auth->user('id'));
+
  		if ($this->request->is(array('post', 'put'))) 
  		{
  			$searchInfo = $this->request->data;

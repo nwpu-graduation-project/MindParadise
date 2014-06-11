@@ -171,6 +171,21 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `mind_paradise`.`recommend_contents`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mind_paradise`.`recommend_contents` ;
+
+CREATE  TABLE IF NOT EXISTS `mind_paradise`.`recommend_contents` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `title` VARCHAR(30) NOT NULL ,
+  `abstract` VARCHAR(200) NOT NULL ,
+  `picture` VARCHAR(150) NOT NULL ,
+  `url` VARCHAR(255) NOT NULL ,
+  `listorder` INT(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
 -- Table `mind_paradise`.`comments`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `mind_paradise`.`comments` ;
