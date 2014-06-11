@@ -95,7 +95,7 @@ class WebcontentsController extends AppController {
 		if ($this->request->is('post')) {
 			
 			// webcontentPage
-			$this->request->data['Webcontent']['path'] = htmlspecialchars(stripcslashes(array_pop($this->request->data)));
+			$this->request->data['Webcontent']['path'] = $this->_saveToFile(array_pop($this->request->data));
 			
 			// plainText
 			$plainText = array_pop($this->request->data);
