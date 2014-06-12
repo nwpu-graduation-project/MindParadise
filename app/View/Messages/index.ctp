@@ -24,8 +24,8 @@ foreach($messages as $message):
   {
     case 1: $str = '回复了你';break;
     case 2: $str = '发表了评论';break;
-    case 3: $str = '答复了你';break;
-    case 4: $str = '向您咨询';break;
+    case 3: $str = '向您咨询';break;
+    case 4: $str = '答复了你';break;
     default:
   }
 ?>

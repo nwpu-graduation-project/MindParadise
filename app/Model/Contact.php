@@ -5,7 +5,7 @@ class Contact extends AppModel {
 	public $belongsTo = array(
 		'expert' => array(
 			'className' => 'Expert',
-			'fields' => array('id', 'realname'),
+			'fields' => array('id', 'consultant_id', 'realname'),
 			'counterCache' => true),
 		'Commentor' => array(
 			'className' => 'User',
@@ -30,12 +30,12 @@ class Contact extends AppModel {
 		)
 	);
 
-	// public function afterSave($created, $options = Array())
-	// {
-	// 	$message = new Message();
-	// 	$message->createCommentMessage($this->read());
-	// 	parent::afterSave();
-	// }
+	public function afterSave($created, $options = Array())
+	{
+		$message = new Message();
+		$message->createContactMessage($this->read());
+		parent::afterSave();
+	}
 }
 
 ?>

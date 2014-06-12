@@ -23,7 +23,6 @@
       <a href="/personalCenter/userIndex">用户管理</a>
        <ul class="sub_menu">
         <li><a href="/personalCenter/userAdd">添加用户</a></li>
-        <li><a href="/Experts/add">添加咨询师</a></li>
       </ul>
     </li>
 
@@ -35,7 +34,7 @@
     </li>
 
     <li>
-      <a href='/personalCenter/contentsIndex'>新闻公告管理</a>
+      <a href='/personalCenter/contentsIndex'>内容管理</a>
       <ul class="sub_menu">
         <li><a href="/webcontents/add">添加新闻公告</a></li>
       </ul>
