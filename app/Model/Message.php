@@ -1,5 +1,7 @@
 <?php
+App::uses('User','Model');
 App::uses('Comment','Model');
+App::uses('Contact','Model');
 class Message extends AppModel
 {
 	public $belongsTo = array(
@@ -85,9 +87,58 @@ class Message extends AppModel
 
 	}
 
-	public function createCaseMessage($case_detail_id)
+	public function createContactMessage($contact)
 	{
+		$type = null;
+		$user_id = null;
+		if($contact['Contact']['parent_comment_id'])
+		{
 
+			if($contact['Contact']['commentted_user_id'])
+				$user_id 			= $contact['Contact']['commentted_user_id'];
+			else
+			{
+				$contact_obj = new Contact();
+				$res = $contact_obj->find('first',array(
+						'fields' => array('commentor_id'),
+						'recursive' => -1,
+						'condition' => array('id' => $contact['Contact']['parent_comment_id']),
+					));
+	
+				$user_id = $res['Contact']['commentor_id'];
+			}
+
+		    $user_obj = new User();
+			$commentted_user = $user_obj->find('first', array(
+						'fields' => array('role'),
+						'recursive' => -1,
+						'condition' => array('id' => $user_id)
+					));
+
+			if($commentted_user['User']['role'] == 3)
+			{
+				// type: 留言
+				$type = 3;
+			}
+			else
+			{
+				// type: 答复
+				$type = 4;
+			}
+		}
+		else
+		{
+			// type: 留言
+			$type 	 			= 3;
+			$user_id 			= $contact['expert']['consultant_id'];
+		}
+		$abstract			= $contact['Contact']['content'];
+		$trigger_user_id 	= $contact['Contact']['commentor_id'];
+		$trigger_username 	= $contact['Commentor']['username'];
+		$link_title 		= '咨询师页面';
+		$link_url 			= '/experts/view/'.$contact['expert']['id'].'#'.$contact['expert']['id'].'_'.$contact['Contact']['id'];
+		
+		return $this->createMessage($type, $user_id, $abstract, $trigger_user_id, $trigger_username, $link_title, $link_url);
 	}
 }
 ?>

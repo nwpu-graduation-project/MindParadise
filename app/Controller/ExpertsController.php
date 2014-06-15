@@ -89,8 +89,8 @@ class ExpertsController extends AppController {
 
         $contacts = $this->Contact->find('all', array(
             'conditions' => array(
-                'contact.expert_id' => $id,
-                'contact.parent_comment_id' => null,
+                'Contact.expert_id' => $id,
+                'Contact.parent_comment_id' => null,
                 ),
             'recursive' => 2,
             'order' => 'Contact.created ASC')
