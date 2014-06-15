@@ -6,13 +6,16 @@ class ExpertsController extends AppController {
     public $uses = array('Contact', 'Expert');
     
     public function index () {
-    	// $this->Expert->recursive = 0;
+    	$this->Expert->recursive = 0;
         $this->set('experts',$this->paginate());
     }
 
     public function operate () {
         $this->Expert->recursive = 0;
         $this->set('experts',$this->paginate());
+
+        $experts = $this->Expert->find('all');
+        $this->set('experts', $experts);
     }
 
     public function add() {

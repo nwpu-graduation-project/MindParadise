@@ -1,7 +1,10 @@
 <?php 
+App::uses('Folder', 'Utility');
+App::uses('File', 'Utility');
 	class CustomersController extends AppController {
 		public $helpers = array('Html', 'Form', 'Session');
 		public $components = array('Session');
+		public $uses = array('Document','Customer');
 
 		public function index() {
 			$this->set('customers', $this->Customer->find('all'));
@@ -77,7 +80,31 @@
         	}
 
         	$this->set('customer', $customer);
+
+        	$titles = $this->Document->find('all', array('fields' => 'title'));
+        	$this->_saveToFile($titles);
+
 		}
+
+		protected function _saveToFile($contents) {
+			$dir = new Folder('./data');
+			$file = new File($dir->pwd().'/localdata'.'.txt', true, 0644);
+			if($file->open('wb')) {
+				$file->write('var titles = [');
+				foreach ($contents as &$content) {
+
+					$file->write("'".$content['Document']['title']."',");
+				}
+				$file->write('];');
+				$file->close();
+				return $file->pwd();
+	    	} else {
+	        	echo "open ".$file->pwd()." failed";
+				$file->close();
+				return NULL;
+			}
+		}
+	
 
 	}
 

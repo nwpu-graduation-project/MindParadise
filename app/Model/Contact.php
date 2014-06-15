@@ -16,7 +16,7 @@ class Contact extends AppModel {
 			'foreignKey' => 'commentted_user_id',
 			'fields' => array('username')),
  		'ParentComment' => array(
-			'className' => 'Comment',
+			'className' => 'Contact',
 			'foreignKey' => 'parent_comment_id',
 			'fields' => array('content', 'commentor_id'),
 			),

@@ -24,7 +24,7 @@ if(!isset($parentComment)) {
 echo $this->Form->input('commentor_id',array('label' => false, 'type'=>'hidden', 'value' => $commentorId));
 echo $this->Form->input('content', array('label' => false, 'rows' => '3', 'class' => 'coment_message'));
 echo $this->Form->input('case_article_id',array('label' => false, 'type'=>'hidden', 'value' => $caseArticleId));
-echo $this->Form->end('Save Post');
+echo $this->Form->end('保存');
 
 ?>
 </div>

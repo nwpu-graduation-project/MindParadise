@@ -12,6 +12,7 @@ switch($currentUser['User']['role'])
 $this->end();
 ?>
 <?php $this->start('css');?>
+<link rel="stylesheet" type="text/css" href="/css/jquery.autocomplete.css" />
 <style>
 .text{
 	margin-left: 0px;
@@ -19,6 +20,16 @@ $this->end();
 }
 </style>
 <?php $this->end();?>
+<?php $this->start('script'); ?>
+<script type="text/javascript" src="/js/jquery.js"></script> 
+<script type='text/javascript' src='/js/jquery.autocomplete.js'></script>
+<script type="text/javascript" src="/data/localdata.txt"></script> 
+<?php $this->end();?>
+<script type="text/javascript">
+	$().ready(function() {
+		$("#category").focus().autocomplete(titles);
+	});
+</script>
 
 <center><h2>咨询诊断书</h2></center><br>
 <div class='main'>
@@ -66,10 +77,8 @@ $this->end();
 			<td>学历:<?php echo h($customer['Customer']['education']); ?></td>
 		</tr>
 		<tr>
-			<td colSpan='4'>现在住址:<?php echo h($customer['Customer']['present_address']); ?></td>
-		</tr>
-		<tr>
-			<td colSpan='4'><?php echo $this->Form->input('Document.title', array('label' => '标题:', 'size' => '66')); ?></td>
+			<td colSpan='2'>现在住址:<?php echo h($customer['Customer']['present_address']); ?></td>
+			<td colSpan='2'><?php echo $this->Form->input('Document.title', array('label' => '标题:', 'id' => 'category', 'size' => '27')); ?></td>
 		</tr>
 		<tr>
 			<td valign='center' colSpan='4'><?php echo $this->Form->input('Document.abstract', array('label' => '摘要:', 'type' => 'textarea', 'rows' => '3', 'cols' => '66')); ?></td>

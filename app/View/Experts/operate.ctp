@@ -1,10 +1,8 @@
-<html>
-<body>
+
 <!-- File: /app/View/Experts/operate.ctp -->
 <!-- 这个页面只允许管理员访问以便增加,修改和删除专家成员 -->
 
 <h1>专家成员列表</h1>
-<h2><?php echo $this->Html->link('新增专家', array('controller' => 'experts', 'action' => 'add')); ?><br></h2>
 <table>
 	<tr>
 		<th>专家ID</th>
@@ -40,5 +38,3 @@
 <?php endforeach; ?>
 <?php unset($expert); ?>
 </table>
-</body>
-</html>

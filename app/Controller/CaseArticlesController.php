@@ -45,6 +45,11 @@ class CaseArticlesController extends AppController {
             'order' => 'CaseComment.created ASC')
             );
         $this->set('caseComments', $caseComments);
+
+        $count = $this->CaseArticle->findById($id);
+        $count_number = $count['CaseArticle']['count'];
+        $count_number = $count_number + 1;
+        $this->CaseArticle->updateAll(array('CaseArticle.count'=>$count_number),array('CaseArticle.id'=>$id));
     }
     
     public function add() {
@@ -161,6 +166,12 @@ class CaseArticlesController extends AppController {
         if ($this->request->is('post')) {
             $this->request->data['CaseComment']['commentor_id'] = $this->_getCurrentUserID();
             // WebcontentsController::_echoArray($this->request->data);
+
+            $comment = $this->CaseArticle->findById($pageId);
+            $commentCount = $comment['CaseArticle']['comment_number'];
+            $commentCount = $commentCount + 1;
+            $this->CaseArticle->updateAll(array('CaseArticle.comment_number' => $commentCount),array('CaseArticle.id' => $pageId));
+
             $this->CaseComment->create();
             if ($this->CaseComment->save($this->request->data)) {
                 return $this->redirect(array('action' => 'view',

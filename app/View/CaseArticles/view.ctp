@@ -22,7 +22,7 @@
 						
 						<h2><?php echo h($caseArticle['CaseArticle']['title']); ?></h2>
 						
-						<span>发布于:<?php echo h($caseArticle['CaseArticle']['created']); ?>&nbsp;浏览</span><?php echo h($caseArticle['CaseArticle']['count']); ?>次&nbsp;评论<?php echo h($caseArticle['CaseArticle']['count']); ?>条<br>
+						<span>发布于:<?php echo h($caseArticle['CaseArticle']['created']); ?>&nbsp;浏览</span><?php echo h($caseArticle['CaseArticle']['count']); ?>次&nbsp;评论<?php echo h($caseArticle['CaseArticle']['comment_number']); ?>条<br>
 						作者:<span class="info"><?php echo h($caseArticle['CaseArticle']['source']); ?></span><br><br>
 						<h4><b>导读:<?php echo h($caseArticle['CaseArticle']['abstract']); ?></b></h4><br>
 	

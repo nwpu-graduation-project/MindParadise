@@ -22,6 +22,11 @@ $this->end();
 <h2>案例分类显示</h2>
 <form method='post' action='/Documents/display/'>
 <select name="title">
+	<?php 
+		if ($title) {
+			echo "<option value='$title'>$title</option>";
+		}
+	?>
 	<option value=''>-请选择-</option>
 <?php foreach ($titles as $title ): ?>
 	<option value='<?php echo $title['Document']['title']; ?>'><?php echo $title['Document']['title']; ?></option>
