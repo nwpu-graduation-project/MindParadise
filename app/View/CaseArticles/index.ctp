@@ -53,7 +53,7 @@
                                 </figure>
                                 <div class="extra-wrap">
                                     <p class="margin-bot"><font color='green'>导读:&nbsp;</font><?php echo $caseArticle['CaseArticle']['abstract']; ?></p>
-                                    <div class="wrapper1" style="margin-top:180px">
+                                    <div class="wrapper1" style="margin-bottom:30%">
                                         <?php $id = $caseArticle['CaseArticle']['id'];
                                         echo "<a class='button2 fleft' href='/caseArticles/view/$id'>More</a>";
                                         ?>
@@ -64,23 +64,6 @@
                         </div>
                         <?php endforeach; ?>
                         <?php unset($caseArticle); ?>  
-                    </article>
-                    <article class="grid_3">
-                        <h4 class="indent-bot"><br>时间排序</h4>
-                        <h6 class="p0">2014</h6>
-                        <dl class="news indent-bot">
-                            <dt><a href="#">12月</a></dt><br>
-                            <dd><a href="#">11月</a></dd><br>
-                            <dd><a href="#">10月</a></dd><br>
-                            <dd><a href="#">9月</a></dd><br>
-                            <dd><a href="#">8月</a></dd><br>
-                            <dd><a href="#">7月</a></dd><br>
-                            <dd><a href="#">6月</a></dd><br>
-                        </dl>
-                        <h6 class="p0"><a class="color-2" href="#">2013</a></h6><br>
-                        <h6 class="p0"><a class="color-2" href="#">2012</a></h6><br>
-                        <h6 class="p0"><a class="color-2" href="#">2011</a></h6><br>
-                        <h6 class="p0"><a class="color-2" href="#">2010</a></h6><br>
                     </article>
                 </div>
             </div>

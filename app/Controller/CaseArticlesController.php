@@ -9,12 +9,19 @@ class CaseArticlesController extends AppController {
     public $uses = array('CaseArticle', 'Expert', 'SearchIndex', 'CaseComment');
 
     public $paginate = array(
-        'limit' => 3,
+        'limit' => 5,
         'order' => array(
             'CaseArticle.created' => 'desc'
         ),
         'recursive' => 1
     );
+
+    public function beforeFilter() {
+        $this->Auth->allow();
+        $this->Auth->deny('add', 'delete','operate','deleteComment');
+        //$this->Auth->autoRedirect = false;
+        parent::beforeFilter();
+    }
     
     public function index () {
         $this->Paginator->settings = $this->paginate;
@@ -22,8 +29,10 @@ class CaseArticlesController extends AppController {
     }
 
     public function operate () {
-        $this->CaseArticle->recursive = 0;
-        $this->set('caseArticles',$this->paginate());
+        $this->Paginator->settings = $this->paginate;
+        $this->set('caseArticles', $this->Paginator->paginate('CaseArticle'));
+        // $this->CaseArticle->recursive = 0;
+        // $this->set('caseArticles',$this->paginate());
     }
     
     public function view($id = null) {
@@ -122,13 +131,20 @@ class CaseArticlesController extends AppController {
         if ($this->request->is('get')) {
             throw new MethodNotAllowedException();
         }
-        if ($this->CaseArticle->delete($id)) {
-            $this->Session->setFlash(__('ID: %s 删除成功!', h($id)));
-            return $this->redirect(array('action' => 'operate'));
+        $tmp = $this->CaseComment->find('all', array('CaseComment.case_article_id'=>$id));
+        if (!$tmp) {
+            if ($this->CaseArticle->delete($id)) {
+                $this->Session->setFlash(__('ID: %s 删除成功!', h($id)));
+                return $this->redirect(array('action' => 'operate'));
+            } else {
+                $this->Session->setFlash(__('ID: %s 删除失败!', h($id)));
+                return $this->redirect(array('action' => 'operate'));
+            }
         } else {
-            $this->Session->setFlash(__('ID: %s 删除失败!', h($id)));
-            return $this->redirect(array('action' => 'operate'));
+                $this->Session->setFlash(__('该篇文章有评论未删除,请先删除评论!'));
+                return $this->redirect(array('action' => 'operate'));
         }
+        
     }
 
     public function getCaseArticleById($value) {
@@ -185,6 +201,19 @@ class CaseArticlesController extends AppController {
 
     protected function _getCurrentUserID() {
         return $this->Auth->user('id');
+    }
+
+    public function deleteComment($id) {
+        if ($this->request->is('get')) {
+            throw new MethodNotAllowedException();
+        }
+        $caseComents = $this->CaseComment->find('all', array('CaseComment.case_article_id'=>$id));
+        foreach ($caseComents as $caseComent) {
+            $case_id = $caseComent['CaseComment']['id'];
+            $this->CaseComment->delete($case_id);
+        }
+        $this->Session->setFlash(__('该文章下的所有评论删除成功!'));
+        return $this->redirect(array('action' => 'operate'));
     }
 
 }

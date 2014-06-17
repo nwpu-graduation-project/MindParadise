@@ -42,7 +42,9 @@ $this->end();
                 array('controller' => 'caseArticles', 'action' => 'view', $caseArticle['CaseArticle']['id'])); ?>
         </td>
         <td><?php echo $caseArticle['CaseArticle']['count']; ?></td>
-        <td><?php echo $caseArticle['CaseArticle']['created']; ?></td>
+        <td><?php $date=$caseArticle['CaseArticle']['created'];
+            $formatDate = substr($date, 0,10);
+            echo $formatDate; ?></td>
         <td>
         <?php
         echo $this->Html->link('修改', array('action' => 'edit', $caseArticle['CaseArticle']['id']));
@@ -52,6 +54,10 @@ $this->end();
         echo '&nbsp&nbsp&nbsp&nbsp';
         echo $this->Form->postLink('查看',
             array('action' => 'view', $caseArticle['CaseArticle']['id']));
+        echo '&nbsp&nbsp&nbsp&nbsp';
+        echo $this->Form->postLink('删除评论',
+            array('action' => 'deleteComment', $caseArticle['CaseArticle']['id']), array('confirm' => '你确定要删除该文章下的评论吗?'));
+        echo '&nbsp&nbsp&nbsp&nbsp';
         ?>
         </td>
     </tr>
@@ -59,4 +65,38 @@ $this->end();
     <?php unset($caseArticle);?>
     
 </table>
+<div id="page_navigation">
+    <div class="center_frame">
+        <ul class="blog_page_nav">
+<?php
+echo $this->Paginator->prev(
+  __('上', true),
+  array(
+    'tag' => 'li',
+    'class' => 'page_prev',
+  )
+);
+?>
+            
+<?php
+echo $this->Paginator->numbers(array(
+        'separator' => NULL,
+        'tag' => 'li',
+        'class' => 'page_number',
+        'currentClass' => 'current',
+        'currentTag' => 'a')
+    );
+?>
 
+<?php
+echo $this->Paginator->next(
+  __('下', true),
+  array(
+    'tag' => 'li',
+    'class' => 'page_next',
+  )
+);
+?>
+        </ul>
+    </div>
+</div>

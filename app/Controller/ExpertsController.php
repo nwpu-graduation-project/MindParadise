@@ -5,6 +5,14 @@ class ExpertsController extends AppController {
     public $components = array('Session', 'Paginator');
     public $uses = array('Contact', 'Expert');
     
+
+    public function beforeFilter() {
+        $this->Auth->allow();
+        $this->Auth->deny('add', 'delete','operate','postComment','edit');
+        //$this->Auth->autoRedirect = false;
+        parent::beforeFilter();
+    }
+
     public function index () {
     	$this->Expert->recursive = 0;
         $this->set('experts',$this->paginate());
@@ -97,6 +105,8 @@ class ExpertsController extends AppController {
             );
         $this->set('contacts', $contacts);
     }
+
+
 
     public function delete($id) {
         if ($this->request->is('get')) {

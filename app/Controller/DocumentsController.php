@@ -1,26 +1,37 @@
 <?php 
 class DocumentsController extends AppController{
 	public $helpers = array('Html', 'Form', 'Session');
-	public $components = array('Session');
+	public $components = array('Session', 'Paginator');
 	public $uses = array('Customer', 'Document', 'Expert');
 
+	public $paginate = array(
+        'limit' => 10,
+        'order' => array(
+            'Document.created' => 'desc'
+        ),
+        'recursive' => 1
+    );
+
 	public function index() {
+
+		$this->Paginator->settings = $this->paginate;
+        $this->set('documents', $this->Paginator->paginate('Document'));
 
 		$titles = $this->Document->find('all', array('fields' => 'title'));
 		$this->set('titles', $titles);
 
-		$this->set('documents', $this->Document->find('all'));
-		if ($this->request->is('get')) {
+		// $this->set('documents', $this->Document->find('all'));
+		// if ($this->request->is('get')) {
 			
-			// return $this->redirect(array('action' => 'index'));
-		}
+		// 	// return $this->redirect(array('action' => 'index'));
+		// }
 
-		if ($this->request->is('post')) {
-			$title = $this->request->data['title'];
-			$this->Session->setFlash($title);
-			$this->set('documents', $this->Document->find('all', array('conditions' => array('Document.title' => $title))));
-			// return $this->redirect(array('action' => 'index'));
-		}
+		// if ($this->request->is('post')) {
+		// 	$title = $this->request->data['title'];
+		// 	$this->Session->setFlash($title);
+		// 	$this->set('documents', $this->Document->find('all', array('conditions' => array('Document.title' => $title))));
+		// 	// return $this->redirect(array('action' => 'index'));
+		// }
 
 
 		//$case_id = $this->Document->find('all', array('fields' => array('case_id')));
@@ -115,6 +126,11 @@ class DocumentsController extends AppController{
 	}
 
 	public function display() {
+		$this->Paginator->settings = $this->paginate;
+        $this->set('documents', $this->Paginator->paginate('Document'));
+
+        $titles = $this->Document->find('all', array('fields' => 'title'));
+		$this->set('titles', $titles);
 		if ($this->request->is('post')) {
 			$titles = $this->Document->find('all', array('fields' => 'title'));
 			$this->set('titles', $titles);
@@ -123,7 +139,8 @@ class DocumentsController extends AppController{
 				$this->set('title', $title);
 				$this->set('documents', $this->Document->find('all', array('conditions' => array('Document.title' => $title))));
 			} else {
-				$this->set('documents', $this->Document->find('all'));
+				$this->Paginator->settings = $this->paginate;
+        		$this->set('documents', $this->Paginator->paginate('Document'));
 			}
 		}
 	}

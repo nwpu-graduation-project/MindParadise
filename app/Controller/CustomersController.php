@@ -3,11 +3,21 @@ App::uses('Folder', 'Utility');
 App::uses('File', 'Utility');
 	class CustomersController extends AppController {
 		public $helpers = array('Html', 'Form', 'Session');
-		public $components = array('Session');
+		public $components = array('Session', 'Paginator');
 		public $uses = array('Document','Customer');
 
+		public $paginate = array(
+	        'limit' => 10,
+	        'order' => array(
+	            'Document.created' => 'desc'
+	        ),
+	        'recursive' => 1
+	    );
+
 		public function index() {
-			$this->set('customers', $this->Customer->find('all'));
+			$this->Paginator->settings = $this->paginate;
+        	$this->set('customers', $this->Paginator->paginate('Customer'));
+			// $this->set('customers', $this->Customer->find('all'));
 		}
 
 		public function add() {
@@ -58,14 +68,34 @@ App::uses('File', 'Utility');
 			if ($this->request->is('get')) {
 				throw new MethodNotAllowedException();
 			}
-
-			if ($this->Customer->delete($id)) {
-				$this->Session->setFlash(__('id为%s的客户资料已被成功删除', h($id)));
-				return $this->redirect(array('action' => 'index'));
+			$tmp = $this->Document->find('all', array('Document.case_id'=>'$id'));
+			if (!$tmp) {
+				if ($this->Customer->delete($id)) {
+					$this->Session->setFlash(__('id为%s的客户资料已被成功删除', h($id)));
+					return $this->redirect(array('action' => 'index'));
+				} else {
+					$this->Session->setFlash(__('id为%s的客户资料删除失败', h($id)));
+					return $this->redirect(array('action' => 'index'));
+				}
 			} else {
-				$this->Session->setFlash(__('id为%s的客户资料删除失败', h($id)));
-				return $this->redirect(array('action' => 'index'));
+                $this->Session->setFlash(__('该篇客户有案例未删除,请先删除案例!'));
+                return $this->redirect(array('action' => 'index'));
+        	}
+			
+		}
+
+		public function deleteCase($id) {
+			if ($this->request->is('get')) {
+				throw new MethodNotAllowedException();
 			}
+
+			$caseDetails = $this->Document->find('all', array('Document.case_id'=>$id));
+        	foreach ($caseDetails as $caseDetail) {
+           	 $case_id = $caseDetail['Document']['id'];
+            	$this->Document->delete($case_id);
+        	}
+        	$this->Session->setFlash(__('该客户下的所有案例删除成功!'));
+        	return $this->redirect(array('action' => 'index'));
 		}
 
 		public function view($id) {

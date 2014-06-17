@@ -75,3 +75,38 @@ $this->end();
 <?php endforeach; ?>
 </table>
 </center>
+<div id="page_navigation">
+    <div class="center_frame">
+        <ul class="blog_page_nav">
+<?php
+echo $this->Paginator->prev(
+  __('上', true),
+  array(
+    'tag' => 'li',
+    'class' => 'page_prev',
+  )
+);
+?>
+            
+<?php
+echo $this->Paginator->numbers(array(
+        'separator' => NULL,
+        'tag' => 'li',
+        'class' => 'page_number',
+        'currentClass' => 'current',
+        'currentTag' => 'a')
+    );
+?>
+
+<?php
+echo $this->Paginator->next(
+  __('下', true),
+  array(
+    'tag' => 'li',
+    'class' => 'page_next',
+  )
+);
+?>
+        </ul>
+    </div>
+</div>
