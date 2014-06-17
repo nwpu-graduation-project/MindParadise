@@ -1,13 +1,39 @@
 <?php 
 class DocumentsController extends AppController{
 	public $helpers = array('Html', 'Form', 'Session');
-	public $components = array('Session');
+	public $components = array('Session', 'Paginator');
 	public $uses = array('Customer', 'Document', 'Expert');
+
+	public $paginate = array(
+        'limit' => 10,
+        'order' => array(
+            'Document.created' => 'desc'
+        ),
+        'recursive' => 1
+    );
 
 	public function index() {
 
-		$this->set('documents', $this->Document->find('all'));
-		
+		$this->Paginator->settings = $this->paginate;
+        $this->set('documents', $this->Paginator->paginate('Document'));
+
+		$titles = $this->Document->find('all', array('fields' => 'title'));
+		$this->set('titles', $titles);
+
+		// $this->set('documents', $this->Document->find('all'));
+		// if ($this->request->is('get')) {
+			
+		// 	// return $this->redirect(array('action' => 'index'));
+		// }
+
+		// if ($this->request->is('post')) {
+		// 	$title = $this->request->data['title'];
+		// 	$this->Session->setFlash($title);
+		// 	$this->set('documents', $this->Document->find('all', array('conditions' => array('Document.title' => $title))));
+		// 	// return $this->redirect(array('action' => 'index'));
+		// }
+
+
 		//$case_id = $this->Document->find('all', array('fields' => array('case_id')));
 		//var_dump($case_id);
 		//$customer_name = $this->Customer->find('list', array('fields' => array('Customer.first_name', 'Customer.family_name'),
@@ -33,6 +59,8 @@ class DocumentsController extends AppController{
 		$case_id = $this->Document->find('first', array('fields' => 'case_id', 'conditions' => array('id' => $id)));
 		$customer = $this->Customer->findById($case_id['Document']['case_id']);
 		$this->set('customer', $customer);
+
+
 
 	}
 
@@ -94,6 +122,26 @@ class DocumentsController extends AppController{
 		} else {
 			$this->Session->setFlash(__('id为%s删除失败', h($id)));
 			return $this->redirect(array('action' => 'index'));
+		}
+	}
+
+	public function display() {
+		$this->Paginator->settings = $this->paginate;
+        $this->set('documents', $this->Paginator->paginate('Document'));
+
+        $titles = $this->Document->find('all', array('fields' => 'title'));
+		$this->set('titles', $titles);
+		if ($this->request->is('post')) {
+			$titles = $this->Document->find('all', array('fields' => 'title'));
+			$this->set('titles', $titles);
+			$title = $this->request->data['title'];
+			if ($title) {
+				$this->set('title', $title);
+				$this->set('documents', $this->Document->find('all', array('conditions' => array('Document.title' => $title))));
+			} else {
+				$this->Paginator->settings = $this->paginate;
+        		$this->set('documents', $this->Paginator->paginate('Document'));
+			}
 		}
 	}
 

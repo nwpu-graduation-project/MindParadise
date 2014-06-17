@@ -34,6 +34,7 @@ $this->end();
 		<th>性别</th>
 		<th>修改</th>
 		<th>删除</th>
+		<th>删除案例</th>
 		<th>创建案例</th>
 		<th>创建时间</th>
 		<th>更新时间</th>
@@ -56,16 +57,53 @@ $this->end();
 			<?php echo $this->Form->postLink('删除', array('action' => 'delete', $customer['Customer']['id']), array('confirm' => '你确定要删除吗?'));?>
 		</td>
 		<td>
+			<?php echo $this->Form->postLink('删除案例', array('action' => 'deleteCase', $customer['Customer']['id']), array('confirm' => '你确定要删除案例吗?'));?>
+		</td>
+		<td>
 			<?php echo $this->Form->postLink('创建案例', array('action' => 'view', $customer['Customer']['id']));?>
 		</td>
 		<td>
-			<?php echo $customer['Customer']['created']; ?>
+			<?php $date=$customer['Customer']['created']; echo substr($date, 0,10);?>
 		</td>
 		<td>
-			<?php echo $customer['Customer']['modified']; ?>
+			<?php $date=$customer['Customer']['modified']; echo substr($date, 0,10);?>
 		</td>
 	</tr>
 <?php endforeach; ?>
 </table>
 </center>
+<div id="page_navigation">
+    <div class="center_frame">
+        <ul class="blog_page_nav">
+<?php
+echo $this->Paginator->prev(
+  __('上', true),
+  array(
+    'tag' => 'li',
+    'class' => 'page_prev',
+  )
+);
+?>
+            
+<?php
+echo $this->Paginator->numbers(array(
+        'separator' => NULL,
+        'tag' => 'li',
+        'class' => 'page_number',
+        'currentClass' => 'current',
+        'currentTag' => 'a')
+    );
+?>
 
+<?php
+echo $this->Paginator->next(
+  __('下', true),
+  array(
+    'tag' => 'li',
+    'class' => 'page_next',
+  )
+);
+?>
+        </ul>
+    </div>
+</div>

@@ -1,6 +1,6 @@
 <div id='register_details'>
 	<?php
-	echo $this->Form->create(array('action' => 'register'));
+	echo $this->Form->create('User',array('action' => 'register'));
 	?>
 	<div style="height:54px" ><h6>Register</h6> </div>
 	<?php

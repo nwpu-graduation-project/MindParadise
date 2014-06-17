@@ -40,7 +40,8 @@ $this->end();
 			
 		</tr>
 		<tr>
-			<td><?php echo $this->Form->input('birthday', array('label' => '出生日期:', 'size' => '4')); ?></td>
+			<td> <?php echo $this->Form->input('birthday', array('label' => '出生日期:', 'size' => '4'); ?>
+				</td>
 			<td><?php echo $this->Form->input('phone_number', array('label' => '电话号码:', 'size' => '5')); ?></td>
 			<td><?php echo $this->Form->input('profession', array('label' => '职业:', 'size' => '7')); ?></td>
 			<td><?php echo $this->Form->input('nationality', array('label' => '民族:', 'size' => '7'));
