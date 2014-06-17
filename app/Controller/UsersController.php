@@ -3,7 +3,7 @@ App::uses('CakeEmail', 'Network/Email');
 
 class UsersController extends AppController
 {
-  public $uses = array('Webcontent', 'RecommendContent');
+  public $uses = array('Webcontent', 'RecommendContent', 'Expert', 'CaseArticle', 'EncyclopediaEntry');
   /**
    *      * Runs automatically before the controller action is called
    *           */
@@ -39,8 +39,46 @@ class UsersController extends AppController
               'order' => 'RecommendContent.listorder'
         ));
 
+
+      $experts = $this->Expert->find('all', array(
+          'limit' => 8,
+          'order' => 'id'
+        ));
+
+      $popular_cases = $this->CaseArticle->find('all', array(
+          'limit' => 6,
+          'order' => 'count'
+        ));
+
+      $popular_entries = $this->EncyclopediaEntry->find('all', array(
+          'limit' => 6,
+          //'order' => 'browse_num'
+        ));
+
+      $popular_article = $this->Webcontent->find('first', array(
+          'conditions' => array('Webcontent.category' => 2),
+          'order' => 'browse_count',
+        ));
+
+      $popular_picture = $this->Webcontent->find('first', array(
+          'conditions' => array('Webcontent.category' => 4),
+          'order' => 'browse_count',
+        ));
+
+      $popular_vedio  = $this->Webcontent->find('first', array(
+          'conditions' => array('Webcontent.category' => 3),
+          'order' => 'browse_count',
+        ));
+
+
       $this->set('news_and_anouncements', $news_and_anouncements);
       $this->set('recommend_entries', $recommend_entries);
+      $this->set('experts', $experts);
+      $this->set('popular_cases', $popular_cases);
+      $this->set('popular_entries', $popular_entries);
+      $this->set('popular_article', $popular_article);
+      $this->set('popular_picture', $popular_picture);
+      $this->set('popular_vedio', $popular_vedio);
   }
 
 
@@ -63,7 +101,7 @@ class UsersController extends AppController
       );
 
       if ($this->User->save($this->data)) {
-        $this->Session->setFlash(__('Your account has been created.', true));
+        $this->Session->setFlash(__('账户已被创建.', true));
         // Redirect the user
         $id = $this->User->id;
         $this->request->data['User'] = array_merge(
@@ -73,7 +111,7 @@ class UsersController extends AppController
         $this->Auth->login($this->request->data['User']);
         $this->redirect('/users/index');
       } else {
-        $this->Session->setFlash(__('Your account could not be created.', true));
+        $this->Session->setFlash(__('无法创建用户.', true));
       }
     }
   }
@@ -104,7 +142,7 @@ class UsersController extends AppController
       } 
       else 
       {
-        $this->Session->setFlash('Login is incorrect');
+        $this->Session->setFlash('登录失败');
       }
     }
        
@@ -134,7 +172,7 @@ class UsersController extends AppController
           $password = $this->Auth->password($this->data['User']['password']);
           $this->User->saveField('password', $password);
 
-          $this->Session->setFlash('Your password has been updated,please relogin');
+          $this->Session->setFlash('密码已被修改，请重新登录');
           $this->redirect(array('action' => 'logout'));
       }          
   }
@@ -154,17 +192,17 @@ class UsersController extends AppController
           $user = $this->User->findByEmail($this->data['User']['email']);
            
           if ($user == false) {
-              $this->Session->setFlash('No matching user found');
+              $this->Session->setFlash('未找到匹配用户');
               return false;
           }
            
           $token = $Token->generate(array('User' => $user['User']));
-          $this->Session->setFlash('An email has been sent to your account, please follow the instructions in this email.');
+          $this->Session->setFlash('已发送一封验证邮件到你的注册邮箱。');
           
           $Email = new CakeEmail('default');
           $Email->to($user['User']['email']);
           $Email->subject('Password Recovery');
-          $Email->from('tahongshen@gmail.com');
+          $Email->from('mindparadise.service@gmail.com');
           $Email->template('recover');
           $Email->viewVars(array('user'=>$user,'token'=>$token));
           $Email->send();
@@ -195,7 +233,7 @@ class UsersController extends AppController
           $Email = new CakeEmail('default');
           $Email->to($res['User']['email']);
           $Email->subject('Password Changed');
-          $Email->from('tahongshen@gmail.com');
+          $Email->from('mindparadise.service@gmail.com');
           $Email->template('verify');
           $Email->viewVars(array('user' => $res, 'password' => $password));
           $Email->send();

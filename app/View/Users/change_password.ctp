@@ -19,7 +19,7 @@ $this->end();
 		<p>你是<?php echo $currentUser['User']['username']; ?>，最后登录时间是<?php echo $currentUser['User']['lastlogin']; ?>.</p>
 		 
 		<?php
-		echo $this->Form->create(array('action' => 'changePassword'));
+		echo $this->Form->create('User', array('action' => 'changePassword'));
 		echo $this->Form->input('password_old',     array('label' => false, 'placeholder' => '旧密码', 'type' => 'password', 'class' => 'input_2', 'autocomplete' => 'off', 'div' => array('class' => 'clearfix')));
 		echo $this->Form->input('password_confirm', array('label' => false, 'placeholder' => '新密码', 'type' => 'password', 'class' => 'input_2', 'autocomplete' => 'off', 'div' => array('class' => 'clearfix')));
 		echo $this->Form->input('password', array('label' => false, 'placeholder' => '重新输入新密码', 'class' => 'input_3', 'autocomplete' => 'off', 'div' => array('class' => 'clearfix')));
