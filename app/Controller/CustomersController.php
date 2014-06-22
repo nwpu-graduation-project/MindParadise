@@ -7,7 +7,7 @@ App::uses('File', 'Utility');
 		public $uses = array('Document','Customer');
 
 		public $paginate = array(
-	        'limit' => 10,
+	        'limit' => 3,
 	        'order' => array(
 	            'Document.created' => 'desc'
 	        ),
@@ -15,9 +15,9 @@ App::uses('File', 'Utility');
 	    );
 
 		public function index() {
+			$user_id = $this->Auth->user('id');
 			$this->Paginator->settings = $this->paginate;
-        	$this->set('customers', $this->Paginator->paginate('Customer'));
-			// $this->set('customers', $this->Customer->find('all'));
+        	$this->set('customers', $this->Paginator->paginate('Customer',array('Customer.owner_id'=>$user_id)));
 		}
 
 		public function add() {

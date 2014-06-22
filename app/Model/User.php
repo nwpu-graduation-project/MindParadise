@@ -241,6 +241,28 @@ class User extends AppModel
   public function beforeDelete($cascade = true)
   {
     // deal with some records depends on the record, set their fk to null or others
+    $user = $this->findById($this->id);
+    switch($user['User']['role'])
+    {
+      case 1:
+      case 2:
+        $profileObj = new UserProfile();
+        $profile = $profileObj->findByUserId($this->id);
+        $profileObj->delete($profile['UserProfile']['id']);
+        break;
+      case 3:
+        $profileObj = new ConsultantProfile();
+        $profile = $profileObj->findByConsultantId($this->id);
+        $profileObj->delete($profile['ConsultantProfile']['id']);
+        break;
+      case 4:
+        $profileObj = new AdministratorProfile();
+        $profile = $profileObj->findByAdminId($this->id);
+        $profileObj->delete($profile['AdministratorProfile']['id']);
+        break;
+      default:
+        //error
+    }
   }
 
 

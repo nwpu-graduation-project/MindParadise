@@ -103,8 +103,8 @@
 						<div class="heading"><h2>编者推荐</h2></div>
 						<div class="content">
 							<div class="photos">
-								<a href="http://themeforest.net/category/site-templates?ref=4themes" target="_blank"><img src="/display/images/themeforest.jpg"/></a>
-								<a href="http://www.cssmoban.com/" target="_blank"><img src="/display/images/zerotheme.jpg"/></a>
+								<a href="http://www.mindparadise.com/Experts/view/22" target="_blank"><img src="/upload/uploads/31/1403010969_112.jpg"/></a>
+								<a href="http://www.mindparadise.com/Experts/view/24" target="_blank"><img src="/upload/uploads/33/1403012767_112.jpg"/></a>
 							</div>
 						</div>
 					</div>
@@ -112,15 +112,15 @@
 						<div class="heading"><h2>图片</h2></div>
 						<div class="content">
 							<div class="photos">
-								<a href="#"><img src="/display/images/photo01.png" /></a>
-								<a href="#"><img src="/display/images/photo02.png" /></a>
-								<a href="#"><img src="/display/images/photo03.png" /></a>
-								<a href="#"><img src="/display/images/photo04.png" /></a>
-								<a href="#"><img src="/display/images/photo05.png" /></a>
-								<a href="#"><img src="/display/images/photo01.png" /></a>
-								<a href="#"><img src="/display/images/photo02.png" /></a>
-								<a href="#"><img src="/display/images/photo03.png" /></a>
-								<a href="#"><img src="/display/images/photo05.png" /></a>
+								<a href="http://www.mindparadise.com/caseArticles/view/51"><img src="/img/cases_photos/2041250ce6fd3f1006eb87.jpg" width="75px" height="100px"/></a>
+								<a href="http://www.mindparadise.com/caseArticles/view/50"><img src="/img/cases_photos/16593372c588a314816075.jpg" width="75px" height="100px"/></a>
+								<a href="http://www.mindparadise.com/caseArticles/view/49"><img src="/img/cases_photos/18134531c5b4f16ad5c438.jpg" width="75px" height="100px"/></a>
+								<a href="http://www.mindparadise.com/caseArticles/view/47"><img src="/img/cases_photos/1139516c22443ac5c0246f.jpg!600.jpeg" width="75px" height="50px"/></a>
+								<a href="http://www.mindparadise.com/caseArticles/view/53"><img src="/img/cases_photos/17503940b45f9dac7ec486.jpg" width="75px" height="100px" /></a>
+								<a href="http://www.mindparadise.com/caseArticles/view/52"><img src="/img/cases_photos/1057204fb378c60909384f.jpg" width="75px" height="100px" /></a>
+								<a href="http://www.mindparadise.com/caseArticles/view/44"><img src="/img/cases_photos/112726d9c9b86748a87235.jpg" width="75px" height="100px"/></a>
+								<a href="http://www.mindparadise.com/caseArticles/view/43"><img src="/img/cases_photos/165450c230f9a58f45262a.jpg" width="75px" height="100px"/></a>
+								<a href="http://www.mindparadise.com/caseArticles/view/42"><img src="/img/cases_photos/1723594754a4078a5ef16a.jpg" width="75px" height="100px" /></a>
 							</div>
 						</div>
 					</div>
@@ -129,9 +129,9 @@
 						<div class="content">
 							<div class="photos">
 								<ul>
-									<li><a href="http://baike.baidu.com/subview/5371/5096866.htm">普通心理学</a></li>
-									<li><a href="http://baike.baidu.com/subview/69235/11404016.htm">变态心理学</a></li>
-									<li><a href="http://baike.baidu.com/subview/5441/11073621.htm">社会心理学</a></li>
+									<li><a href="http://www.mindparadise.com/Documents/view/17">焦虑症</a></li>
+									<li><a href="http://www.mindparadise.com/Documents/view/18">恐惧症</a></li>
+									<li><a href="http://www.mindparadise.com/Documents/view/19">抑郁症</a></li>
 								</ul>
 							</div>
 						</div>
@@ -140,19 +140,19 @@
 						<div class="heading"><h2>最新文章</h2></div>
 						<div class="content">
 							<div class="posts">
-								<img src="/display/images/post01.png"/>
-								<h4><a href="http://www.xinli001.com/info/10766/">沙盘中常见动物的象征意义</a></h4>
-								<p>浏览者590次</p>
+								<img src="/img/cases_photos/2041250ce6fd3f1006eb87.jpg" width="62px" height="62px" />
+								<h4><a href="http://www.mindparadise.com/caseArticles/view/51">为什么羞耻是人类最强烈的感情</a></h4><br>
+								<p>浏览2次</p>
 							</div>
 							<div class="posts">
-								<img src="/display/images/post02.png"/>
-								<h4><a href="http://www.xinli001.com/info/10686/">有用才是王道:12月译文精选</a></h4>
-								<p>浏览者1500次</p>
+								<img src="/img/cases_photos/16593372c588a314816075.jpg" width="62px" height="62px" />
+								<h4><a href="http://www.mindparadise.com/caseArticles/view/50">爆粗口他妈对你很好</a></h4><br><br>
+								<p>浏览3次</p>
 							</div>
 							<div class="posts">
-								<img src="/display/images/post03.png"/>
-								<h4><a href="http://www.xinli001.com/info/10839/">儿童身上的两颗种子</a></h4>
-								<p>浏览者1090次</p>
+								<img src="/img/cases_photos/18134531c5b4f16ad5c438.jpg" width="62px" height="62px" />
+								<h4><a href="http://www.mindparadise.com/caseArticles/view/49">我们为什么会过于相信陌生人</a></h4><br>
+								<p>浏览3次</p>
 							</div>
 						</div>
 					</div>

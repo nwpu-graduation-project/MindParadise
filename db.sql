@@ -30,15 +30,23 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `mind_paradise`.`adminstrator_profiles`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `mind_paradise`.`adminstrator_profiles` (
-  `id` INT(11) NOT NULL ,
+CREATE  TABLE IF NOT EXISTS `mind_paradise`.`administrator_profiles` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `admin_id` INT(11) NOT NULL ,
+  `first_name` VARCHAR(45) CHARACTER SET 'gbk' NULL DEFAULT NULL ,
+  `family_name` VARCHAR(45) CHARACTER SET 'gbk' NULL DEFAULT NULL,
+  `age` VARCHAR(45) CHARACTER SET 'gbk' NULL DEFAULT NULL ,
+  `gender` VARCHAR(45) CHARACTER SET 'gbk' NULL DEFAULT NULL ,
+  `phone_number` VARCHAR(45) CHARACTER SET 'gbk' NULL DEFAULT NULL ,
+  `qq_number` VARCHAR(45) CHARACTER SET 'gbk' NULL DEFAULT NULL ,
+  `avatar` VARCHAR(255) NULL DEFAULT NULL ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `user_id_UNIQUE` (`admin_id` ASC) ,
   CONSTRAINT `FK_Reference_17`
     FOREIGN KEY (`admin_id` )
     REFERENCES `mind_paradise`.`users` (`id` ))
 ENGINE = InnoDB
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -46,10 +54,12 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `mind_paradise`.`blogrolls`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `mind_paradise`.`blogrolls` (
-  `id` INT(11) NOT NULL ,
-  `site` VARCHAR(30) NOT NULL ,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(30) NOT NULL ,
+  `url` VARCHAR(255) NOT NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB
+AUTO_INCREMENT = 11
 DEFAULT CHARACTER SET = utf8;
 
 

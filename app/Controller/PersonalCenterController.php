@@ -53,6 +53,7 @@ class PersonalCenterController extends AppController
 			if(!parent::checkAdmin() && $id != $this->Auth->user('id'))
 	 		{
 	 			//error : have no previlege
+	 			$this->redirect("index");
 	 			return ;
 	 		}
 			$profile = $this->_getUserProfileModelNameAndObj($id);
@@ -424,7 +425,14 @@ class PersonalCenterController extends AppController
         					'recursive' => 0,
     					);
 
-		$commentsOnSelfComments = $this->Paginator->paginate('Comment', array('ParentComment.commentor_id' => $this->Auth->user('id')));
+		$commentsOnSelfComments = $this->Paginator->paginate('Comment', array(
+			'OR' =>array(
+				'Comment.commentted_user_id' => $this->Auth->user('id'),
+				array(
+					'Comment.commentted_user_id' => null,
+					'ParentComment.commentor_id' => $this->Auth->user('id')
+				)
+			)));
 
 		$this->set('commentsOnSelfComments', $commentsOnSelfComments);
 
@@ -520,7 +528,7 @@ class PersonalCenterController extends AppController
  			$this->User->create();
  			if ($this->User->save($this->request->data)) {
  				$this->Session->setFlash(__('用户添加成功.'));
- 				return ;//$this->redirect(array('action' => 'index'));
+ 				$this->redirect(array('action' => 'userIndex'));
  			}
  			$this->Session->setFlash(__('无法添加用户.'));
  		}
@@ -553,7 +561,7 @@ class PersonalCenterController extends AppController
 		}
 		if ($this->User->delete($id)) {
 			$this->Session->setFlash(
-			__('The user with id: %s has been deleted.', h($id))
+			__('id为%s的用户已被删除', h($id))
 		);
 		return $this->redirect(array('action' => 'userIndex'));
 		}
@@ -578,10 +586,10 @@ class PersonalCenterController extends AppController
  		if ($this->request->is('post')) {
  			$this->Blogroll->create();
  			if ($this->Blogroll->save($this->request->data)) {
- 				$this->Session->setFlash(__('Your blogroll has been saved.'));
+ 				$this->Session->setFlash(__('链接已经保存'));
  				return $this->redirect(array('action' => 'blogrollIndex'));
  			}
- 			$this->Session->setFlash(__('Unable to add your blogroll.'));
+ 			$this->Session->setFlash(__('无法添加链接'));
  		}
  	}
 
@@ -593,11 +601,11 @@ class PersonalCenterController extends AppController
  		}
 
  		if (!$id) {
- 			throw new NotFoundException(__('Invalid blogroll'));
+ 			throw new NotFoundException(__('无效的链接'));
  		}
  		$blogroll = $this->Blogroll->findById($id);
  		if (!$blogroll) {
- 			throw new NotFoundException(__('Invalid blogroll'));
+ 			throw new NotFoundException(__('无效的链接'));
  		}
  		$this->set('blogroll', $blogroll);
 
@@ -611,19 +619,19 @@ class PersonalCenterController extends AppController
  		}
 
  		if (!$id) {
- 			throw new NotFoundException(__('Invalid blogroll'));
+ 			throw new NotFoundException(__('无效的链接'));
  		}
  		$blogroll = $this->Blogroll->findById($id);
  		if (!$blogroll) {
- 			throw new NotFoundException(__('Invalid blogroll'));
+ 			throw new NotFoundException(__('无效的链接'));
  		}
  		if ($this->request->is(array('post', 'put'))) {
  			$this->blogroll->id = $id;
  			if ($this->Blogroll->save($this->request->data)) {
- 				$this->Session->setFlash(__('Your blogroll has been updated.'));
- 				return $this->redirect(array('action' => 'index'));
+ 				$this->Session->setFlash(__('链接已经更新'));
+ 				return $this->redirect(array('action' => 'blogrollIndex'));
  			}
- 			$this->Session->setFlash(__('Unable to update your blogroll.'));
+ 			$this->Session->setFlash(__('无法更新链接.'));
  		}
  		if (!$this->request->data) {
  			$this->request->data = $blogroll;
@@ -644,7 +652,7 @@ class PersonalCenterController extends AppController
 		}
 		if ($this->Blogroll->delete($id)) {
 		$this->Session->setFlash(
-		__('The blogroll with id: %s has been deleted.', h($id))
+		__('id为%s的链接已被删除', h($id))
 		);
 		return $this->redirect(array('action' => 'blogrollIndex'));
 		}

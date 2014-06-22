@@ -6,7 +6,7 @@ class CaseArticlesController extends AppController {
 
     public $helpers = array('Html', 'Form');
     public $components = array('Session', 'Paginator');
-    public $uses = array('CaseArticle', 'Expert', 'SearchIndex', 'CaseComment');
+    public $uses = array('CaseArticle', 'Expert', 'SearchIndex', 'CaseComment','User','Expert');
 
     public $paginate = array(
         'limit' => 5,
@@ -29,10 +29,9 @@ class CaseArticlesController extends AppController {
     }
 
     public function operate () {
+        $user_id = $this->Auth->user('id');
         $this->Paginator->settings = $this->paginate;
-        $this->set('caseArticles', $this->Paginator->paginate('CaseArticle'));
-        // $this->CaseArticle->recursive = 0;
-        // $this->set('caseArticles',$this->paginate());
+        $this->set('caseArticles', $this->Paginator->paginate('CaseArticle',array('CaseArticle.owner_id'=>$user_id)));
     }
     
     public function view($id = null) {

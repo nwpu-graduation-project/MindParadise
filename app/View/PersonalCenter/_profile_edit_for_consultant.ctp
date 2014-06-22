@@ -21,6 +21,7 @@ $this->end();
 	<tr><td><?php echo $this->Form->input('age', array('label' => '年龄')); ?></td></tr>
 	<tr><td><?php $sizes = array('男' => '男', '女' => '女');
 echo $this->Form->input('gender', array('options' => $sizes, 'default' => '男', 'label' => '性别')); ?></td></tr>
+	<tr><td><?php echo $this->Form->input('education', array('label' => '等级认证')); ?></td></tr>
 	<tr><td><?php echo $this->Form->input('phone', array('label' => '电话')); ?></td></tr>
 	<tr><td><?php echo $this->Form->input('qq_number', array('label' => 'QQ号码')); ?></td></tr>
 	<tr><td><?php echo $this->Form->input('microblog', array('label' => '微博帐号')); ?></td></tr>

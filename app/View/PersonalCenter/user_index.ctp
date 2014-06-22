@@ -8,7 +8,6 @@ $this->end();
 ?>
 <h3>用户管理</h3>
 <p><?php echo $this->Html->link("添加用户", array('action' => 'userAdd')); ?></p>
-<p><?php echo $this->Html->link("添加咨询师", array('controller' => 'Experts', 'action' => 'add')); ?></p>
 
 <?php
 echo $this->Form->create('User');

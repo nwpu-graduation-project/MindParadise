@@ -262,7 +262,7 @@ $this->end();
 				       	
 				    
 				        	<span class="fcn">·</span><a href="#" title=""></a><br>
-				        	<span class="fcn">·</span><a href="#" title=""></a><br>br>
+				        	<span class="fcn">·</span><a href="#" title=""></a><br>
 				        
 				        
 				        </p>

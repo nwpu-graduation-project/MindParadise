@@ -36,7 +36,10 @@ foreach($commentsOnOthers as $comment):
 			<span>回复了</span>
 			<span>
 			<?php 
-        $commentedUsername = $usernameIndex['id'.$comment['ParentComment']['commentor_id']];
+        if($comment['Comment']['commentted_user_id'])
+          $commentedUsername = $comment['CommenttedUser']['username'];
+        else
+          $commentedUsername = $usernameIndex['id'.$comment['ParentComment']['commentor_id']];
         echo $commentedUsername.':'; 
       ?>
 			</span>
